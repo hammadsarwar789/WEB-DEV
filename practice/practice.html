@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Practice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-bootstrap-fill text-primary fs-4"></i>
+                <span>MyWebsite</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#services">Our Services</a></li>
+                            <li><a class="dropdown-item" href="#about">Company Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search" onsubmit="event.preventDefault();">
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Classic Hero / Jumbotron Section -->
+    <header id="home" class="py-5">
+        <div class="container">
+            <div class="p-5 mb-4 bg-light rounded-3 border">
+                <div class="container-fluid py-4">
+                    <h1 class="display-5 fw-bold text-dark">Welcome to Our Website</h1>
+                    <p class="col-md-9 fs-5 text-muted mt-3">
+                        This is a clean, classic webpage built strictly with canonical Bootstrap 5 components and default utility classes. It demonstrates the responsive grid system, cards, standard navigation, and simple form controls.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <a href="#services" class="btn btn-primary btn-lg px-4">Our Services</a>
+                        <a href="#contact" class="btn btn-outline-secondary btn-lg px-4">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Feature / Services Cards Section -->
+    <section id="services" class="py-5 bg-white border-top border-bottom">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Services</h2>
+                <p class="text-muted">Explore what we have to offer with standard responsive grid cards.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="text-primary fs-1 mb-3">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Web Development</h5>
+                            <p class="card-text text-muted">
+                                Clean, responsive website design using standard HTML5, CSS3, and standard Bootstrap components.
+                            </p>
+                            <a href="#contact" class="btn btn-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="text-primary fs-1 mb-3">
+                                <i class="bi bi-phone"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Mobile Friendly</h5>
+                            <p class="card-text text-muted">
+                                Fully responsive layout that adapts effortlessly to smartphones, tablets, and desktop displays.
+                            </p>
+                            <a href="#contact" class="btn btn-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="text-primary fs-1 mb-3">
+                                <i class="bi bi-gear-fill"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Technical Support</h5>
+                            <p class="card-text text-muted">
+                                Fast and reliable maintenance to ensure all components and web pages function without issues.
+                            </p>
+                            <a href="#contact" class="btn btn-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. About Us Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-md-6">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=About+Our+Team" class="img-fluid rounded border shadow-sm w-100" alt="About Image" onerror="this.src='https://placehold.co/600x400?text=About+Us'">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-3">About Our Company</h2>
+                    <p class="text-muted">
+                        We build clean, accessible, and structured web solutions. By relying on Bootstrap's battle-tested design system, layouts stay predictable, easy to read, and simple to customize.
+                    </p>
+                    
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item bg-transparent ps-0">
+                            <i class="bi bi-check2-circle text-success me-2"></i> 100% Mobile responsive layout
+                        </li>
+                        <li class="list-group-item bg-transparent ps-0">
+                            <i class="bi bi-check2-circle text-success me-2"></i> Standard, clean Bootstrap markup
+                        </li>
+                        <li class="list-group-item bg-transparent ps-0">
+                            <i class="bi bi-check2-circle text-success me-2"></i> Lightweight with no heavy dependencies
+                        </li>
+                    </ul>
+
+                    <a href="#contact" class="btn btn-outline-dark">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Contact Section -->
+    <section id="contact" class="py-5 bg-white border-top">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold">Contact Us</h2>
+                        <p class="text-muted">Feel free to reach out to us using the form below.</p>
+                    </div>
+
+                    <div id="contactSuccessMsg" class="alert alert-success d-none mb-4" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        Thank you! Your message has been sent successfully.
+                    </div>
+
+                    <form id="basicContactForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="emailAddr" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="emailAddr" placeholder="name@example.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="serviceCategory" class="form-label">Subject</label>
+                                <select class="form-select" id="serviceCategory" required>
+                                    <option value="" selected disabled>Select an option...</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="support">Customer Support</option>
+                                    <option value="sales">Sales & Pricing</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="messageText" class="form-label">Message</label>
+                                <textarea class="form-control" id="messageText" rows="4" placeholder="Write your message here..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary px-4">Submit</button>
+                                <button type="reset" class="btn btn-outline-secondary ms-2">Clear</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Standard Footer -->
+    <footer class="bg-dark text-white py-4 border-top">
+        <div class="container">
+            <div class="row align-items-center gy-3">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-secondary">&copy; 2026 MyWebsite. Built with Bootstrap 5.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#home" class="text-secondary text-decoration-none me-3">Home</a>
+                    <a href="#services" class="text-secondary text-decoration-none me-3">Services</a>
+                    <a href="#about" class="text-secondary text-decoration-none me-3">About</a>
+                    <a href="#contact" class="text-secondary text-decoration-none">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS (Includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Simple form submission handler
+        const form = document.getElementById('basicContactForm');
+        const alertBox = document.getElementById('contactSuccessMsg');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Show standard Bootstrap success alert
+            alertBox.classList.remove('d-none');
+            // Reset fields
+            form.reset();
+            // Auto hide message after 4 seconds
+            setTimeout(function () {
+                alertBox.classList.add('d-none');
+            }, 4000);
+        });
+    </script>
+</body>
+</html>

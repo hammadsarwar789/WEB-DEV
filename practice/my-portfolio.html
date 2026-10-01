@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Hammad Sarwar - Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            color: #222222;
+            line-height: 1.5;
+            padding: 15px;
+        }
+
+        .wrapper {
+            max-width: 780px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 25px;
+        }
+
+        h1 {
+            color: #003366;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #003366;
+            font-size: 18px;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #0056b3;
+            font-size: 15px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 15px 0;
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+            background-color: #003366;
+            padding: 8px 12px;
+            margin: 12px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .project-box {
+            border: 1px solid #dddddd;
+            background-color: #fafafa;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e6f0fa;
+            color: #0056b3;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border: 1px solid #b8daff;
+            margin-bottom: 6px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        pre {
+            background-color: #2b2b2b;
+            color: #f1f1f1;
+            padding: 10px;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        p code {
+            background-color: #f0f0f0;
+            color: #990000;
+            padding: 2px 4px;
+            font-size: 13px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .notice-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>Muhammad Hammad Sarwar</h1>
+            <p>Roll No: FA22-BCS-068 | BS Computer Science (Semester 6)</p>
+            <p>COMSATS University Islamabad, Lahore Campus (Defence Road, Off Raiwind Road)</p>
+            <p>Email: <a href="mailto:fa22-bcs-078@cuilahore.edu.pk">fa22-bcs-078@cuilahore.edu.pk</a> | Phone:
+                0304-1234567</p>
+
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#terminal">Terminal</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>About Me</h2>
+                <p>6th semester CS student at CUI Lahore. Interested in backend Python programming, Linux environments,
+                    and working on database systems.</p>
+            </section>
+
+            <section id="courses">
+                <h2>Current Semester Courses</h2>
+                <ul>
+                    <li>CSC336: Web Technologies (Lab 03 - C-Block Lab)</li>
+                    <li>CSC323: Operating Systems (Ma'am Zeenat)</li>
+                    <li>CSC339: Computer Networks</li>
+                    <li>CSC392: Software Engineering</li>
+                </ul>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+
+                <div class="project-box">
+                    <span class="tag">Semester Work</span>
+                    <h3>1. LogicFlow AI</h3>
+                    <p>Circuit diagram analyzer built with Python and OpenCV. Takes a camera capture of hand-drawn gates
+                        from our notebook and identifies gate shapes to generate a truth table.</p>
+                    <p>Stack: Python 3.11, OpenCV, FastAPI</p>
+                </div>
+
+                <div class="project-box">
+                    <span class="tag">Live Client</span>
+                    <h3>2. KMTextiles</h3>
+                    <p>Order and inventory record system for wholesale and unstitched fabric suits (cotton, lawn, and
+                        khaddar) linking wholesale shops in Faisalabad and Azam Cloth Market, Lahore.</p>
+                    <p>Stack: Python, Django, PostgreSQL</p>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <ul>
+                    <li>Languages: Python, C++, SQL, HTML5, CSS3, JavaScript</li>
+                    <li>Tools: VS Code, Git, WSL2 (Ubuntu), Postman</li>
+                    <li>Databases: PostgreSQL, MySQL</li>
+                </ul>
+            </section>
+
+            <section id="terminal">
+                <h2>Git Terminal Record</h2>
+                <pre><code>hammad@laptop-wsl:~/web-lab$ git status
+On branch master
+Untracked files:
+  practice/my-portfolio.html
+
+hammad@laptop-wsl:~/web-lab$ git add practice/my-portfolio.html
+hammad@laptop-wsl:~/web-lab$ git commit -m "submit lab 03 portfolio"
+[master 4f91c20] submit lab 03 portfolio
+ 1 file changed, 140 insertions(+)</code></pre>
+            </section>
+
+            <div class="notice-box">
+                <strong>Submission Note:</strong> CSC336 Lab Assignment 03. Submit verified printout to Sir Waqas, CS
+                Department C-Block.
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Muhammad Hammad Sarwar &mdash; FA22-BCS-078 &mdash; CUI Lahore</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>

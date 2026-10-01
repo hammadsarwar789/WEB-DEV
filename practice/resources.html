@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Resources - CUI Lahore</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            color: #222222;
+            line-height: 1.5;
+            padding: 15px;
+        }
+        .wrapper {
+            max-width: 780px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 25px;
+        }
+        h1 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #003366;
+            font-size: 17px;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #0056b3;
+            font-size: 15px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 15px 0;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #cccccc;
+            padding: 4px;
+            margin-top: 5px;
+        }
+        audio, video {
+            max-width: 100%;
+            display: block;
+            margin-top: 8px;
+        }
+        .box {
+            border: 1px solid #dddddd;
+            background-color: #fafafa;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        code {
+            font-family: Consolas, monospace;
+            background-color: #f0f0f0;
+            color: #990000;
+            padding: 1px 4px;
+            font-size: 13px;
+            border: 1px solid #e0e0e0;
+        }
+        .notice-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>COMSATS University Islamabad, Lahore Campus</h1>
+            <p>CSC336 Web Technologies - Media &amp; Hyperlinks Resource File</p>
+            <p>Student: Muhammad Hammad Sarwar (FA22-BCS-078)</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <section>
+                <h2>1. University Portal Link (Clickable Image)</h2>
+                <p>Click image to open official CUI Lahore campus portal:</p>
+                <a href="https://lahore.comsats.edu.pk" target="_blank" rel="noopener noreferrer">
+                    <img src="https://lahore.comsats.edu.pk/Images/Logo.png" alt="CUI Lahore Logo" width="240" height="75">
+                </a>
+            </section>
+
+            <section>
+                <h2>2. Hyperlink Directory</h2>
+
+                <div class="box">
+                    <h3>External Absolute Links</h3>
+                    <ul>
+                        <li><a href="https://www.comsats.edu.pk" target="_blank" rel="noopener noreferrer">CUI Principal Seat Islamabad</a></li>
+                        <li><a href="https://lahore.comsats.edu.pk" target="_blank" rel="noopener noreferrer">CUI Lahore Campus Official Website</a></li>
+                        <li><a href="https://cuonline.cuilahore.edu.pk" target="_blank" rel="noopener noreferrer">CUOnline Student Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h3>Internal Relative Paths</h3>
+                    <ul>
+                        <li><a href="admission-form.html">Student Lab Registration Form</a> (Same folder link)</li>
+                        <li><a href="lectures/week1-notes.pdf">CSC336 Week 1 Slides</a> (Subfolder link)</li>
+                        <li><a href="../index.html">Project Root Index</a> (Parent folder link)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>3. Media Players</h2>
+
+                <div class="box">
+                    <h3>Lecture Audio (CSC336 Intro)</h3>
+                    <p>Brief audio overview of course grading and lab work:</p>
+                    <audio controls>
+                        <source src="audio/csc336-intro.mp3" type="audio/mpeg">
+                        Your browser does not support audio element.
+                    </audio>
+                </div>
+
+                <div class="box">
+                    <h3>Campus Lab Video</h3>
+                    <p>Computer Science C-Block lab walkthrough:</p>
+                    <video width="440" height="250" controls>
+                        <source src="video/campus-tour.mp4" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                </div>
+            </section>
+
+            <section>
+                <h2>4. Void Element Checklist</h2>
+                <p>HTML5 elements used on this page that do not have a closing tag:</p>
+                <ul>
+                    <li><code>&lt;img&gt;</code> for the university crest</li>
+                    <li><code>&lt;source&gt;</code> inside audio and video players</li>
+                    <li><code>&lt;hr&gt;</code> for dividers</li>
+                    <li><code>&lt;br&gt;</code> for line breaks</li>
+                </ul>
+            </section>
+
+            <div class="notice-box">
+                <strong>Department Notice:</strong> Lab demonstration video and lecture audio files are also hosted on the internal CS Department LAN server for fast download on lab PCs.
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Muhammad Hammad Sarwar &mdash; FA22-BCS-078 &mdash; CUI Lahore</p>
+        </footer>
+    </div>
+
+</body>
+</html>

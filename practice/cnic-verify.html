@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student CNIC Verification - CUI Lahore</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            color: #222222;
+            line-height: 1.5;
+            padding: 15px;
+        }
+        .wrapper {
+            max-width: 780px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 25px;
+        }
+        h1 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 15px 0;
+        }
+        fieldset {
+            border: 1px solid #cccccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fdfdfd;
+        }
+        legend {
+            font-weight: bold;
+            color: #003366;
+            padding: 0 5px;
+            font-size: 14px;
+        }
+        .form-row {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 3px;
+            color: #333333;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="number"] {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            padding: 6px 8px;
+            border: 1px solid #999999;
+            font-size: 13px;
+            color: #222222;
+            background-color: #ffffff;
+        }
+        input:focus {
+            border-color: #003366;
+            outline: none;
+        }
+        .check-item {
+            margin: 8px 0;
+            font-size: 13px;
+        }
+        .check-item input {
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+        .check-item label {
+            display: inline;
+            font-weight: normal;
+        }
+        .btn-row {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 7px 18px;
+            background-color: #0056b3;
+            color: #ffffff;
+            border: 1px solid #004085;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+        button[type="reset"] {
+            background-color: #6c757d;
+            border-color: #545b62;
+        }
+        button[type="reset"]:hover {
+            background-color: #5a6268;
+        }
+        .notice-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 15px;
+            }
+            .btn-row {
+                flex-direction: column;
+            }
+            input[type="text"],
+            input[type="tel"],
+            input[type="number"] {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>COMSATS University Islamabad, Lahore Campus</h1>
+            <p>Student CNIC &amp; Enrollment Verification Portal</p>
+            <p>Defence Road, Off Raiwind Road, Lahore</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <form method="POST" action="/verify-student-cnic">
+
+                <fieldset>
+                    <legend>Student CNIC Details</legend>
+
+                    <div class="form-row">
+                        <label for="student_cnic">CNIC Number (with dashes) *:</label>
+                        <input type="text" id="student_cnic" name="student_cnic" required pattern="\d{5}-\d{7}-\d" placeholder="35202-1234567-1" title="Format: 5 digits, hyphen, 7 digits, hyphen, 1 digit">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="student_phone">Mobile Number *:</label>
+                        <input type="tel" id="student_phone" name="student_phone" required pattern="03\d{2}-\d{7}" placeholder="0304-1234567" title="Format: 03XX-XXXXXXX">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="applicant_age">Age (17 to 30) *:</label>
+                        <input type="number" id="applicant_age" name="applicant_age" min="17" max="30" required placeholder="21">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="cui_roll_no">CUI Roll Number *:</label>
+                        <input type="text" id="cui_roll_no" name="cui_roll_no" minlength="11" maxlength="13" required placeholder="FA22-BCS-078">
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="verify_hec_declaration" name="verify_hec_declaration" required>
+                        <label for="verify_hec_declaration">I confirm that this CNIC belongs to me as per university registration records.</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="sms_alerts" name="sms_alerts" required>
+                        <label for="sms_alerts">I agree to receive verification PIN and SMS updates on this phone number.</label>
+                    </div>
+
+                    <div class="btn-row">
+                        <button type="submit">Verify CNIC</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </fieldset>
+
+            </form>
+
+            <div class="notice-box">
+                <strong>Department Notice:</strong> In case of CNIC mismatch with HEC database, visit the student facilitation counter at the CUI Lahore Student Centre with original CNIC.
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Student Affairs &mdash; CUI Lahore Campus</p>
+        </footer>
+    </div>
+
+</body>
+</html>

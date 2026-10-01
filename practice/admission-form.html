@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMSATS Lahore - Lab Registration Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            color: #222222;
+            line-height: 1.5;
+            padding: 15px;
+        }
+        .wrapper {
+            max-width: 780px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 25px;
+        }
+        h1 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 15px 0;
+        }
+        fieldset {
+            border: 1px solid #cccccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fdfdfd;
+        }
+        legend {
+            font-weight: bold;
+            color: #003366;
+            padding: 0 5px;
+            font-size: 14px;
+        }
+        .form-row {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 3px;
+            color: #333333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            padding: 6px 8px;
+            border: 1px solid #999999;
+            font-size: 13px;
+            color: #222222;
+            background-color: #ffffff;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #003366;
+            outline: none;
+        }
+        .radio-item {
+            margin: 4px 0;
+            font-size: 13px;
+        }
+        .radio-item input {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .radio-item label {
+            display: inline;
+            font-weight: normal;
+        }
+        input[type="file"] {
+            margin-top: 4px;
+            font-size: 13px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .btn-row {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 7px 18px;
+            background-color: #0056b3;
+            color: #ffffff;
+            border: 1px solid #004085;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+        button[type="reset"] {
+            background-color: #6c757d;
+            border-color: #545b62;
+        }
+        button[type="reset"]:hover {
+            background-color: #5a6268;
+        }
+        .notice-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 15px;
+            }
+            .btn-row {
+                flex-direction: column;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="number"],
+            select,
+            textarea {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>COMSATS University Islamabad, Lahore Campus</h1>
+            <p>CS Lab Portal Registration Form &bull; Spring 2026</p>
+            <p>Defence Road, Off Raiwind Road, Lahore</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <form method="POST" action="/submit-registration" enctype="multipart/form-data">
+
+                <fieldset>
+                    <legend>1. Personal Details</legend>
+
+                    <div class="form-row">
+                        <label for="student_fullname">Full Name (per Matric Certificate) *:</label>
+                        <input type="text" id="student_fullname" name="student_fullname" required placeholder="Muhammad Hammad Sarwar">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="father_fullname">Father's Name *:</label>
+                        <input type="text" id="father_fullname" name="father_fullname" required placeholder="Muhammad Sarwar">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="domicile_city">Domicile District *:</label>
+                        <select id="domicile_city" name="domicile_city" required>
+                            <option value="" disabled selected>-- Select City --</option>
+                            <option value="lahore">Lahore</option>
+                            <option value="faisalabad">Faisalabad</option>
+                            <option value="islamabad">Islamabad / Rawalpindi</option>
+                            <option value="multan">Multan</option>
+                            <option value="sahiwal">Sahiwal</option>
+                            <option value="gujranwala">Gujranwala</option>
+                            <option value="other">Other District</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="permanent_home_address">Permanent Home Address *:</label>
+                        <textarea id="permanent_home_address" name="permanent_home_address" rows="3" required placeholder="House number, street, tehsil, and district (e.g., Madni Park, Jaranwala, Faisalabad)"></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. University Credentials</legend>
+
+                    <div class="form-row">
+                        <label for="cui_email">University Email *:</label>
+                        <input type="email" id="cui_email" name="cui_email" required placeholder="fa22-bcs-078@cuilahore.edu.pk">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="account_pwd">Account Password *:</label>
+                        <input type="password" id="account_pwd" name="account_pwd" minlength="8" required placeholder="At least 8 characters">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="confirm_account_pwd">Confirm Password *:</label>
+                        <input type="password" id="confirm_account_pwd" name="confirm_account_pwd" minlength="8" required placeholder="Re-type password">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>3. Academic Record</legend>
+
+                    <div class="form-row">
+                        <label>Degree Program *:</label>
+                        <div class="radio-item">
+                            <input type="radio" id="prog_bscs" name="degree_program" value="BSCS" required>
+                            <label for="prog_bscs">Bachelor of Science in Computer Science (BSCS)</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="prog_bse" name="degree_program" value="BSE">
+                            <label for="prog_bse">Bachelor of Science in Software Engineering (BS SE)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="matric_obtained">Matric Marks (Total: 1100) *:</label>
+                        <input type="number" id="matric_obtained" name="matric_obtained" min="500" max="1100" required placeholder="e.g., 994">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="fsc_obtained">FSc / ICS Marks (Total: 1100) *:</label>
+                        <input type="number" id="fsc_obtained" name="fsc_obtained" min="500" max="1100" required placeholder="e.g., 928">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>4. Result Card Attachment</legend>
+
+                    <div class="form-row">
+                        <label for="intermediate_transcript">Upload FSc/ICS Result Card (PDF, JPG, PNG) *:</label>
+                        <input type="file" id="intermediate_transcript" name="intermediate_transcript" accept=".pdf,image/jpeg,image/png" required>
+                    </div>
+                </fieldset>
+
+                <div class="btn-row">
+                    <button type="submit">Submit Form</button>
+                    <button type="reset">Clear Entries</button>
+                </div>
+
+            </form>
+
+            <div class="notice-box">
+                <strong>Submission Note:</strong> Submit verified printout of this form with two passport-sized photographs to the Student Affairs Office, C-Block ground floor.
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Student Affairs &mdash; COMSATS University Islamabad, Lahore Campus</p>
+        </footer>
+    </div>
+
+</body>
+</html>

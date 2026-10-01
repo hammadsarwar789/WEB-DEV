@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Methods - GET vs POST Lab</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            color: #222222;
+            line-height: 1.5;
+            padding: 15px;
+        }
+        .wrapper {
+            max-width: 780px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 25px;
+        }
+        h1 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #003366;
+            font-size: 17px;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #0056b3;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 15px 0;
+        }
+        .box {
+            border: 1px solid #dddddd;
+            background-color: #fafafa;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        .form-row {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 3px;
+            color: #333333;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="search"] {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            padding: 6px 8px;
+            border: 1px solid #999999;
+            font-size: 13px;
+            color: #222222;
+            background-color: #ffffff;
+            margin-bottom: 8px;
+        }
+        input:focus {
+            border-color: #003366;
+            outline: none;
+        }
+        .btn-row {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 7px 18px;
+            background-color: #0056b3;
+            color: #ffffff;
+            border: 1px solid #004085;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+        button[type="reset"] {
+            background-color: #6c757d;
+            border-color: #545b62;
+        }
+        button[type="reset"]:hover {
+            background-color: #5a6268;
+        }
+        pre {
+            background-color: #2b2b2b;
+            color: #f1f1f1;
+            padding: 10px;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        code {
+            font-family: Consolas, monospace;
+        }
+        p code {
+            background-color: #f0f0f0;
+            color: #990000;
+            padding: 2px 4px;
+            font-size: 13px;
+            border: 1px solid #e0e0e0;
+        }
+        .notice-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 15px;
+            }
+            .btn-row {
+                flex-direction: column;
+            }
+            input[type="text"],
+            input[type="password"],
+            input[type="search"] {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>CSC336 Web Lab: HTTP Methods</h1>
+            <p>Testing GET query parameters and POST request payloads</p>
+            <p>Muhammad Hammad Sarwar &bull; FA22-BCS-078 &bull; CUI Lahore</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <section>
+                <h2>1. GET Method Tests</h2>
+
+                <div class="box">
+                    <h3>Google Search</h3>
+                    <form method="GET" action="https://www.google.com/search" target="_blank">
+                        <div class="form-row">
+                            <label for="google_q">Query (name="q"):</label>
+                            <input type="search" id="google_q" name="q" required placeholder="COMSATS Lahore merit list">
+                        </div>
+                        <button type="submit">Search Google</button>
+                    </form>
+                </div>
+
+                <div class="box">
+                    <h3>Wikipedia Lookup</h3>
+                    <form method="GET" action="https://en.wikipedia.org/w/index.php" target="_blank">
+                        <div class="form-row">
+                            <label for="wiki_search">Term (name="search"):</label>
+                            <input type="search" id="wiki_search" name="search" required placeholder="Hypertext Transfer Protocol">
+                        </div>
+                        <button type="submit">Search Wikipedia</button>
+                    </form>
+                </div>
+            </section>
+
+            <section>
+                <h2>2. POST Method Test</h2>
+
+                <div class="box">
+                    <h3>CUOnline Portal Login</h3>
+                    <form method="POST" action="/login">
+                        <div class="form-row">
+                            <label for="reg_no">Registration No:</label>
+                            <input type="text" id="reg_no" name="reg_no" required placeholder="FA22-BCS-078">
+                        </div>
+
+                        <div class="form-row">
+                            <label for="pass">Password:</label>
+                            <input type="password" id="pass" name="pass" required placeholder="Portal password">
+                        </div>
+
+                        <div class="btn-row">
+                            <button type="submit">Login</button>
+                            <button type="reset">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section>
+                <h2>3. Request Format Comparison</h2>
+
+                <p><strong>GET Request URL Format:</strong></p>
+                <pre><code>GET /search?q=COMSATS+Lahore HTTP/1.1
+Host: www.google.com</code></pre>
+
+                <p><strong>POST Request Payload Format:</strong></p>
+                <pre><code>POST /login HTTP/1.1
+Host: cuonline.cuilahore.edu.pk
+Content-Type: application/x-www-form-urlencoded
+
+reg_no=FA22-BCS-078&amp;pass=secret123</code></pre>
+            </section>
+
+            <div class="notice-box">
+                <strong>Lab Note:</strong> Passwords must never be submitted using GET because parameters get appended directly to the URL, creating entries in the browser history and server access logs.
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Muhammad Hammad Sarwar &mdash; CSC336 Lab &mdash; CUI Lahore</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMTextiles - Fabric &amp; Order Inquiry</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            color: #222222;
+            line-height: 1.5;
+            padding: 15px;
+        }
+        .wrapper {
+            max-width: 780px;
+            margin: 10px auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 25px;
+        }
+        h1 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 15px 0;
+        }
+        fieldset {
+            border: 1px solid #cccccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fdfdfd;
+        }
+        legend {
+            font-weight: bold;
+            color: #003366;
+            padding: 0 5px;
+            font-size: 14px;
+        }
+        .form-row {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 3px;
+            color: #333333;
+        }
+        input[type="text"],
+        input[type="tel"],
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            padding: 6px 8px;
+            border: 1px solid #999999;
+            font-size: 13px;
+            color: #222222;
+            background-color: #ffffff;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #003366;
+            outline: none;
+        }
+        .check-item {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        .check-item input {
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+        .check-item label {
+            display: inline;
+            font-weight: normal;
+        }
+        input[type="range"] {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 5px 0;
+        }
+        input[type="color"] {
+            border: 1px solid #cccccc;
+            width: 50px;
+            height: 30px;
+            padding: 2px;
+            cursor: pointer;
+            margin-top: 3px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+        .btn-row {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 7px 18px;
+            background-color: #0056b3;
+            color: #ffffff;
+            border: 1px solid #004085;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+        button[type="reset"] {
+            background-color: #6c757d;
+            border-color: #545b62;
+        }
+        button[type="reset"]:hover {
+            background-color: #5a6268;
+        }
+        .notice-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666666;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 15px;
+            }
+            .btn-row {
+                flex-direction: column;
+            }
+            input[type="text"],
+            input[type="tel"],
+            select,
+            textarea {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1>KMTextiles - Fabric &amp; Order Inquiry</h1>
+            <p>Wholesale &amp; Retail Fabrics &bull; Faisalabad &amp; Azam Cloth Market, Lahore</p>
+            <p>Developer: Muhammad Hammad Sarwar (FA22-BCS-078 &bull; CUI Lahore)</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <form action="/inquiry" method="POST">
+
+                <fieldset>
+                    <legend>1. Customer Contact</legend>
+
+                    <div class="form-row">
+                        <label for="buyer_name">Customer Name *:</label>
+                        <input type="text" id="buyer_name" name="customer_name" required placeholder="Bilal Ahmed">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="delivery_city">City *:</label>
+                        <select id="delivery_city" name="city" required>
+                            <option value="" disabled selected>-- Select Delivery City --</option>
+                            <option value="faisalabad">Faisalabad</option>
+                            <option value="lahore">Lahore</option>
+                            <option value="karachi">Karachi</option>
+                            <option value="islamabad">Islamabad</option>
+                            <option value="rawalpindi">Rawalpindi</option>
+                            <option value="multan">Multan</option>
+                            <option value="gujranwala">Gujranwala</option>
+                            <option value="sahiwal">Sahiwal</option>
+                            <option value="other">Other District</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="buyer_phone">Mobile Number *:</label>
+                        <input type="tel" id="buyer_phone" name="contact_number" required pattern="03\d{2}-\d{7}" placeholder="0304-1234567" title="Format: 03XX-XXXXXXX">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. Fabric &amp; Order Preferences</legend>
+
+                    <div class="form-row">
+                        <label>Fabric Materials (Select one or more) *:</label>
+                        <div class="check-item">
+                            <input type="checkbox" id="fabric_cotton" name="fabric_types" value="Cotton">
+                            <label for="fabric_cotton">Pure Cotton</label>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" id="fabric_lawn" name="fabric_types" value="Lawn">
+                            <label for="fabric_lawn">Summer Lawn</label>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" id="fabric_linen" name="fabric_types" value="Linen">
+                            <label for="fabric_linen">Winter Linen</label>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" id="fabric_khaddar" name="fabric_types" value="Khaddar">
+                            <label for="fabric_khaddar">Hand-Woven Khaddar</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Order Type *:</label>
+                        <div class="check-item">
+                            <input type="radio" id="type_unstitched" name="order_type" value="Unstitched" required>
+                            <label for="type_unstitched">Unstitched Fabric (4.5m suit cuts)</label>
+                        </div>
+                        <div class="check-item">
+                            <input type="radio" id="type_stitched" name="order_type" value="Ready-to-Wear">
+                            <label for="type_stitched">Ready-to-Wear (Stitched)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="courier_service">Delivery Service *:</label>
+                        <select id="courier_service" name="delivery_service" required>
+                            <option value="tcs">TCS Express Courier</option>
+                            <option value="leopards">Leopards Courier</option>
+                            <option value="pak_post">Pakistan Post</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="budget_range">Estimated Budget (PKR 1,000 to 50,000):</label>
+                        <input type="range" id="budget_range" name="budget_range" min="1000" max="50000" step="1000" value="5000">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="fabric_color">Color / Shade Preference:</label>
+                        <input type="color" id="fabric_color" name="fabric_color" value="#003366">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>3. Custom Measurements / Delivery Notes</legend>
+                    <div class="form-row">
+                        <label for="order_notes">Measurements (Kameez length, chest, waist, sleeves) or wholesale requests:</label>
+                        <textarea id="order_notes" name="order_notes" rows="4" placeholder="Enter custom sizing or delivery instructions here..."></textarea>
+                    </div>
+                </fieldset>
+
+                <div class="btn-row">
+                    <button type="submit">Submit Inquiry</button>
+                    <button type="reset">Clear Form</button>
+                </div>
+
+            </form>
+
+            <div class="notice-box">
+                <strong>Course Note:</strong> KMTextiles web inquiry prototype submitted as part of CSC336 semester course portfolio.
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 KMTextiles &mdash; Faisalabad &amp; Lahore &mdash; Muhammad Hammad Sarwar</p>
+        </footer>
+    </div>
+
+</body>
+</html>

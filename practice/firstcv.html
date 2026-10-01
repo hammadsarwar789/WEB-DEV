@@ -3,85 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Hammad Sarwar - Software Engineer</title>
+    <title>Muhammad Hammad Sarwar - CV</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
-        <header class="profile-header">
-            <div class="avatar" aria-hidden="true">MH</div>
-            <h1>Muhammad Hammad Sarwar</h1>
-            <p class="tagline">Software Engineer &middot; Full-Stack &amp; Distributed Systems</p>
-        </header>
-
-        <main>
-            <section class="about">
-                <h2>About Me</h2>
+        
+        <!-- Header Section -->
+        <div id="header">
+            <h1 class="name">Muhammad Hammad Sarwar</h1>
+            <p class="sub-title">Python Developer & Backend Engineer</p>
+            
+            <div class="contact-info">
+                <p><strong>Address:</strong> Madni Park, Jaranwala, Faisalabad, Punjab, Pakistan (37250)</p>
                 <p>
-                    I am a Computer Science undergraduate and software engineer specializing in 
-                    building robust backend architectures, scalable RESTful APIs, and responsive web applications. 
-                    My focus centers on high-throughput distributed systems, event-driven workflows, and 
-                    clean, maintainable system design across the full stack.
+                    <strong>Email:</strong> <a href="mailto:mhammadsarwar789@gmail.com">mhammadsarwar789@gmail.com</a> | 
+                    <strong>Phone:</strong> <a href="tel:03077482760">03077482760</a>
                 </p>
-            </section>
+                <p>
+                    <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/hammadsarwar789" target="_blank">linkedin.com/in/hammadsarwar789</a> | 
+                    <strong>GitHub:</strong> <a href="https://github.com/hammadsarwar789" target="_blank">github.com/hammadsarwar789</a>
+                </p>
+            </div>
+        </div>
 
-            <section class="skills">
-                <h2>Technical Toolkit</h2>
-                <div class="skills-grid">
-                    <div>
-                        <h3>Backend &amp; Architecture</h3>
-                        <ul>
-                            <li>Python (FastAPI, Flask)</li>
-                            <li>PostgreSQL, MySQL, Redis</li>
-                            <li>RabbitMQ &amp; Celery (Task Queues)</li>
-                            <li>REST APIs, JWT Auth &amp; RBAC</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>Frontend &amp; Engineering</h3>
-                        <ul>
-                            <li>JavaScript / TypeScript, React, Next.js</li>
-                            <li>Tailwind CSS, HTML5, Modern CSS</li>
-                            <li>Git, GitHub, CI/CD Workflows</li>
-                            <li>System Design &amp; Performance Profiling</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+        <hr>
 
-            <section class="projects">
-                <h2>Featured Projects</h2>
-                <div class="project-card">
-                    <h3>Distributed Flash Sale &amp; E-Commerce Engine</h3>
-                    <p>
-                        High-throughput transactional backend built with Flask, PostgreSQL, and Redis 
-                        featuring asynchronous checkout processing via RabbitMQ and Celery workers to eliminate 
-                        race conditions and prevent inventory overselling under heavy concurrency.
-                    </p>
-                </div>
-                <div class="project-card">
-                    <h3>LogicFlow AI</h3>
-                    <p>
-                        Full-stack platform converting hand-drawn digital logic sketches into interactive 
-                        digital circuits, automated truth tables, and synthesizable Verilog code.
-                    </p>
-                </div>
-            </section>
+        <!-- Summary Section -->
+        <div class="section" id="summary">
+            <h2 class="section-title">Summary</h2>
+            <p class="summary-text">
+                Analytical and backend-focused Computer Science undergraduate at COMSATS University Islamabad with a strong foundation in Python, distributed backend architectures, and RESTful API design. Proven track record of building scalable microservices, high-throughput asynchronous systems using Redis, RabbitMQ, and Celery, and integrating AI vision models into full-stack workflows. Certified by Harvard, IBM, and the University of Michigan, combining rigorous algorithmic problem-solving with hands-on production engineering, database modeling, and clean system design.
+            </p>
+        </div>
 
-            <section class="contact">
-                <h2>Get In Touch</h2>
-                <p>Open for software engineering opportunities, technical discussions, and collaborations.</p>
-                <div class="contact-links">
-                    <a class="btn" href="mailto:mhammadsarwar789@gmail.com">Email Me</a>
-                    <a class="btn btn-secondary" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a class="btn btn-secondary" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                </div>
-            </section>
-        </main>
+        <hr>
 
-        <footer>
-            <p>&copy; 2026 Muhammad Hammad Sarwar. Built with semantic HTML &amp; CSS.</p>
-        </footer>
+        <!-- Experience Section -->
+        <div class="section" id="experience">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="job-box">
+                <div class="job-header">
+                    <h3 class="job-title">Python Developer Intern - <span class="company-name">Maxenius Private Limited</span></h3>
+                    <span class="date">July 2026 – Present</span>
+                </div>
+                <ul class="list">
+                    <li>Engineered and optimized 15+ REST API endpoints in Python, reducing median server response latency by 35% through query optimization and database indexing.</li>
+                    <li>Structured modular service layers and relational schemas using Alembic migration workflows and Pydantic validation, eliminating invalid payload errors across 100% of incoming requests.</li>
+                    <li>Enforced stateless JWT authentication and granular Role-Based Access Control (RBAC), securing 20+ protected endpoints against unauthorized privilege escalation.</li>
+                    <li>Standardized API documentation via OpenAPI/Swagger and resolved 25+ critical backend defects across production release cycles, improving sprint delivery velocity by 20%.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Projects Section -->
+        <div class="section" id="projects">
+            <h2 class="section-title">Projects</h2>
+
+            <!-- Project 1 -->
+            <div class="project-box">
+                <div class="project-header">
+                    <h3 class="project-title">Distributed E-Commerce & Flash Sale Engine</h3>
+                    <span class="role-date">Backend Architect | July 2026 – August 2026</span>
+                </div>
+                <ul class="list">
+                    <li>Architected a high-concurrency flash sale engine using Python (Flask), PostgreSQL, Redis, RabbitMQ, and Celery to manage high-traffic checkout spikes.</li>
+                    <li>Configured Redis in-memory caching and distributed locking to prevent race conditions, inventory overselling, and database bottlenecks.</li>
+                    <li>Offloaded asynchronous order processing, invoice generation, and notifications to background workers using RabbitMQ and Celery.</li>
+                    <li>Optimized PostgreSQL transactional operations and database indexing, cutting read/write latency under peak load by 40%.</li>
+                </ul>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-box">
+                <div class="project-header">
+                    <h3 class="project-title">LogicFlow AI</h3>
+                    <span class="role-date">Lead Developer & Architect | February 2026</span>
+                </div>
+                <ul class="list">
+                    <li>Spearheaded a full-stack engineering application using TypeScript and React Flow for interactive, node-based circuit schematic visualization.</li>
+                    <li>Integrated Gemini Multimodal Vision Models via a Python backend to parse visual data from hand-drawn circuit sketches into digital layouts.</li>
+                    <li>Developed custom algorithmic evaluation engines to translate parsed structural layouts into production-ready, functional Verilog code and digital simulations.</li>
+                    <li>Optimized component rendering and modular state management pipelines, reducing interface re-rendering lag by 25%.</li>
+                    <li>Programmed real-time gate logic evaluation algorithms to validate truth tables and propagation delays across complex digital circuits.</li>
+                </ul>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-box">
+                <div class="project-header">
+                    <h3 class="project-title">HR & Team Management System</h3>
+                    <span class="role-date">Python & Backend Developer | July 2026</span>
+                </div>
+                <ul class="list">
+                    <li>Built a comprehensive HR and team management REST API using Python, Flask, and PostgreSQL for role-based workforce administration.</li>
+                    <li>Deployed secure JSON Web Token (JWT) authentication, password hashing, and granular Role-Based Access Control (RBAC).</li>
+                    <li>Modeled relational schemas for department hierarchies, employee profiles, attendance, and leave management with strict data validation.</li>
+                    <li>Authored automated unit and integration tests across 30+ endpoints to validate API contracts, role permissions, and edge cases.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Education Section -->
+        <div class="section" id="education">
+            <h2 class="section-title">Education</h2>
+
+            <div class="education-box">
+                <div class="edu-header">
+                    <h3 class="school-name">COMSATS University Islamabad</h3>
+                    <span class="location">Lahore, Pakistan</span>
+                </div>
+                <p class="degree-info">Bachelor of Science, Computer Science <span class="date">(September 2024 – July 2028)</span></p>
+                <p class="coursework"><strong>Relevant Coursework:</strong> Data Structures, Design & Analysis of Algorithms, Database Systems, Object-Oriented Programming, Computer Networks, Software Engineering, Artificial Intelligence, Discrete Structures</p>
+            </div>
+
+            <div class="education-box">
+                <div class="edu-header">
+                    <h3 class="school-name">Board Of Intermediate and Secondary Education Faisalabad</h3>
+                    <span class="location">Faisalabad, Pakistan</span>
+                </div>
+                <p class="degree-info">FSc, Pre-Medical - Graduated with Grade A <span class="date">(August 2020 – September 2023)</span></p>
+                <p class="coursework"><strong>Relevant Coursework:</strong> Physics, Chemistry, Biology, Mathematics</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Certifications Section -->
+        <div class="section" id="certifications">
+            <h2 class="section-title">Certifications & Courses</h2>
+            <ul class="list">
+                <li><strong>Harvard University:</strong> CS50x Puzzle Day 2025</li>
+                <li><strong>IBM:</strong> Git & GitHub, HTML/CSS/JavaScript, Software Engineering (Honors), Cloud Computing</li>
+                <li><strong>University of Michigan:</strong> Python for Everybody Specialization (Coursera)</li>
+                <li><strong>DeepLearning.AI:</strong> AI For Everyone</li>
+                <li><strong>Microsoft & HP LIFE:</strong> PowerPoint Productivity, Effective Presentations</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <!-- Technical Skills Section -->
+        <div class="section" id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skill-item">
+                <p><strong>Languages:</strong> Python, TypeScript, JavaScript, SQL, C++, Java, HTML5, CSS3</p>
+            </div>
+            <div class="skill-item">
+                <p><strong>Frameworks & Backend:</strong> Flask, FastAPI, Celery, Node.js, Express, React, Next.js, Tailwind CSS</p>
+            </div>
+            <div class="skill-item">
+                <p><strong>Databases & Caching:</strong> PostgreSQL, MySQL, Redis, MongoDB, SQLite</p>
+            </div>
+            <div class="skill-item">
+                <p><strong>Distributed Systems & DevOps:</strong> RabbitMQ, Docker, Git, GitHub, REST APIs, Postman, Linux</p>
+            </div>
+            <div class="skill-item">
+                <p><strong>Architecture & Concepts:</strong> System Design, Microservices, Asynchronous Task Processing, Distributed Locking, JWT/RBAC, Data Structures & Algorithms, OOP</p>
+            </div>
+        </div>
+
     </div>
+    
 </body>
 </html>
