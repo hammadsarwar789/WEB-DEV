@@ -1,0 +1,214 @@
+/* ==========================================================================
+   css/footer.css - Light footer (matches live site): newsletter, links, currency, social & store accordions
+   Columns come from the Bootstrap grid in the HTML (row / col-*); this file only styles them.
+   ========================================================================== */
+
+.site-footer {
+    background-color: var(--color-white);
+    color: var(--color-text-main);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-6);
+    margin-top: var(--space-16);
+    font-size: var(--font-size-sm);
+    border-top: 1px solid var(--color-border);
+}
+
+/* Top Row: Newsletter | Links | Currency (columns: Bootstrap col-12 / col-md-* / col-lg-*) */
+.footer-top-grid {
+    padding-bottom: var(--space-8);
+}
+
+.footer-heading {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--space-4);
+    color: var(--color-text-main);
+}
+
+/* Newsletter: Bootstrap .input-group joins the .form-control and the .btn-dark button */
+.newsletter-form {
+    max-width: 420px;
+    margin-bottom: var(--space-2);
+}
+
+.newsletter-input {
+    font-size: var(--font-size-sm);
+    border-color: var(--color-primary);
+}
+
+.newsletter-btn {
+    padding: 10px 18px;
+    font-size: var(--font-size-xs);
+}
+
+.newsletter-feedback {
+    font-size: var(--font-size-xs);
+    min-height: 18px;
+    margin-top: 4px;
+}
+
+.newsletter-feedback.success {
+    color: var(--color-success);
+}
+
+.newsletter-feedback.error {
+    color: var(--color-sale);
+}
+
+/* Links */
+.footer-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.footer-links-list a {
+    color: var(--color-text-main);
+    transition: color var(--transition-fast);
+}
+
+.footer-links-list a:hover {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+}
+
+/* Currency */
+.footer-currency-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+}
+
+/* Bootstrap .form-select draws the box and arrow */
+.footer-currency-select {
+    font-size: var(--font-size-sm);
+    border-color: var(--color-border-dark);
+    max-width: 320px;
+    cursor: pointer;
+}
+
+/* Social Icons */
+.footer-social-icons {
+    display: flex;
+    gap: var(--space-5);
+    align-items: center;
+    padding: var(--space-5) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.footer-social-link {
+    color: var(--color-text-main);
+    display: inline-flex;
+    padding: var(--space-1);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-social-link:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+.footer-social-link svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Customer Service + Store Location (columns: Bootstrap col-12 col-md-4 / col-md-8) */
+.footer-info-grid {
+    padding: var(--space-6) 0;
+}
+
+.footer-accordion-heading {
+    margin-bottom: 0;
+}
+
+.footer-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--space-3) 0;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    text-align: left;
+    color: inherit;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.footer-service-text {
+    line-height: 1.8;
+}
+
+.footer-service-text a {
+    text-decoration: underline;
+}
+
+.store-city-block {
+    margin-bottom: var(--space-4);
+}
+
+.store-city-name {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--space-1);
+}
+
+.store-locations-list {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+/* Mobile: collapsible accordions */
+@media (max-width: 767px) {
+    .footer-accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition: max-height var(--transition-base), visibility var(--transition-base);
+    }
+
+    .footer-accordion-content.open {
+        max-height: 700px;
+        visibility: visible;
+        transition: max-height var(--transition-base), visibility 0s;
+        padding: var(--space-3) 0 var(--space-4);
+    }
+}
+
+/* Desktop: plain columns, header is not interactive */
+@media (min-width: 768px) {
+    .footer-accordion-header {
+        pointer-events: none;
+        border-bottom: none;
+        padding-top: 0;
+        margin-bottom: var(--space-3);
+    }
+
+    .footer-accordion-toggle-icon {
+        display: none;
+    }
+
+    /* the 3 city columns come from Bootstrap's row-cols-md-3 */
+}
+
+/* Bottom Copyright Bar */
+.footer-bottom-bar {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}

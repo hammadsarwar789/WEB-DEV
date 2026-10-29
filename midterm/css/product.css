@@ -1,0 +1,238 @@
+/* ==========================================================================
+   css/product.css - Product detail page (product.html)
+   The two page columns come from the Bootstrap grid in the HTML (row / col-12 col-md-6);
+   this file styles the photo gallery, the details column, the accordions and "You may also like".
+   ========================================================================== */
+
+.product-page {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-12);
+}
+
+/* 1. Breadcrumb (Bootstrap component, made smaller and uppercase) */
+.product-breadcrumb {
+    --bs-breadcrumb-divider-color: var(--color-text-muted);
+    --bs-breadcrumb-item-active-color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-5);
+}
+
+/* 2. Photo gallery (CSS Grid): big photo with thumbnails underneath on phones/tablets,
+      thumbnails in a column on the left from 992px */
+.product-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "main"
+        "thumbs";
+    gap: var(--space-3);
+}
+
+@media (min-width: 992px) {
+    .product-gallery {
+        grid-template-columns: 90px minmax(0, 540px);
+        grid-template-areas: "thumbs main";
+        gap: var(--space-4);
+    }
+}
+
+.gallery-main {
+    grid-area: main;
+    aspect-ratio: 2 / 3;         /* the product photos are 540x810 */
+    background-color: var(--color-bg-subtle);
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-thumbs {
+    grid-area: thumbs;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    align-content: start;
+}
+
+@media (min-width: 992px) {
+    .gallery-thumbs {
+        grid-template-columns: 1fr;
+    }
+}
+
+.gallery-thumb {
+    display: block;
+    aspect-ratio: 2 / 3;
+    padding: 0;
+    border: 1px solid transparent;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast), border-color var(--transition-fast);
+}
+
+.gallery-thumb:hover,
+.gallery-thumb[aria-current="true"] {
+    opacity: 1;
+}
+
+.gallery-thumb[aria-current="true"] {
+    border-color: var(--color-primary);
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 3. Details column (sticks next to the photos while scrolling on tablet / desktop) */
+@media (min-width: 768px) {
+    .product-info {
+        position: sticky;
+        top: 7rem;
+    }
+}
+
+.product-info__title {
+    font-size: var(--font-size-2xl);
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: var(--space-2);
+}
+
+@media (min-width: 992px) {
+    .product-info__title {
+        font-size: var(--font-size-3xl);
+    }
+}
+
+.product-info__price {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: var(--space-1);
+}
+
+.product-info__note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+}
+
+.product-info__baadmay {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    padding: 10px 12px;
+    background-color: #f7fafc;
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+}
+
+.product-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+}
+
+.product-form fieldset {
+    border: 0;
+}
+
+/* Size buttons: Bootstrap .btn-check radios + .btn-outline-dark labels (Bootstrap fills the checked one) */
+.size-btn {
+    min-width: 3.25rem;
+    padding: 10px 14px;
+}
+
+.product-error {
+    color: var(--color-sale);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    margin-top: var(--space-2);
+}
+
+/* Quantity: Bootstrap .input-group with - / + buttons */
+.qty-group {
+    max-width: 9.5rem;
+}
+
+.qty-group .btn {
+    padding: 0 var(--space-4);
+    font-size: var(--font-size-md);
+}
+
+.qty-group .form-control {
+    font-size: var(--font-size-base);
+    border-color: var(--color-primary);
+    -moz-appearance: textfield;   /* hide the browser's own up/down arrows */
+    appearance: textfield;
+}
+
+.qty-group .form-control::-webkit-inner-spin-button,
+.qty-group .form-control::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 4. Accordions: native <details> / <summary> */
+.product-details {
+    margin-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+}
+
+.product-details details {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.product-details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) 0;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;             /* hide the default triangle (Firefox) */
+}
+
+.product-details summary::-webkit-details-marker {
+    display: none;                /* hide the default triangle (Chrome / Safari) */
+}
+
+.product-details summary::after {
+    content: '+';
+    font-size: 1.1rem;
+}
+
+.product-details details[open] summary::after {
+    content: '\2212';             /* minus sign when open */
+}
+
+.product-details details p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    padding-bottom: var(--space-4);
+}
+
+.product-details a {
+    text-decoration: underline;
+}
+
+/* 5. "You may also like" */
+.related-products {
+    margin-top: var(--space-16);
+}
+
+.related-products .row-main-title {
+    margin-bottom: var(--space-5);
+}

@@ -1,0 +1,311 @@
+/* ==========================================================================
+   css/cart.css - Slide-in cart drawer, item listing, BaadMay installments & checkout
+   ========================================================================== */
+
+/* 1. Backdrop */
+.cart-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: var(--z-drawer-backdrop);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.cart-drawer-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. Cart Drawer Container */
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 440px;
+    max-width: 90vw;
+    background-color: var(--color-white);
+    z-index: var(--z-drawer);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    visibility: hidden; /* keeps buttons out of the Tab order while closed */
+    transition: transform var(--transition-smooth), visibility var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+    /* show instantly on open so focus() works; the closed rule delays hiding until the slide ends */
+    transition: transform var(--transition-smooth), visibility 0s;
+}
+
+/* Drawer Header */
+.cart-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cart-drawer-title {
+    font-size: var(--font-size-md);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-primary);
+}
+
+.cart-drawer-close {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: var(--space-1);
+    transition: color var(--transition-fast);
+}
+
+.cart-drawer-close:hover {
+    color: var(--color-primary);
+}
+
+/* Drawer Body & Items List */
+.cart-drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-6);
+}
+
+.cart-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-12) var(--space-4);
+    gap: var(--space-4);
+}
+
+.cart-empty-text {
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+}
+
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-5);
+}
+
+.cart-item-img {
+    width: 75px;
+    height: 95px;
+    object-fit: cover;
+    background-color: var(--color-bg-subtle);
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item-title {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-primary);
+    margin-bottom: 2px;
+}
+
+.cart-item-variant {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+}
+
+.cart-item-price {
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+}
+
+.cart-item-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+/* Stepper (- and +) */
+.cart-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+}
+
+.stepper-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+}
+
+.stepper-btn:hover {
+    background-color: var(--color-bg-subtle);
+}
+
+.stepper-qty {
+    width: 28px;
+    text-align: center;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.cart-remove-btn {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-remove-btn:hover {
+    color: var(--color-sale);
+}
+
+/* Drawer Footer */
+.cart-drawer-footer {
+    padding: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-white);
+}
+
+.cart-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+}
+
+.cart-shipping-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+}
+
+/* 3. BaadMay Installment Block */
+.baadmay-container {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.baadmay-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    color: #1e293b;
+}
+
+.baadmay-logo-img {
+    height: 18px;
+    width: auto;
+}
+
+.baadmay-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+    padding: 0;
+}
+
+.baadmay-details-panel {
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: max-height var(--transition-base), visibility var(--transition-base);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+.baadmay-details-panel.open {
+    visibility: visible;
+    transition: max-height var(--transition-base), visibility 0s;
+    max-height: 220px;
+    margin-top: var(--space-3);
+    padding-top: var(--space-2);
+    border-top: 1px dashed var(--color-border);
+}
+
+.baadmay-step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.baadmay-step img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Checkout Button */
+.btn-checkout {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.btn-checkout:hover:not(:disabled) {
+    background-color: #333333;
+}
+
+.btn-checkout:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
