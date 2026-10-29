@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Lab 2 - my own styles on top of Bootstrap 5.3.3
+   Bootstrap does the responsive work (navbar-expand-md, row-cols-*);
+   this file only adds the logo, the centred links and the placeholder images.
+   ========================================================================== */
+
+/* Logo */
+.brand-logo {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.brand-logo span {
+    color: #0d6efd;
+}
+
+/* Cart icon */
+.cart-link {
+    color: #212529;
+    display: inline-flex;
+    padding: 4px;
+}
+
+.cart-link:hover {
+    color: #0d6efd;
+}
+
+/* From 768px (when the links are shown): logo and cart area take equal space
+   on both sides, so the links sit exactly in the centre of the navbar */
+@media (min-width: 768px) {
+    .navbar .brand-logo,
+    .navbar .nav-actions {
+        flex: 1 1 0;
+    }
+
+    .navbar .nav-actions {
+        justify-content: flex-end;
+    }
+
+    .navbar .navbar-collapse {
+        flex-grow: 0;
+    }
+}
+
+/* Below 768px the opened menu gets a little space above it */
+@media (max-width: 767.98px) {
+    .navbar-collapse .navbar-nav {
+        padding-top: 0.5rem;
+    }
+}
+
+/* Placeholder product images (no real photos needed for this drill) */
+.product-img {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.45);
+    border-top-left-radius: var(--bs-card-inner-border-radius);
+    border-top-right-radius: var(--bs-card-inner-border-radius);
+}
+
+.ph-1 { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+.ph-2 { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+.ph-3 { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.ph-4 { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+
+.product-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}

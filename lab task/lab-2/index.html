@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lab 2 - responsive navbar and product grid drill with Bootstrap 5.">
+    <title>Lab 2 – Responsive Navbar and Grid Drill</title>
+
+    <!-- Bootstrap 5.3.3 (framework) + my own small stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!--
+    Lab 2 - Responsive Navbar and Grid Drill
+    Muhammad Hammad Sarwar - FA24-BCS-068
+
+    Navbar: logo left, links centre, cart icon right.
+            navbar-expand-md -> below 768px the links collapse into a hamburger menu.
+    Grid:   row-cols-1 row-cols-sm-2 row-cols-lg-4
+            -> 1 column on phones, 2 on tablets, 4 on desktops (Bootstrap grid = Flexbox).
+-->
+
+<body>
+
+    <!-- ============ RESPONSIVE NAVBAR ============ -->
+    <header>
+        <nav class="navbar navbar-expand-md bg-white border-bottom sticky-top" aria-label="Main">
+            <div class="container">
+
+                <!-- 1. Logo (left) -->
+                <a class="navbar-brand brand-logo" href="index.html">Shop<span>Lab</span></a>
+
+                <!-- 3. Cart icon + hamburger (right). order-md-last puts this after the links on desktop -->
+                <div class="nav-actions d-flex align-items-center order-md-last">
+                    <a class="cart-link position-relative" href="#cart" aria-label="Cart, 3 items">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a>
+
+                    <!-- Hamburger: only shown below 768px (Bootstrap's own collapse script opens the menu) -->
+                    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <!-- 2. Links (centre on desktop, collapsible list on phones) -->
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#products">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">New Arrivals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Sale</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+
+        <!-- ============ RESPONSIVE PRODUCT GRID ============ -->
+        <section id="products" aria-labelledby="products-heading">
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-3">
+                <h1 id="products-heading" class="h3 mb-0">Featured Products</h1>
+                <p class="text-body-secondary small mb-0">4 columns on desktop · 2 on tablet · 1 on phone</p>
+            </div>
+
+            <!-- 1 column (phone) / 2 columns from 576px (tablet) / 4 columns from 992px (desktop) -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-1" role="img" aria-label="Placeholder image">Product 1</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 1</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 2,500</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-2" role="img" aria-label="Placeholder image">Product 2</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 2</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 3,200</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-3" role="img" aria-label="Placeholder image">Product 3</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 3</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 1,800</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-4" role="img" aria-label="Placeholder image">Product 4</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 4</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 4,750</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-1" role="img" aria-label="Placeholder image">Product 5</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 5</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 2,950</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-2" role="img" aria-label="Placeholder image">Product 6</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 6</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 5,400</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-3" role="img" aria-label="Placeholder image">Product 7</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 7</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 1,250</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card h-100 product-card">
+                        <div class="product-img ph-4" role="img" aria-label="Placeholder image">Product 8</div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="h6 card-title">Placeholder Product 8</h2>
+                            <p class="card-text text-body-secondary small">Short placeholder description text.</p>
+                            <p class="fw-semibold mt-auto mb-2">Rs. 3,600</p>
+                            <a href="#" class="btn btn-dark btn-sm w-100">Add to Cart</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-top py-3 text-center small text-body-secondary">
+        Lab 2 – Muhammad Hammad Sarwar (FA24-BCS-068)
+    </footer>
+
+    <!-- Bootstrap bundle: only needed for the hamburger collapse -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

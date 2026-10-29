@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bazaar - an online store for clothing, shoes and home essentials. Lab 1 semantic HTML scaffold.">
+    <title>Bazaar – Online Store (Lab 1: Semantic HTML Scaffold)</title>
+</head>
+
+<!--
+    Lab 1 - Semantic HTML Scaffold (no styling on purpose)
+    Muhammad Hammad Sarwar - FA24-BCS-068
+
+    Page outline:
+      header  -> store name + main nav (6 links)
+      main    -> 3 sections: featured products, categories, newsletter signup
+      footer  -> 3 columns of links + copyright
+-->
+
+<body>
+    <a href="#main-content">Skip to main content</a>
+
+    <!-- ============ HEADER: store name and main navigation ============ -->
+    <header>
+        <h1><a href="index.html">Bazaar</a></h1>
+        <p>Everyday clothing, shoes and home essentials, delivered across Pakistan.</p>
+
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="#featured-heading">Shop</a></li>
+                <li><a href="#categories-heading">Categories</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============ MAIN: the three homepage sections ============ -->
+    <main id="main-content">
+
+        <!-- Section 1: featured products (each product is a self-contained article) -->
+        <section aria-labelledby="featured-heading">
+            <h2 id="featured-heading">Featured Products</h2>
+            <p>Our most-loved pieces this week.</p>
+
+            <ul>
+                <li>
+                    <article>
+                        <h3>Classic Cotton Kurta</h3>
+                        <p>Breathable cotton, available in white and sky blue.</p>
+                        <p><data value="3499">Rs. 3,499</data></p>
+                        <p><a href="#">View product</a></p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h3>Everyday Running Shoes</h3>
+                        <p>Lightweight sole with all-day cushioning.</p>
+                        <p><data value="6999">Rs. 6,999</data></p>
+                        <p><a href="#">View product</a></p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h3>Leather Crossbody Bag</h3>
+                        <p>Genuine leather with an adjustable strap.</p>
+                        <p><data value="5250">Rs. 5,250</data></p>
+                        <p><a href="#">View product</a></p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h3>Ceramic Coffee Mug Set</h3>
+                        <p>Set of four hand-glazed mugs.</p>
+                        <p><data value="2199">Rs. 2,199</data></p>
+                        <p><a href="#">View product</a></p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 2: categories -->
+        <section aria-labelledby="categories-heading">
+            <h2 id="categories-heading">Shop by Category</h2>
+
+            <ul>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Bags &amp; Accessories</a></li>
+                <li><a href="#">Home &amp; Living</a></li>
+            </ul>
+        </section>
+
+        <!-- Section 3: newsletter signup form -->
+        <section aria-labelledby="newsletter-heading">
+            <h2 id="newsletter-heading">Join Our Newsletter</h2>
+            <p>Get new arrivals and members-only offers in your inbox. No spam, unsubscribe any time.</p>
+
+            <form action="#" method="post">
+                <label for="newsletter-email">Email address</label>
+                <input type="email" id="newsletter-email" name="email" autocomplete="email"
+                    placeholder="you@example.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER: three columns of links ============ -->
+    <footer>
+        <nav aria-label="Footer">
+            <section aria-labelledby="footer-shop">
+                <h2 id="footer-shop">Shop</h2>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#" id="deals">Deals</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="footer-help">
+                <h2 id="footer-help">Customer Service</h2>
+                <ul>
+                    <li><a href="#" id="contact">Contact Us</a></li>
+                    <li><a href="#">Shipping &amp; Delivery</a></li>
+                    <li><a href="#">Returns &amp; Exchanges</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="footer-company">
+                <h2 id="footer-company">Company</h2>
+                <ul>
+                    <li><a href="#" id="about">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Store Locations</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </section>
+        </nav>
+
+        <p><small>&copy; 2026 Bazaar. Lab 1 by Muhammad Hammad Sarwar (FA24-BCS-068).</small></p>
+    </footer>
+</body>
+
+</html>
