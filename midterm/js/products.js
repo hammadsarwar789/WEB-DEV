@@ -65,21 +65,6 @@
             }, { passive: true });
         }
 
-        // Quick Add "+" Button
-        const quickAddBtn = document.createElement("button");
-        quickAddBtn.type = "button";
-        quickAddBtn.className = "btn-quick-add";
-        quickAddBtn.setAttribute("aria-label", `Quick add ${product.name} to cart`);
-        quickAddBtn.setAttribute("aria-haspopup", "dialog");
-        quickAddBtn.textContent = "+";
-        quickAddBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            // trigger lets quick-add.js anchor the panel to this card and return focus here on close
-            window.dispatchEvent(new CustomEvent("quickadd:open", {
-                detail: { id: product.id, trigger: quickAddBtn }
-            }));
-        });
-        imageBox.appendChild(quickAddBtn);
 
         card.appendChild(imageBox);
 
@@ -103,6 +88,15 @@
         color.textContent = product.color || "Standard";
 
         meta.append(title, price, color);
+
+        // "Add to Cart" button (midterm Task 3): script.js listens for clicks on .btn-add-to-cart
+        // and reads the product name and price from this card
+        const addBtn = document.createElement("button");
+        addBtn.type = "button";
+        addBtn.className = "btn btn-dark btn-sm w-100 btn-add-to-cart";
+        addBtn.textContent = "Add to Cart";
+        meta.appendChild(addBtn);
+
         card.appendChild(meta);
 
         return card;

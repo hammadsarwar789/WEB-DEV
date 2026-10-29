@@ -1,0 +1,90 @@
+/* ==========================================================================
+   css/mini-cart.css - MIDTERM TASK 3: "Add to Cart" buttons on cards + mini-cart panel (script.js)
+   ========================================================================== */
+
+/* Add to Cart button at the bottom of every product card */
+.btn-add-to-cart {
+    margin-top: var(--space-2);
+    padding: 8px 12px;
+    font-size: var(--font-size-xs);
+}
+
+.btn-add-to-cart:disabled {
+    opacity: 0.55;                       /* "Limit reached" */
+}
+
+/* The panel hangs under the cart icon (the icon group is the positioned parent) */
+.header-right {
+    position: relative;
+}
+
+.mini-cart {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    width: 320px;
+    max-width: calc(100vw - 2rem);
+    z-index: 20;                         /* inside the sticky header, above the page */
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--accent); /* accent colour hsl(116, 70%, 45%) */
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
+    padding: var(--space-4);
+}
+
+.mini-cart[hidden] {
+    display: none;
+}
+
+.mini-cart__title {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-3);
+}
+
+.mini-cart__empty {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+}
+
+.mini-cart__list {
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+/* Each row: name | price | Remove  (CSS Grid) */
+.mini-cart__item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px var(--space-3);
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+}
+
+.mini-cart__name {
+    font-weight: 500;
+}
+
+.mini-cart__price {
+    color: var(--color-text-muted);
+    grid-column: 1;
+}
+
+.mini-cart__remove {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    font-size: var(--font-size-xs);
+    text-decoration: underline;
+    color: var(--color-sale);
+}
+
+.mini-cart__total {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--space-3) 0;
+    font-size: var(--font-size-base);
+}

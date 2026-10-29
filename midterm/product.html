@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/mega-menu.css">      <!-- Midterm Task 1 -->
+    <link rel="stylesheet" href="css/mini-cart.css">      <!-- Midterm Task 3 -->
 </head>
 <body>
 
@@ -185,6 +186,15 @@
                         </svg>
                         <span id="headerCartBadge" class="cart-count-badge badge rounded-pill text-bg-dark" data-count="0">0</span>
                     </a>
+
+                    <!-- MIDTERM TASK 3: mini cart panel under the cart icon (filled and opened by script.js) -->
+                    <div id="miniCart" class="mini-cart" role="region" aria-label="Mini cart" hidden>
+                        <p class="mini-cart__title">Your cart</p>
+                        <p id="miniCartEmpty" class="mini-cart__empty">Your cart is empty.</p>
+                        <ul id="miniCartList" class="mini-cart__list"></ul>
+                        <p class="mini-cart__total"><span>Total</span> <strong id="miniCartTotal">Rs.0.00</strong></p>
+                        <a href="checkout.html" class="btn btn-dark w-100 mini-cart__checkout">Checkout</a>
+                    </div>
                 </div>
 
             </div>
@@ -381,101 +391,6 @@
     </main>
 
     <!-- =========================================================================
-         SECTION 4: QUICK-ADD SIZE PICKER MODAL / BOTTOM SHEET
-         ========================================================================= -->
-    <div id="quickAddBackdrop" class="quick-add-backdrop" aria-hidden="true"></div>
-    <div id="quickAddPanel" class="quick-add-panel" role="dialog" aria-modal="true" aria-labelledby="quickAddName">
-        <div class="quick-add-header">
-            <div>
-                <h3 id="quickAddName" class="quick-add-prod-name">Product Name</h3>
-                <div id="quickAddPrice" class="quick-add-prod-price">Rs.0.00</div>
-            </div>
-            <button type="button" id="quickAddClose" class="quick-add-close" aria-label="Close quick add panel">&times;</button>
-        </div>
-
-        <div id="quickAddSizesLabel" class="quick-add-sizes-label">Size</div>
-        <div id="quickAddSizes" class="quick-add-sizes-grid" role="group" aria-labelledby="quickAddSizesLabel"></div>
-
-        <div id="quickAddError" class="quick-add-error-msg" role="alert" hidden>Please select a size</div>
-
-        <!-- aria-disabled (not disabled) so a click can still show the "Please select a size" message -->
-        <button type="button" id="quickAddSubmit" class="btn-quick-submit" aria-disabled="true">Add to Cart</button>
-        <a href="#product-view" class="quick-add-view-full">View full product</a>
-    </div>
-
-    <!-- Notification Toast -->
-    <div id="lamaToast" class="lama-toast" role="status" aria-live="polite">Added to cart</div>
-
-    <!-- =========================================================================
-         SECTION 5: CART DRAWER WITH BAADMAY INSTALLMENT BLOCK
-         ========================================================================= -->
-    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop" aria-hidden="true"></div>
-    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
-        <!-- Drawer Header -->
-        <div class="cart-drawer-header">
-            <h2 id="cartDrawerTitle" class="cart-drawer-title">Cart</h2>
-            <button type="button" id="cartDrawerClose" class="cart-drawer-close" aria-label="Close cart">&times;</button>
-        </div>
-
-        <!-- Drawer Body -->
-        <div class="cart-drawer-body">
-            <!-- Empty State -->
-            <div id="cartEmptyState" class="cart-empty-state">
-                <p class="cart-empty-text">Your cart is currently empty.</p>
-                <button type="button" id="cartContinueShopping" class="btn btn-dark">
-                    Continue shopping
-                </button>
-            </div>
-
-            <!-- Items List -->
-            <ul id="cartItemsList" class="cart-items-list"></ul>
-        </div>
-
-        <!-- Drawer Footer Area -->
-        <div class="cart-drawer-footer">
-            <div class="cart-subtotal-row">
-                <span>Subtotal</span>
-                <span id="cartSubtotalAmount">Rs.0.00</span>
-            </div>
-
-            <p class="cart-shipping-note">
-                Shipping, taxes, and discount codes calculated at checkout.
-            </p>
-
-            <!-- BaadMay Installment Block -->
-            <div id="baadmayBlock" class="baadmay-container">
-                <div class="baadmay-header">
-                    <img src="./assets/icons/baadmay-logo-icon.svg" alt="BaadMay" class="baadmay-logo-img" width="18" height="18">
-                    <span>Pay in 3 Installments of <strong id="baadmayInstallmentAmount">Rs.0.00</strong></span>
-                </div>
-                <button type="button" id="baadmayToggleBtn" class="baadmay-toggle-btn" aria-expanded="false" aria-controls="baadmayDetailsPanel">
-                    Pay for your purchase, thora abhi, baqi?
-                </button>
-
-                <div id="baadmayDetailsPanel" class="baadmay-details-panel">
-                    <div class="baadmay-step">
-                        <img src="./assets/icons/icon-checkout.svg" alt="" width="16" height="16">
-                        <span>1. Select BaadMay at Checkout</span>
-                    </div>
-                    <div class="baadmay-step">
-                        <img src="./assets/icons/icon-account-details.svg" alt="" width="16" height="16">
-                        <span>2. Verify your account details</span>
-                    </div>
-                    <div class="baadmay-step">
-                        <img src="./assets/icons/icon-pay-first-installment.svg" alt="" width="16" height="16">
-                        <span>3. Pay only your first installment now</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Checkout Button -->
-            <button type="button" id="cartCheckoutBtn" class="btn-checkout" disabled>
-                Check Out
-            </button>
-        </div>
-    </aside>
-
-    <!-- =========================================================================
          SECTION 6: FOOTER (Content as defined in Section 2.4 of Build Plan)
          ========================================================================= -->
     <footer class="site-footer">
@@ -614,10 +529,9 @@
     <script src="js/menu.js"></script>
     <script src="js/slider.js"></script>
     <script src="js/products.js"></script>
-    <script src="js/quick-add.js"></script>
-    <script src="js/cart.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/product-page.js"></script>
+    <script src="script.js"></script>                   <!-- Midterm Task 3: cart badge + mini cart -->
 
 </body>
 </html>
