@@ -1,3 +1,12 @@
+/* ==========================================================================
+   styles.css - CV page of Muhammad Hammad Sarwar (FA24-BCS-068), Assignment 1
+   Plain CSS only: no framework, no JavaScript, no inline styles in index.html.
+
+   Box model: every element uses box-sizing: border-box, so the width of a box
+   already includes its padding and border. Spacing between boxes is done with
+   margin / gap, spacing inside a box with padding, and borders separate areas.
+   ========================================================================== */
+
 :root {
   --primary-navy: #1e3a8a;
   --deep-navy: #172554;
@@ -28,6 +37,28 @@ body {
   justify-content: center;
   padding: 24px 12px;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Lists used for layout (skills, education, languages) have no bullets;
+   .entry-details draws its own dots below */
+ul,
+ol {
+  list-style: none;
+}
+
+/* <address> is italic by default - keep the normal font */
+address {
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--royal-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .cv-sheet {
@@ -80,6 +111,7 @@ body {
   pointer-events: none;
 }
 
+/* ---------- Header: photo, name + tagline, contact details ---------- */
 .header-section {
   position: relative;
   z-index: 2;
@@ -90,6 +122,7 @@ body {
   border-bottom: 2px solid var(--border-subtle);
 }
 
+/* 120px circle: 4px white border + the photo inside (border-box keeps it at 120px) */
 .avatar-wrapper {
   flex-shrink: 0;
   width: 120px;
@@ -98,18 +131,13 @@ body {
   border: 4px solid #ffffff;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
   background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-.avatar-svg,
 .avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 12%;
   display: block;
 }
 
@@ -162,7 +190,7 @@ body {
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.contact-item:hover {
+a.contact-item:hover {
   transform: translateY(-2px);
   color: var(--royal-blue);
 }
@@ -178,6 +206,7 @@ body {
   stroke-linejoin: round;
 }
 
+/* ---------- Two columns: sidebar 35% | content 65% (CSS Grid) ---------- */
 .layout-columns {
   position: relative;
   z-index: 2;
@@ -202,6 +231,7 @@ body {
   gap: 20px;
 }
 
+/* Section headings (h2) drawn as a pill */
 .pill-header {
   display: inline-block;
   border-radius: 4px 18px 18px 4px;
@@ -222,6 +252,7 @@ body {
   text-align: justify;
 }
 
+/* ---------- Skills: name + percent, then a bar ---------- */
 .skills-list {
   display: flex;
   flex-direction: column;
@@ -243,30 +274,37 @@ body {
 }
 
 .skill-track {
+  display: block;
   width: 100%;
   height: 6px;
   background-color: #e2e8f0;
   border-radius: 999px;
   overflow: hidden;
-  position: relative;
 }
 
 .skill-fill {
+  display: block;
+  width: var(--fill-pct);
   height: 100%;
   background: linear-gradient(90deg, var(--primary-navy) 0%, var(--royal-blue) 100%);
   border-radius: 999px;
-  animation: fillBar 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fillBar 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Each bar's width is set by a class (replaces the old inline style="--fill-pct: ..") */
+.fill-90 { --fill-pct: 90%; }
+.fill-85 { --fill-pct: 85%; }
+.fill-80 { --fill-pct: 80%; }
+.fill-75 { --fill-pct: 75%; }
+
+/* Grows from 0 to the width set above */
 @keyframes fillBar {
   from {
     width: 0;
   }
-  to {
-    width: var(--fill-pct);
-  }
 }
 
+/* ---------- Contact links ---------- */
 .social-links {
   display: flex;
   flex-direction: column;
@@ -285,6 +323,7 @@ body {
   background-color: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
+  overflow-wrap: anywhere;
   transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -294,6 +333,7 @@ body {
   color: var(--royal-blue);
 }
 
+/* ---------- Languages ---------- */
 .languages-list {
   display: flex;
   flex-direction: column;
@@ -303,6 +343,7 @@ body {
 .lang-item {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   font-size: 11.5px;
   color: var(--text-muted);
   padding-bottom: 4px;
@@ -319,7 +360,7 @@ body {
   color: var(--text-light);
 }
 
-.experience-list,
+/* ---------- Experience / Education / Projects ---------- */
 .education-list,
 .projects-list {
   display: flex;
@@ -368,7 +409,6 @@ body {
 }
 
 .entry-details {
-  list-style-type: none;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -415,6 +455,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -440,6 +481,7 @@ body {
   line-height: 1.45;
 }
 
+/* ---------- Footer ---------- */
 .footer-bar {
   position: relative;
   z-index: 2;
@@ -448,9 +490,101 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   font-size: 10px;
   color: var(--text-light);
   background-color: #ffffff;
+}
+
+.footer-bar a {
+  text-decoration: none;
+}
+
+.footer-bar a:hover {
+  color: var(--royal-blue);
+}
+
+/* ---------- Phones and narrow windows: one column ---------- */
+@media (max-width: 680px) {
+  body {
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .cv-sheet {
+    border-radius: 0;
+  }
+
+  .cv-sheet::before {
+    width: 150px;
+    height: 90px;
+  }
+
+  .corner-accent-secondary {
+    width: 180px;
+    height: 100px;
+  }
+
+  .cv-sheet::after {
+    display: none;
+  }
+
+  /* Header stacks: photo, then name, then contacts */
+  .header-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 16px 20px;
+    gap: 14px;
+  }
+
+  .header-contacts {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+    padding-left: 0;
+    padding-top: 12px;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Sidebar on top, content below */
+  .layout-columns {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .col-sidebar {
+    padding: 20px 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .col-content {
+    padding: 20px 16px 24px;
+  }
+
+  .profile-text {
+    text-align: left;
+  }
+
+  .footer-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px 16px;
+  }
+}
+
+/* No bar animation or hover movement for people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .skill-fill {
+    animation: none;
+  }
+
+  .entry-card,
+  .project-card,
+  .contact-item,
+  .social-badge {
+    transition: none;
+  }
 }
 
 @media print {
@@ -467,12 +601,11 @@ body {
 
   .skill-fill {
     animation: none;
-    width: var(--fill-pct) !important;
   }
 
   .entry-card:hover,
   .project-card:hover,
-  .contact-item:hover,
+  a.contact-item:hover,
   .social-badge:hover {
     transform: none;
   }
