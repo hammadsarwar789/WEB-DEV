@@ -13,7 +13,7 @@
 
 Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in the baseline commit `midterm: baseline copy`, then changed below. Bootstrap 5.3.3 is still used everywhere. Tested at **375px, 668px and 1280px**.
 
-**PDF:** `FA24-BCS-068-midterm.pdf`. **Screenshots:** below and in `screenshots/midterm/`.
+**Live site:** https://hammadsarwar789.github.io/WEB-DEV/ (GitHub Pages, only this `midterm/` folder is published). **PDF:** `FA24-BCS-068-midterm.pdf`. **Screenshots:** below and in `screenshots/midterm/`.
 
 ---
 
