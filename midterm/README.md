@@ -1,159 +1,94 @@
-# LAMA Retail Replica (Assignment 2)
-
-**Student:** FA24-BCS-068
-
-A front-end e-commerce replica of the Lama Retail Pakistan store, with a **homepage** (`index.html`) and a **product detail page** (`product.html`). It's built with **HTML5, CSS3, Bootstrap 5 (CSS) and vanilla JavaScript (ES6+)**, with no build tools: open `index.html` in a browser and it runs.
-
-> **Note:** Educational replica - brand assets belong to Lama Retail.
-
----
-
-## 1. Reference Site
+# Lab Midterm – Upgrade Your E-commerce Navigation, Checkout and Cart
 
 | | |
 |---|---|
-| **Name** | Lama Retail (LAMA) - Pakistan online store |
-| **URL** | <https://pk.lamaretail.com/> |
-| **Screenshot** | `screenshots/reference-site-lamaretail.png` (below) |
+| **Name** | Muhammad Hammad Sarwar |
+| **Roll number** | FA24-BCS-068 |
+| **N** | 68 (last two digits of the roll number) |
+| **BP** | 600 + N = **668px** |
+| **H** | (N × 7) mod 360 = 476 mod 360 = **116** → accent colour `hsl(116, 70%, 45%)` |
+| **K** | (N mod 3) + 3 = 2 + 3 = **5** (mega-menu columns / accordion groups) |
+| Cart limit per product | (N mod 4) + 2 = 0 + 2 = **2** |
+| Delivery date range | exam date 29 Oct 2026 → +N days = **2026-10-29 to 2027-01-05** |
 
-![Lama Retail homepage (reference site)](screenshots/reference-site-lamaretail.png)
+Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in the baseline commit `midterm: baseline copy`, then changed below. Bootstrap 5.3.3 is still used everywhere. Tested at **375px, 668px and 1280px**.
 
-What was copied from the reference site:
-- **Fonts:** Outfit (body, weight 300) and Tenor Sans (uppercase headings).
-- **Sizes:** menu 15px with 3px letter-spacing, hero title 50px, logo 70x23.
-- **Colours and layout:** the black announcement bar, white header and white footer.
-- **Media:** the hero video, the category banners and the real product photos.
+**PDF:** `FA24-BCS-068-midterm.pdf`. **Screenshots:** `screenshots/midterm/`.
 
 ---
 
-## 2. Deliverables
+## Files changed
 
-| Deliverable | File(s) |
+| File | Task | Change |
+|---|---|---|
+| `index.html` | 1, 2, 3 | Shop by Category menu + panel; phone-menu accordion; hamburger uses Bootstrap offcanvas; cart icon is a link to `checkout.html`; mini-cart panel; loads `css/mega-menu.css`, `css/mini-cart.css`, Bootstrap JS bundle and `script.js`; old size picker and cart drawer removed |
+| `product.html` | 1, 2, 3 | The same header changes as `index.html` (the header is shared) |
+| `checkout.html` | 2 | **New** – the checkout form (same header / footer as the other pages) |
+| `css/mega-menu.css` | 1 | **New** – mega-menu panel, `<details>` accordion, BP / K / H rules |
+| `css/checkout.css` | 2 | **New** – form layout (CSS Grid) and `:user-invalid` validation styles |
+| `css/mini-cart.css` | 3 | **New** – Add to Cart button and mini-cart panel styles |
+| `script.js` | 3 | **New** – cart array, badge, mini cart, `reduce()` total, limit of 2 |
+| `js/menu.js` | 1 | Removed our own hamburger open/close code (Bootstrap's offcanvas script does it now) |
+| `js/products.js` | 3 | Every product card gets an **Add to Cart** button instead of the "+" quick-add button |
+| `README.md` | – | This file |
+
+---
+
+## Task 1 – Mega menu (HTML + CSS only)
+
+- **What:** "Shop by Category" is added in the HTML inside the existing `<nav>`. It opens a full-width panel with **K = 5 columns** (Woman, Man, Shoes, Accessories, Collections). Each column is a `<ul>` with an `<h2>` heading and 4–5 links.
+- **How it opens:** `.shop-menu:hover > .shop-panel, .shop-menu:focus-within > .shop-panel` switches the panel from `visibility: hidden` to `visible`, so Tab alone opens it.
+  - When closing, `visibility` waits 0.25s, so the pointer can cross the gap into the panel.
+  - It's `position: absolute; top: 100%; left: 0; right: 0` relative to the sticky header (z-index 500), so it covers the product grid and doesn't push content down.
+  - It shows from **668px**. Below that, the same 5 groups are `<details>/<summary>` inside the phone menu: closed by default, and each opens independently.
+- **Why `menu.js` changed:** the rules allow only the framework's own hamburger script. So the hamburger now uses **Bootstrap's offcanvas** (`data-bs-toggle="offcanvas"`), and our own drawer code was deleted. No JavaScript was written for Task 1.
+
+## Task 2 – Checkout form (HTML5 validation + CSS only)
+
+- **What:** `checkout.html` (opened from the cart icon) has two `<fieldset>`s with `<legend>`s:
+  - **Contact:** name, email, phone.
+  - **Delivery:** address, a city `<select>`, a delivery date.
+
+  Every input has a `<label for>` matching its `id`.
+- **Validation:**
+  - `required`, `type="email"`, `minlength`.
+  - Phone: `pattern="03[0-9]{2}-[0-9]{7}"`.
+  - Date: `min="2026-10-29" max="2027-01-05"`.
+  - `:user-invalid` gives a red border and shows the message only **after the user has interacted** with a field; `:not(:placeholder-shown):invalid` is the fallback.
+  - After a valid submit the form goes to `#order-confirmed` and CSS `:target` shows a thank-you box. No JavaScript.
+- **Layout:**
+  - From 668px, `.checkout-form` is a 2-column grid (the fieldsets sit side by side) and each fieldset is a `6.5rem | 1fr` grid (labels on the left).
+  - Below 668px both are 1 column, with labels above inputs.
+  - The submit button spans the grid (`grid-column: 1 / -1; width: 100%`).
+
+## Task 3 – Cart badge and mini cart (`script.js`, plain JavaScript)
+
+- **What:** every card has an Add to Cart button.
+  - One `click` listener on `document` (event delegation) reads the **name, colour and price from the card** (`.product-title`, `.product-color-label`, `.product-price`) and pushes `{ key, name, colour, price }` into the `cart` array.
+  - The badge shows `cart.length`.
+- **Mini cart:**
+  - Clicking the cart icon calls `preventDefault()` (the icon is still a link to checkout for Task 2) and toggles the panel under it. Clicking again closes it.
+  - It lists every item with its price and a Remove button (`cart.splice`).
+  - The total is `cart.reduce((sum, item) => sum + item.price, 0)`.
+  - `render()` redraws the list, total, badge and buttons after every change.
+- **Limit:** `MAX_PER_PRODUCT = (68 % 4) + 2 = 2`. When a product (same name and colour) is in the cart twice, its button shows **"Limit reached"** and is `disabled`, until one is removed.
+- **Why the old cart was removed:** the earlier drawer (`cart.js`) and "+" size picker (`quick-add.js`) would have been a second cart writing to the same badge. These pages now load `script.js` instead. The product page's own Add to Cart form also feeds `script.js`, through its `cart:add` event.
+
+---
+
+## Live check – where things are
+
+| Question | Answer |
 |---|---|
-| Homepage | `index.html` |
-| Product detail page | `product.html` (any product: `product.html?id=prod-new-1`, `?id=prod-shoes-2`, ...) |
-| CSS | `css/` - 9 stylesheets + Bootstrap 5.3.3 (CDN) |
-| JavaScript | `js/` - 9 scripts |
-| README with reference site | `README.md` (this file) + `screenshots/reference-site-lamaretail.png` |
-| Screenshots at 3 widths | `screenshots/` - phone 375px, tablet 768px, desktop 1440px, for both pages |
-| Completion PDF | `FA24-BCS-068_Assignment2_Completion.pdf` |
+| Which rule opens the mega menu? | `css/mega-menu.css` → `.shop-menu:hover > .shop-panel, .shop-menu:focus-within > .shop-panel` |
+| Change BP | Search `/* BP */` in `css/mega-menu.css` and `css/checkout.css` and change every `668px` (and `667.98px`). CSS variables can't be used inside `@media`. |
+| Change the number of columns (K) | `css/mega-menu.css` → `.shop-panel__grid { grid-template-columns: repeat(5, 1fr); }` |
+| Panel above everything / not pushing content | `.shop-panel { position: absolute; top: 100%; left: 0; right: 0; z-index: 10; }` inside the sticky header (z-index 500) |
+| Errors only after interaction | `css/checkout.css` → `:user-invalid` rules |
+| Phone format / date range | `checkout.html` → `pattern="03[0-9]{2}-[0-9]{7}"`, `min="2026-10-29" max="2027-01-05"` |
+| Cart limit | `script.js` → `const MAX_PER_PRODUCT = (68 % 4) + 2;` |
+| Total | `script.js` → `cart.reduce((sum, item) => sum + item.price, 0)` |
 
----
+## AI tools used
 
-## 3. Where Bootstrap Is Used
-
-Bootstrap 5.3.3 is loaded as a CSS file (no Bootstrap JavaScript). Our own CSS files are loaded after it, so they can restyle it.
-
-| Part of the page | Bootstrap classes |
-|---|---|
-| Header / navbar | `navbar navbar-expand-lg`, `navbar-brand`, `navbar-nav`, `nav-item`, `nav-link`, `d-flex gap-1`, `badge rounded-pill text-bg-dark` (cart count) |
-| Product rows (homepage) | Each row is a `row flex-nowrap row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3`, so 2 / 3 / 4 / 5 cards fit on screen and the rest scroll sideways |
-| Product page layout | `row g-4` with `col-12 col-md-6` (photos and details stack on phones, side by side from 768px) |
-| "You may also like" grid | `row row-cols-2 row-cols-md-4 g-3` |
-| Footer | `row` / `col-12 col-md-6 col-lg-5` ..., store cities `row row-cols-1 row-cols-md-3` |
-| Forms and buttons | `breadcrumb`, `btn btn-dark / btn-light / btn-outline-dark`, `btn-check` (size buttons), `input-group` (quantity, newsletter), `form-control`, `form-select` |
-
-Brand colours, square corners and fonts are set through Bootstrap's own CSS variables in `css/base.css` (`--bs-body-font-family`, `--bs-border-radius: 0`, `--bs-btn-bg`, ...).
-
----
-
-## 4. Responsive Screenshots
-
-| Page | Phone (375px) | Tablet (768px) | Desktop (1440px) |
-|---|---|---|---|
-| Homepage | `screenshots/index-phone-375.png` | `screenshots/index-tablet-768.png` | `screenshots/index-desktop-1440.png` |
-| Product page | `screenshots/product-phone-375.png` | `screenshots/product-tablet-768.png` | `screenshots/product-desktop-1440.png` |
-
----
-
-## 5. Features
-
-- **Header:**
-  - Announcement bar with 2 rotating messages.
-  - Sticky Bootstrap navbar.
-  - Desktop mega menu built from data in `js/data.js`, with Woman / Man columns under Shoes and Accessories.
-  - Phone slide-in menu with accordions.
-  - Search overlay.
-  - Cart icon with item count.
-- **Homepage:**
-  - Full-width hero video (muted, looping).
-  - 5 product rows (New, Shoes, Jackets & Coats, Sweaters & Cardigans, Bags) with category banners. The banners use `<picture>`, so phones get portrait images.
-- **Product cards:**
-  - Real product photo, swapping to a second photo on hover.
-  - Name (links to `product.html?id=...`), price and colour.
-  - "+" button opening a size picker, which adds the item to the cart.
-- **Product page:**
-  - The product is chosen with `?id=` in the URL.
-  - Breadcrumb.
-  - Large photo with thumbnail buttons.
-  - Name, price and BaadMay "3 installments" amount.
-  - Size buttons (a size is required).
-  - Quantity selector (- / +, from 1 to 10).
-  - Add to Cart.
-  - Description, Size & Fit and Shipping accordions (`<details>`).
-  - "You may also like" grid.
-- **Cart:**
-  - Slide-in drawer with + / - / Remove.
-  - Subtotal and BaadMay amount (subtotal / 3).
-  - Saved in `localStorage`, so it survives a refresh.
-- **Footer (same on both pages):**
-  - Newsletter with email validation.
-  - Links and currency selector.
-  - Social icons.
-  - Customer service, and store locations in Lahore / Islamabad / Karachi (accordions on phones).
-- **Accessibility:**
-  - Semantic tags and alt text.
-  - `aria-label` / `aria-expanded`.
-  - Keyboard support: Esc closes menus and drawers, and focus stays inside open drawers.
-  - Visible focus rings.
-  - Reduced-motion support.
-
----
-
-## 6. Directory Structure
-
-```text
-assignment 2/
-├── index.html                 # Homepage
-├── product.html               # Product detail page
-├── README.md
-├── FA24-BCS-068_Assignment2_Completion.pdf
-├── ANTIGRAVITY_BUILD_PLAN.md
-├── css/
-│   ├── base.css           # Tokens (:root), reset, Bootstrap overrides, buttons, typography
-│   ├── header.css         # Announcement bar, navbar, mega menu, search overlay, phone drawer
-│   ├── hero.css           # Hero video, title overlay & shop buttons (homepage)
-│   ├── product-card.css   # Product cards, hover photo swap, size picker panel & toast
-│   ├── sections.css       # Category banners & sideways-scrolling product rows
-│   ├── product.css        # Product page: gallery, details, size / quantity, accordions
-│   ├── cart.css           # Cart drawer, quantity steppers, subtotal & BaadMay block
-│   ├── footer.css         # Footer, newsletter, currency, social, store locations
-│   └── responsive.css     # Small-phone tweaks & print styles
-├── js/
-│   ├── data.js            # Menu data, 25 products, formatPrice, scroll-lock / focus-trap helpers
-│   ├── menu.js            # Desktop mega menu, phone drawer, search overlay
-│   ├── slider.js          # Reusable Slider class (announcement bar) + hero video reduced motion
-│   ├── products.js        # Builds product cards and the homepage rows
-│   ├── quick-add.js       # "+" size picker -> sends cart:add
-│   ├── cart.js            # Cart drawer, localStorage, totals, BaadMay
-│   ├── footer.js          # Newsletter validation, currency, footer accordions
-│   ├── main.js            # Homepage: builds the 5 rows + fade-in on scroll
-│   └── product-page.js    # Product page: shows ?id= product, gallery, size, quantity, Add to Cart
-├── screenshots/           # Reference site + both pages at 375 / 768 / 1440px
-└── assets/
-    ├── banners/           # <category>-desktop.jpg (1920x750) + <category>-mobile.jpg (720x990)
-    ├── videos/            # hero.mp4 - hero video from pk.lamaretail.com
-    ├── products/          # <product>-<colour>-<n>.jpg, real product photos (540x810)
-    ├── icons/             # BaadMay logo + checkout step icons (SVG)
-    └── logo/              # logo.webp, logo.png (favicon), og-image.jpg (link preview)
-```
-
----
-
-## 7. How to Run
-
-1. Open the `assignment 2` folder in File Explorer.
-2. Double-click `index.html` (any modern browser: Chrome, Edge, Firefox, Safari).
-3. Click any product name to open its page in `product.html`.
-
-No server, Node.js or build step is needed. An internet connection is needed for Bootstrap and Google Fonts (both load from a CDN).
+- **Claude (Anthropic) – Claude Code**: used to plan, write and test the changes, take the screenshots and build the PDF. I reviewed every change and can explain all of it.
