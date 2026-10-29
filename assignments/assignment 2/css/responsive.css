@@ -1,0 +1,84 @@
+/* ==========================================================================
+   css/responsive.css - Breakpoint refinements, print stylesheet & polish
+   ========================================================================== */
+
+/* 480px Breakpoint (Small to Medium Phones) */
+@media (max-width: 480px) {
+    :root {
+        --announcement-height: 34px;
+        --header-height-mobile: 56px;
+    }
+
+    .hero-btn-group .btn {
+        width: 100%;
+    }
+
+    /* Small phones: 1.5 cards visible, so it's obvious the row scrolls sideways */
+    .carousel-track > .col {
+        width: 65%;
+    }
+}
+
+/* 768px Breakpoint (Tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .header-logo img {
+        height: 23px;
+    }
+}
+
+/* 1024px Breakpoint (Small Laptops & Desktops) */
+@media (min-width: 1024px) {
+    .mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+/* 1280px Breakpoint (High-Resolution Monitors) */
+@media (min-width: 1280px) {
+    .container {
+        padding-left: var(--space-10);
+        padding-right: var(--space-10);
+    }
+}
+
+/* Print Stylesheet */
+@media print {
+    .announcement-bar,
+    .desktop-nav,
+    .mobile-menu-btn,
+    .mobile-drawer,
+    .mobile-drawer-backdrop,
+    .search-overlay,
+    .header-right,
+    .quick-add-panel,
+    .quick-add-backdrop,
+    .lama-toast,
+    .cart-drawer,
+    .cart-drawer-backdrop,
+    .btn-quick-add,
+    .carousel-nav-btn,
+    .newsletter-form,
+    .footer-currency {
+        display: none !important;
+    }
+
+    .site-header {
+        position: static;
+    }
+
+    /* Rows fade in on scroll; make sure they print even if never scrolled into view */
+    .catalog-row-section {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .footer-accordion-content {
+        max-height: none !important;
+        visibility: visible !important;
+    }
+
+    body {
+        color: #000000 !important;
+        background: #ffffff !important;
+    }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5 - Task 3: Responsive Navigation Menu Component</title>
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Overrides -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Central JavaScript for Interactive Mobile Collapse -->
+    <script src="script.js" defer></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- =========================================================================
+         RESPONSIVE NAVIGATION BAR (COLLAPSES BELOW md BREAKPOINT)
+         ========================================================================= -->
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main Navigation">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- 1. Brand Logo / Name -->
+                <div class="flex items-center gap-3">
+                    <a href="navbar.html" class="flex items-center gap-2.5 text-xl font-bold text-slate-900 tracking-tight group">
+                        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center font-black text-lg shadow-md group-hover:scale-105 transition">
+                            C
+                        </span>
+                        <span>COMSATS<span class="text-blue-600">Dev</span></span>
+                    </a>
+                </div>
+
+                <!-- 2. Desktop Navigation Links (Visible on md and above: hidden md:flex) -->
+                <div class="hidden md:flex items-center gap-8">
+                    <ul class="flex items-center gap-6 text-sm font-semibold text-slate-600">
+                        <li>
+                            <a href="layout-comparison.html" class="hover:text-blue-600 transition">Comparison</a>
+                        </li>
+                        <li>
+                            <a href="catalogue.html" class="hover:text-blue-600 transition">Catalogue Drawer</a>
+                        </li>
+                        <li>
+                            <a href="navbar.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Navbar Menu</a>
+                        </li>
+                        <li>
+                            <a href="#docs" class="hover:text-blue-600 transition">Documentation</a>
+                        </li>
+                    </ul>
+
+                    <!-- 3. Desktop Call-To-Action (CTA) Button -->
+                    <a href="#portal" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-sm transition">
+                        Get Started &rarr;
+                    </a>
+                </div>
+
+                <!-- 4. Mobile Hamburger Button (Visible only below md: flex md:hidden) -->
+                <div class="flex items-center md:hidden">
+                    <button 
+                        id="navToggleBtn" 
+                        type="button" 
+                        class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" 
+                        aria-label="Toggle navigation menu"
+                        aria-expanded="false"
+                        aria-controls="mobileNavPanel"
+                    >
+                        <span class="nav-icon text-2xl font-bold leading-none">&#9776;</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- =========================================================================
+                 MOBILE DROPDOWN PANEL (COLLAPSED BY DEFAULT, EXPANDED VIA script.js)
+                 ========================================================================= -->
+            <div id="mobileNavPanel" class="mobile-nav-panel md:hidden border-t border-slate-100">
+                <div class="py-4 space-y-3">
+                    <ul class="flex flex-col space-y-1 text-base font-medium text-slate-700">
+                        <li>
+                            <a href="layout-comparison.html" class="block px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-blue-600 transition">
+                                Task 1: Comparison Layout
+                            </a>
+                        </li>
+                        <li>
+                            <a href="catalogue.html" class="block px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-blue-600 transition">
+                                Task 2: Mobile Filter Catalogue
+                            </a>
+                        </li>
+                        <li>
+                            <a href="navbar.html" class="block px-3 py-2 rounded-lg bg-blue-50 text-blue-700 font-bold">
+                                Task 3: Responsive Navbar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#docs" class="block px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-blue-600 transition">
+                                Documentation & Guides
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Mobile Call-To-Action Button -->
+                    <div class="pt-3 border-t border-slate-200">
+                        <a href="#portal" class="block w-full text-center py-2.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition">
+                            Get Started &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Page Content Demonstrating Component Responsiveness -->
+    <main class="flex-1 max-w-5xl mx-auto px-4 py-12 w-full">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-800 mb-3">
+                Lab 5 Task 3 Showcase
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Accessible Responsive Navigation Bar
+            </h1>
+            <p class="text-slate-600 text-base leading-relaxed">
+                Resize the browser viewport below the <strong>medium breakpoint (<code class="text-blue-600">md = 768px</code>)</strong> to observe how the horizontal menu seamlessly collapses into an interactive hamburger trigger button.
+            </p>
+        </div>
+
+        <!-- Demonstration Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-3">
+                    🖥️
+                </div>
+                <h2 class="text-lg font-bold text-slate-900 mb-2">Desktop Viewport</h2>
+                <p class="text-slate-600 text-sm">
+                    Links are laid out horizontally in a flex row alongside the brand and CTA button for rapid mouse navigation.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-lg mb-3">
+                    📱
+                </div>
+                <h2 class="text-lg font-bold text-slate-900 mb-2">Mobile Collapse</h2>
+                <p class="text-slate-600 text-sm">
+                    Links collapse smoothly into an accessible accordion drawer below 768px with full ARIA state tracking.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg mb-3">
+                    ⌨️
+                </div>
+                <h2 class="text-lg font-bold text-slate-900 mb-2">Keyboard Accessible</h2>
+                <p class="text-slate-600 text-sm">
+                    Supports <kbd class="px-1.5 py-0.5 bg-slate-100 border rounded text-xs">Tab</kbd> navigation, visible focus rings, and <kbd class="px-1.5 py-0.5 bg-slate-100 border rounded text-xs">Esc</kbd> key auto-close.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 COMSATS University Islamabad &bull; Web Development Lab 5 (Task 3: Responsive Navigation Menu)</p>
+    </footer>
+
+</body>
+</html>

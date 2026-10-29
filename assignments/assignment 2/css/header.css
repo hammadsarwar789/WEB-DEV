@@ -1,0 +1,557 @@
+/* ==========================================================================
+   css/header.css - Announcement bar, sticky header (Bootstrap .navbar), mega menu & mobile drawer
+   ========================================================================== */
+
+/* 1. Announcement Bar */
+/* Sizes match pk.lamaretail.com: 12px bold on phones, 13.77px bold from 768px, 0.2em tracking */
+.announcement-bar {
+    background-color: var(--color-announcement-bg);
+    color: var(--color-white);
+    min-height: var(--announcement-height);
+    padding: var(--space-2) 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: calc(var(--z-sticky) + 1);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+    .announcement-bar {
+        font-size: 0.86rem;
+    }
+}
+
+.announcement-bar .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.announcement-slider {
+    position: relative;
+    overflow: hidden;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Wraps onto two lines on narrow phones, like the live site */
+.announcement-slide {
+    display: none;
+    text-align: center;
+    color: var(--color-white);
+    transition: opacity 0.3s ease;
+}
+
+.announcement-slide.active {
+    display: block;
+}
+
+.announcement-slide a {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.announcement-slide a:hover {
+    opacity: 0.8;
+}
+
+/* 2. Main Sticky Header */
+.site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    z-index: var(--z-sticky);
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow var(--transition-base), height var(--transition-base);
+}
+
+.site-header.scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.header-inner {
+    /* display:flex, align-items:center and justify-content:space-between come from Bootstrap's .navbar */
+    height: var(--header-height-mobile);
+}
+
+/* Desktop: the menu may wrap onto a second row (as on the live site), so the height can grow */
+@media (min-width: 1024px) {
+    .header-inner {
+        height: auto;
+        min-height: var(--header-height-desktop);
+        padding: var(--space-3) 0;
+    }
+}
+
+/* Left Group (Hamburger on mobile, with the logo right after it) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+/* Desktop: logo sits on the left with the menu right after it, like the live site */
+@media (min-width: 1024px) {
+    .header-left {
+        display: none;
+    }
+}
+
+.mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+.hamburger-line {
+    width: 20px;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Logo: left-aligned at every width; 60x20 on phones, 70x23 on desktop like the live site */
+.header-logo .navbar-brand {
+    padding: 0;                  /* remove Bootstrap's default brand spacing */
+    margin: 0;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    margin-left: var(--space-3);
+    margin-right: auto;
+}
+
+.header-logo img {
+    height: 20px;
+    width: auto;
+    object-fit: contain;
+    transition: height var(--transition-fast);
+}
+
+@media (min-width: 1024px) {
+    .header-logo {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .header-logo img {
+        height: 23px;
+    }
+}
+
+/* 3. Desktop Navigation & Mega Menu */
+.desktop-nav {
+    display: none;
+    height: 100%;
+}
+
+@media (min-width: 1024px) {
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: flex-start;
+        margin: 0 var(--space-4) 0 var(--space-8);
+    }
+}
+
+/* Live site: 15px Outfit 300 with 3px tracking; items wrap onto a second row when space runs out.
+   Bootstrap's .navbar-nav makes it a flex row (from 992px) and removes list bullets/padding. */
+.nav-list {
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: var(--space-6);
+    row-gap: 0;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-text-main);
+    padding: var(--space-2) 0;
+    position: relative;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+}
+
+/* Bootstrap gives .navbar-nav .nav-link side padding and a grey colour - undo both */
+.site-header .navbar-nav .nav-link {
+    padding: var(--space-2) 0;
+    color: var(--color-text-main);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-base);
+}
+
+.nav-item:hover .nav-link::after,
+.nav-link:focus-visible::after,
+.nav-link[aria-expanded="true"]::after {
+    width: 100%;
+}
+
+/* Mega Menu Dropdown */
+.mega-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background-color: var(--color-white);
+    min-width: 260px;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+    padding: var(--space-6);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+    z-index: var(--z-dropdown);
+}
+
+.mega-dropdown.multi-col {
+    min-width: 440px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+}
+
+/* Opened only by js/menu.js (so open/close delays, Esc and click-outside all work) */
+.mega-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), visibility 0s;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.mega-col-heading {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--color-text-main);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-3);
+}
+
+.mega-sublist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.mega-sublist a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: inline-block;
+}
+
+.mega-sublist a:hover {
+    color: var(--color-primary);
+    transform: translateX(3px);
+}
+
+/* 4. Right Side Actions (Search, Login, Cart) - flex row via Bootstrap's d-flex / gap-1 classes */
+.header-right {
+    justify-content: flex-end;
+}
+
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    position: relative;
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transition-fast);
+}
+
+.header-icon-btn:hover {
+    opacity: 0.7;
+}
+
+/* Live site: 28px search / cart icons, smaller 20-22px account icon */
+.header-icon-btn svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    stroke-width: 1.4;
+}
+
+.header-auth-link svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Bootstrap .badge.rounded-pill.text-bg-dark draws the pill; we only position and size it */
+.cart-count-badge {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 10px;
+    min-width: 16px;
+}
+
+.cart-count-badge[data-count="0"] {
+    display: none;
+}
+
+/* 5. Search Overlay (Phase 3) */
+.search-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: var(--space-4) 0;
+    display: none;
+    z-index: var(--z-dropdown);
+    animation: slideDown 0.25s ease-out;
+}
+
+.search-overlay.open {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    border-bottom: 2px solid var(--color-primary);
+    padding: var(--space-2);
+    font-size: var(--font-size-md);
+    background: transparent;
+}
+
+.search-input:focus {
+    outline: none;
+    border-bottom-color: var(--color-accent);
+}
+
+.search-submit-btn {
+    margin-left: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.search-submit-btn:hover {
+    background-color: var(--color-secondary);
+}
+
+.search-close-btn {
+    margin-left: var(--space-2);
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: var(--space-2);
+}
+
+.search-close-btn:hover {
+    color: var(--color-primary);
+}
+
+/* 6. Mobile Navigation Drawer (Phase 3) */
+.mobile-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: var(--z-drawer-backdrop);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.mobile-drawer-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 85vw;
+    background-color: var(--color-white);
+    z-index: var(--z-drawer);
+    transform: translateX(-100%);
+    visibility: hidden; /* keeps links out of the Tab order while closed */
+    transition: transform var(--transition-smooth), visibility var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+    /* show instantly on open so focus() works; the closed rule delays hiding until the slide ends */
+    transition: transform var(--transition-smooth), visibility 0s;
+}
+
+.mobile-drawer-title {
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-wider);
+}
+
+.mobile-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-drawer-close {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: var(--space-1);
+}
+
+.mobile-nav-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4) var(--space-5);
+}
+
+.mobile-accordion-item {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-accordion-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-main);
+    text-align: left;
+}
+
+.mobile-group-heading {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    margin: var(--space-2) 0 var(--space-1) var(--space-3);
+}
+
+.mobile-accordion-icon {
+    font-size: 0.9rem;
+    transition: transform var(--transition-fast);
+}
+
+.mobile-accordion-item.open .mobile-accordion-icon {
+    transform: rotate(45deg);
+}
+
+.mobile-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: max-height var(--transition-base), visibility var(--transition-base);
+}
+
+.mobile-accordion-panel.open {
+    max-height: 800px;
+    visibility: visible;
+    transition: max-height var(--transition-base), visibility 0s;
+}
+
+.mobile-sublist {
+    padding-bottom: var(--space-3);
+    padding-left: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.mobile-sublist a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}

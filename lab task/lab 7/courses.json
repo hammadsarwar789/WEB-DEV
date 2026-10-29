@@ -1,0 +1,50 @@
+[
+    {
+        "id": "CSC332",
+        "title": "Web Technologies",
+        "credits": 3,
+        "instructor": "Dr. Asim Farooq",
+        "seatsAvailable": 8,
+        "department": "Computer Science"
+    },
+    {
+        "id": "CSC321",
+        "title": "Database Systems",
+        "credits": 4,
+        "instructor": "Engr. Bilal Ahmad",
+        "seatsAvailable": 14,
+        "department": "Computer Science"
+    },
+    {
+        "id": "CSC341",
+        "title": "Operating Systems",
+        "credits": 4,
+        "instructor": "Dr. Noman Ali",
+        "seatsAvailable": 5,
+        "department": "Computer Science"
+    },
+    {
+        "id": "CSC354",
+        "title": "Computer Networks",
+        "credits": 3,
+        "instructor": "Dr. Sarah Khan",
+        "seatsAvailable": 19,
+        "department": "Computer Science"
+    },
+    {
+        "id": "SWE302",
+        "title": "Software Engineering II",
+        "credits": 3,
+        "instructor": "Engr. Zeeshan Haider",
+        "seatsAvailable": 11,
+        "department": "Software Engineering"
+    },
+    {
+        "id": "CSC483",
+        "title": "Artificial Intelligence",
+        "credits": 3,
+        "instructor": "Dr. Tariq Mahmood",
+        "seatsAvailable": 6,
+        "department": "Computer Science"
+    }
+]

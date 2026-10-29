@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactored Responsive Student Profile | Lab 4 Task 5</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="landing-page.html" class="nav-brand">
+                <span>🎓</span> COMSATS Islamabad
+            </a>
+            <button class="nav-toggle-btn" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="landing-page.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Store Gallery</a></li>
+                <li><a href="dashboard.html" class="nav-link">Student Portal</a></li>
+                <li><a href="animated-card.html" class="nav-link">Highlights</a></li>
+                <li><a href="refactored.html" class="nav-link active">Student Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="refactored-container">
+        <div class="section-header">
+            <h1 class="section-title">Refactored Profile & Result Architecture</h1>
+            <p class="section-subtitle">
+                Refactoring Lab 1 & 2 profile structures using CSS Grid, Flexbox, <code>:root</code> variables, and full responsive breakpoints.
+            </p>
+        </div>
+
+        <!-- Task 5: Refactored Card Component -->
+        <article class="refactored-card">
+            <div class="refactored-grid">
+                <!-- Avatar & Status -->
+                <div class="refactored-avatar-box">
+                    <img 
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+                        alt="Profile picture of Muhammad Hammad Sarwar" 
+                        class="refactored-avatar"
+                    >
+                    <h2 style="font-size: 1.4rem; font-weight: 700; color: #1e293b; margin-top: 12px;">Muhammad Hammad Sarwar</h2>
+                    <p style="font-size: 0.9rem; color: #3182ce; font-weight: 600;">BS Computer Science (Semester 5)</p>
+                </div>
+
+                <!-- Bio & Academic Highlights -->
+                <div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; color: #1a365d; margin-bottom: 8px;">
+                        Engineering Scalable Front-End Web Systems
+                    </h3>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.65; margin-bottom: 1rem;">
+                        This page showcases a refactored implementation of our earlier student portfolio. By adopting modern CSS Custom Variables (design tokens), 2-dimensional CSS Grid layouts, and responsive Flexbox navigation, the interface seamlessly scales from mobile smartphones to ultra-wide desktop monitors without media bloat.
+                    </p>
+
+                    <!-- Responsive Academic Metadata Grid -->
+                    <div class="refactored-meta-grid">
+                        <div class="refactored-meta-item">
+                            <strong>Cumulative GPA</strong>
+                            <span>3.72 / 4.00 (Honor List)</span>
+                        </div>
+                        <div class="refactored-meta-item">
+                            <strong>Earned Credits</strong>
+                            <span>82 Credit Hours</span>
+                        </div>
+                        <div class="refactored-meta-item">
+                            <strong>Core Competencies</strong>
+                            <span>HTML5, CSS Grid/Flexbox, ES6+</span>
+                        </div>
+                        <div class="refactored-meta-item">
+                            <strong>Academic Department</strong>
+                            <span>Computer Science &bull; CUI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrated Semester Result Card Summary -->
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0;">
+                <h4 style="font-size: 1.1rem; color: #1a365d; margin-bottom: 1rem;">Semester Course Performance Overview</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="background-color: #1a365d; color: #ffffff;">
+                                <th style="padding: 10px 14px; text-align: left;">Course Title</th>
+                                <th style="padding: 10px 14px; text-align: center;">Credits</th>
+                                <th style="padding: 10px 14px; text-align: center;">Marks</th>
+                                <th style="padding: 10px 14px; text-align: center;">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
+                                <td style="padding: 10px 14px; font-weight: 600;">Web Technologies</td>
+                                <td style="padding: 10px 14px; text-align: center;">3</td>
+                                <td style="padding: 10px 14px; text-align: center;">91</td>
+                                <td style="padding: 10px 14px; text-align: center; color: #15803d; font-weight: 700;">A</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 10px 14px; font-weight: 600;">Database Systems</td>
+                                <td style="padding: 10px 14px; text-align: center;">4</td>
+                                <td style="padding: 10px 14px; text-align: center;">87</td>
+                                <td style="padding: 10px 14px; text-align: center; color: #15803d; font-weight: 700;">A-</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0; background-color: #f8fafc;">
+                                <td style="padding: 10px 14px; font-weight: 600;">Operating Systems</td>
+                                <td style="padding: 10px 14px; text-align: center;">4</td>
+                                <td style="padding: 10px 14px; text-align: center;">84</td>
+                                <td style="padding: 10px 14px; text-align: center; color: #1d4ed8; font-weight: 700;">B+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 COMSATS University Islamabad | Lab 4 Task 5 (Refactored Page)</p>
+    </footer>
+
+</body>
+</html>

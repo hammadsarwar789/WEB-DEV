@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - Task 3: E-Commerce Product Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- Navigation bar between Lab 3 tasks -->
+        <nav class="task-nav" aria-label="Lab 3 Navigation">
+            <a href="profile-card.html">Task 1: Profile Card</a>
+            <a href="article-preview.html">Task 2: Article Preview</a>
+            <a href="product-card.html" class="active">Task 3: Product Card</a>
+        </nav>
+
+        <h1 class="page-title">E-Commerce Product Card</h1>
+        <p class="page-subtitle">Relative/Absolute Positioning, Overflow Control, Object-Fit & Micro-Transitions</p>
+
+        <!-- Task 3: E-Commerce Product Card -->
+        <div class="product-card">
+            <!-- Image Container with Relative/Absolute Positioning -->
+            <div class="product-image-container">
+                <!-- Sale Badge positioned absolutely -->
+                <span class="sale-badge">-25% OFF</span>
+                <img 
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" 
+                    alt="Wireless Noise Cancelling Studio Headphones" 
+                    class="product-image"
+                >
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-content">
+                <div class="product-category">Audio & Acoustics</div>
+                <h2 class="product-name">Studio Pro ANC Headphones</h2>
+                
+                <p class="product-description">
+                    Premium over-ear wireless headphones featuring active noise cancellation, 40-hour battery life, and crystal-clear high fidelity sound.
+                </p>
+
+                <!-- Pricing Section -->
+                <div class="product-pricing">
+                    <span class="price-current">$149.99</span>
+                    <span class="price-original">$199.99</span>
+                </div>
+
+                <!-- Stock Status Indicator -->
+                <div class="stock-status stock-in">
+                    <span class="stock-indicator"></span>
+                    <span>In Stock & Ready to Ship</span>
+                </div>
+
+                <!-- Product Action Buttons -->
+                <div class="product-actions">
+                    <button type="button" class="btn-add-cart" id="addToCartBtn">
+                        Add to Cart
+                    </button>
+                    <button type="button" class="btn-wishlist" id="wishlistBtn" aria-label="Add to Wishlist" title="Add to Wishlist">
+                        &hearts;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

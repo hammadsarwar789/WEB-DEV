@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - Task 1: Personal Profile Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- Navigation bar between Lab 3 tasks -->
+        <nav class="task-nav" aria-label="Lab 3 Navigation">
+            <a href="profile-card.html" class="active">Task 1: Profile Card</a>
+            <a href="article-preview.html">Task 2: Article Preview</a>
+            <a href="product-card.html">Task 3: Product Card</a>
+        </nav>
+
+        <h1 class="page-title">Personal Profile Card</h1>
+        <p class="page-subtitle">CSS Box Model, Border Radius, Box Shadow & Object-Fit Implementation</p>
+
+        <!-- Task 1: Profile Card Component -->
+        <div class="profile-card">
+            <!-- Decorative Banner -->
+            <div class="profile-card-banner"></div>
+
+            <div class="profile-card-body">
+                <!-- Profile Photo with Object-fit -->
+                <div class="profile-photo-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+                        alt="Profile photograph of Hammad Sarwar" 
+                        class="profile-photo"
+                    >
+                </div>
+
+                <!-- Name & Professional Designation -->
+                <h2 class="profile-name">Muhammad Hammad Sarwar</h2>
+                <p class="profile-designation">Front-End Developer & UI/UX Specialist</p>
+
+                <!-- Professional Bio -->
+                <p class="profile-bio">
+                    Dedicated software engineering student passionate about designing accessible, responsive web interfaces, modern component libraries, and performant user experiences.
+                </p>
+
+                <!-- 3 Stat Counters -->
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">28+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">3.72</span>
+                        <span class="stat-label">CGPA</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">1.4k</span>
+                        <span class="stat-label">Contributions</span>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <ul class="profile-contact">
+                    <li><strong>Email:</strong> hammad.sarwar@example.com</li>
+                    <li><strong>Location:</strong> Islamabad, Pakistan</li>
+                    <li><strong>Institute:</strong> COMSATS University</li>
+                </ul>
+
+                <!-- Primary Action Button -->
+                <button type="button" class="btn-primary" id="connectBtn">Connect with Hammad</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

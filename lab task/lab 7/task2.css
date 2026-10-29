@@ -1,0 +1,317 @@
+/* ==========================================================================
+   LAB 7 - TASK 2 STYLESHEET (task2.css)
+   Resilient Course Registration Interface & Error States
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: #0f172a;
+    font-size: 2rem;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* Nav links between Lab 7 tasks */
+.lab7-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.lab7-nav a {
+    text-decoration: none;
+    color: #475569;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.lab7-nav a:hover,
+.lab7-nav a.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+/* Status Banner */
+.status-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+}
+
+.status-banner.open {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+}
+
+.status-banner.closed {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-open {
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+.badge-closed {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+/* Card */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 26px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+
+.card h2 {
+    color: #1e3a8a;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+/* Form controls */
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+select, input[type="text"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select:focus, input[type="text"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Course Preview Box */
+.course-preview-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 14px;
+    display: none;
+}
+
+.course-preview-box.show {
+    display: block;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.preview-item {
+    font-size: 0.85rem;
+}
+
+.preview-item strong {
+    color: #475569;
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Submit & Retry Buttons */
+.btn-submit {
+    padding: 12px 24px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+
+.btn-submit:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-retry {
+    background-color: #0284c7;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+
+.btn-retry:hover {
+    background-color: #0369a1;
+}
+
+/* Loading Spinner */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #64748b;
+    gap: 12px;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e2e8f0;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Resilient Error Banners */
+.error-banner {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 5px solid #dc2626;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: none;
+}
+
+.error-banner.show {
+    display: block;
+}
+
+.error-title {
+    font-weight: 700;
+    color: #991b1b;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.error-desc {
+    color: #7f1d1d;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* Simulation Playground */
+.sim-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.btn-sim {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-sim:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+.btn-sim.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}

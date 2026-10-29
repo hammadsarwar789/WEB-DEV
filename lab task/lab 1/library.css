@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    line-height: 1.7;
+}
+
+header {
+    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+    color: #ffffff;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    font-size: 1.15rem;
+    color: #e2e8f0;
+}
+
+.container {
+    max-width: 950px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 3rem 1.5rem;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+}
+
+h2 {
+    color: #1a365d;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+}
+
+h3 {
+    color: #2b6cb0;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+blockquote {
+    background: #ebf8ff;
+    border-left: 5px solid #3182ce;
+    padding: 1rem 1.25rem;
+    margin: 1.2rem 0;
+    font-style: italic;
+    color: #2c5282;
+    border-radius: 0 6px 6px 0;
+}
+
+mark {
+    background-color: #fefcbf;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* List Styling */
+ol, ul {
+    margin: 1rem 0 1.5rem 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Media Section */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.media-item {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.media-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.media-item video {
+    width: 100%;
+    height: 220px;
+    background-color: #000;
+    display: block;
+}
+
+.media-caption {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #1a202c;
+    color: #a0aec0;
+    font-size: 0.9rem;
+}

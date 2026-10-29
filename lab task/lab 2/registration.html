@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Admission & Registration Portal</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="header">
+            <h1>COMSATS Online Admission Registration</h1>
+            <p>Please complete all required fields accurately to submit your admission application.</p>
+        </div>
+
+        <!-- Task 1: Search Field with type="search" and placeholder -->
+        <div class="search-container">
+            <label for="program-search">Explore Offerings:</label>
+            <input 
+                type="search" 
+                id="program-search" 
+                name="program_search" 
+                placeholder="Search programs..."
+                aria-label="Search available university programs"
+            >
+        </div>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+
+            <!-- Fieldset 1: Personal Information -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required-star">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="e.g. Hammad Sarwar" required minlength="3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fatherName">Father's / Guardian's Name <span class="required-star">*</span></label>
+                        <input type="text" id="fatherName" name="fatherName" placeholder="Father's Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required-star">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="student@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required-star">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="0300-1234567" pattern="[0-9]{4}-[0-9]{7}|[0-9]{11}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required-star">*</span></label>
+                        <input type="date" id="dob" name="dob" max="2010-01-01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender <span class="required-star">*</span></label>
+                        <div class="options-row">
+                            <label><input type="radio" name="gender" value="male" required> Male</label>
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                            <label><input type="radio" name="gender" value="other"> Other</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Fieldset 2: Academic Program Selection -->
+            <fieldset>
+                <legend>Program & Campus Details</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="campus">Campus <span class="required-star">*</span></label>
+                        <select id="campus" name="campus" required>
+                            <option value="">Select Campus</option>
+                            <option value="islamabad">Islamabad</option>
+                            <option value="lahore">Lahore</option>
+                            <option value="abbottabad">Abbottabad</option>
+                            <option value="wah">Wah</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="degreeProgram">Applied Degree Program <span class="required-star">*</span></label>
+                        <select id="degreeProgram" name="degreeProgram" required>
+                            <option value="">Select Program</option>
+                            <option value="bscs">BS Computer Science</option>
+                            <option value="bsse">BS Software Engineering</option>
+                            <option value="bsai">BS Artificial Intelligence</option>
+                            <option value="bscys">BS Cyber Security</option>
+                            <option value="bsee">BS Electrical Engineering</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Fieldset 3: Document Upload (CV accept .pdf,.doc) -->
+            <fieldset>
+                <legend>Document Uploads</legend>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="cvUpload">Upload Curriculum Vitae (CV) <span class="required-star">*</span></label>
+                        <!-- Task 1: File-upload field accepting only .pdf and .doc files -->
+                        <input 
+                            type="file" 
+                            id="cvUpload" 
+                            name="cv_document" 
+                            accept=".pdf,.doc" 
+                            required
+                        >
+                        <div class="file-hint">Accepted formats: <strong>.pdf</strong>, <strong>.doc</strong> (Max size: 5 MB)</div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Fieldset 4: Account Credentials -->
+            <fieldset>
+                <legend>Portal Credentials</legend>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="password">Create Password <span class="required-star">*</span></label>
+                        <input type="password" id="password" name="password" minlength="8" placeholder="At least 8 characters" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password <span class="required-star">*</span></label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" placeholder="Re-enter password" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Terms agreement -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                    <input type="checkbox" name="terms" required>
+                    I certify that all the information submitted above is complete, accurate, and authentic. <span class="required-star">*</span>
+                </label>
+            </div>
+
+            <!-- Form Action Buttons -->
+            <div class="btn-group">
+                <button type="reset">Reset Form</button>
+                <button type="submit">Submit Registration</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 - Task 4: Animated Information Component</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="landing-page.html" class="nav-brand">
+                <span>🎓</span> COMSATS Islamabad
+            </a>
+            <button class="nav-toggle-btn" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="landing-page.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Store Gallery</a></li>
+                <li><a href="dashboard.html" class="nav-link">Student Portal</a></li>
+                <li><a href="animated-card.html" class="nav-link active">Highlights</a></li>
+                <li><a href="refactored.html" class="nav-link">Student Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="animated-card-container">
+        <div class="section-header">
+            <h1 class="section-title">Animated Information Component</h1>
+            <p class="section-subtitle">
+                Engineered with CSS <code>::before</code> and <code>::after</code> pseudo-elements, <code>transform</code>, <code>transition</code>, <code>@keyframes</code>, and accessible <code>@media (prefers-reduced-motion)</code>.
+            </p>
+        </div>
+
+        <!-- Task 4: Animated Information Component -->
+        <article class="animated-info-card" tabindex="0" aria-label="Department of Computer Science Innovation Showcase">
+            <span class="animated-badge">Featured Innovation 2026</span>
+            
+            <h2 class="animated-card-title">Next-Gen Web Engineering & AI Systems</h2>
+            
+            <p class="animated-card-text">
+                Explore our state-of-the-art curriculum uniting modern responsive design patterns, accessible semantic architectures, and client-side computational algorithms. Every element is tested against accessibility standards with full keyboard focus navigation support.
+            </p>
+
+            <button type="button" class="animated-interactive-btn" id="animatedExploreBtn">
+                <span>Explore Technical Specs</span>
+                <span>&rarr;</span>
+            </button>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 COMSATS University Islamabad | Lab 4 Task 4 (Animated Component)</p>
+    </footer>
+
+</body>
+</html>

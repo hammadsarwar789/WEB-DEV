@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My To-Do | Clean & Responsive Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-container">
+      
+      <button 
+        id="menuBtn" 
+        class="menu-btn" 
+        onclick="toggleMenu()" 
+        aria-label="Open navigation menu"
+        title="Menu">
+        &#8942;
+      </button>
+
+      <div class="logo">
+        <span class="logo-icon">&#10003;</span>
+        <span class="logo-title">My To-Do</span>
+      </div>
+
+      <nav class="desktop-nav" aria-label="Desktop Navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#tasks" class="nav-link active">Tasks</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <div 
+    id="menuOverlay" 
+    class="menu-overlay" 
+    onclick="closeMenu()" 
+    aria-hidden="true">
+  </div>
+
+  <aside 
+    id="sideDrawer" 
+    class="side-drawer" 
+    aria-label="Mobile Navigation Drawer">
+    <div class="drawer-header">
+      <div class="drawer-logo">
+        <span class="logo-icon">&#10003;</span>
+        <span class="drawer-title">My To-Do</span>
+      </div>
+      <button 
+        id="closeDrawerBtn" 
+        class="close-btn" 
+        onclick="closeMenu()" 
+        aria-label="Close navigation menu"
+        title="Close menu">
+        &times;
+      </button>
+    </div>
+
+    <nav class="drawer-nav">
+      <ul class="drawer-list">
+        <li><a href="#home" class="drawer-link" onclick="closeMenu()">Home</a></li>
+        <li><a href="#tasks" class="drawer-link active" onclick="closeMenu()">Tasks</a></li>
+        <li><a href="#about" class="drawer-link" onclick="closeMenu()">About</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="todo-card">
+      
+      <div class="card-header">
+        <h1 class="card-title">Manage Your Tasks</h1>
+        <p class="card-subtitle">Stay organized, focused, and productive every day.</p>
+      </div>
+
+      <div class="input-section">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="taskInput" 
+            placeholder="What needs to be done?" 
+            onkeydown="handleEnter(event)" 
+            autocomplete="off"
+            aria-label="New task description">
+          <button 
+            id="addBtn" 
+            class="btn-add" 
+            onclick="addTask()" 
+            aria-label="Add task">
+            Add
+          </button>
+        </div>
+      </div>
+
+      <div class="task-stats">
+        <span id="taskCounter" class="task-counter">0 tasks remaining</span>
+      </div>
+
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">&#128221;</div>
+        <p class="empty-text">No tasks yet</p>
+        <span class="empty-subtext">Add a task above to get started!</span>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

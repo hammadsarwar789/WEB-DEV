@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Academic Dashboard | Lab 4 Task 3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Task 3: Dashboard Layout structured with CSS Grid grid-template-areas -->
+    <div class="dashboard-wrapper">
+        <!-- Area: header -->
+        <header class="dash-header">
+            <div style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                <span>🎓</span> COMSATS Student Portal
+            </div>
+            <div class="dash-user-profile">
+                <img 
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
+                    alt="Student Profile" 
+                    class="dash-avatar"
+                >
+                <span style="font-size: 0.9rem; font-weight: 600;">Hammad Sarwar</span>
+            </div>
+        </header>
+
+        <!-- Area: sidebar -->
+        <aside class="dash-sidebar">
+            <nav aria-label="Dashboard Navigation">
+                <ul class="dash-nav">
+                    <li><a href="#overview" class="active">📊 Overview</a></li>
+                    <li><a href="#courses">📚 My Courses</a></li>
+                    <li><a href="#attendance">📅 Attendance</a></li>
+                    <li><a href="#grades">🏆 Semester Grades</a></li>
+                    <li><a href="#library">📖 Library Card</a></li>
+                    <li><a href="landing-page.html">🏠 Public Site</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Area: main -->
+        <main class="dash-main">
+            <div>
+                <h1 style="font-size: 1.8rem; font-weight: 800; color: #1a365d; margin-bottom: 4px;">Academic Progress Overview</h1>
+                <p style="color: #64748b; font-size: 0.95rem;">BS Computer Science &bull; Fall Semester 2026 &bull; Section BCS-5A</p>
+            </div>
+
+            <!-- Stats Cards in Main -->
+            <div class="dash-stats-grid">
+                <div class="dash-stat-card">
+                    <span class="dash-stat-title">Current Semester GPA</span>
+                    <span class="dash-stat-number">3.72</span>
+                    <span class="dash-stat-trend">&uarr; +0.14 from last semester</span>
+                </div>
+                <div class="dash-stat-card">
+                    <span class="dash-stat-title">Credit Hours Registered</span>
+                    <span class="dash-stat-number">17</span>
+                    <span class="dash-stat-trend">5 Courses (Full Load)</span>
+                </div>
+                <div class="dash-stat-card">
+                    <span class="dash-stat-title">Overall Attendance</span>
+                    <span class="dash-stat-number">94.8%</span>
+                    <span class="dash-stat-trend">&uarr; Excellent Standing</span>
+                </div>
+                <div class="dash-stat-card">
+                    <span class="dash-stat-title">Library Books Active</span>
+                    <span class="dash-stat-number">3</span>
+                    <span class="dash-stat-trend">0 Due within 48h</span>
+                </div>
+            </div>
+
+            <!-- Main Content Card 1: Course Schedule -->
+            <div class="dash-content-block">
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem;">Active Enrolled Courses</h2>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="background-color: #f1f5f9; text-align: left;">
+                                <th style="padding: 10px 14px; border-bottom: 2px solid #cbd5e1;">Course Code</th>
+                                <th style="padding: 10px 14px; border-bottom: 2px solid #cbd5e1;">Course Title</th>
+                                <th style="padding: 10px 14px; border-bottom: 2px solid #cbd5e1;">Instructor</th>
+                                <th style="padding: 10px 14px; border-bottom: 2px solid #cbd5e1;">Credits</th>
+                                <th style="padding: 10px 14px; border-bottom: 2px solid #cbd5e1;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 10px 14px; font-weight: 600;">CSC332</td>
+                                <td style="padding: 10px 14px;">Web Technologies</td>
+                                <td style="padding: 10px 14px;">Dr. Asim Farooq</td>
+                                <td style="padding: 10px 14px;">3</td>
+                                <td style="padding: 10px 14px; color: #059669; font-weight: 600;">Enrolled</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 10px 14px; font-weight: 600;">CSC321</td>
+                                <td style="padding: 10px 14px;">Database Systems</td>
+                                <td style="padding: 10px 14px;">Engr. Bilal Ahmad</td>
+                                <td style="padding: 10px 14px;">4</td>
+                                <td style="padding: 10px 14px; color: #059669; font-weight: 600;">Enrolled</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 10px 14px; font-weight: 600;">CSC341</td>
+                                <td style="padding: 10px 14px;">Operating Systems</td>
+                                <td style="padding: 10px 14px;">Dr. Noman Ali</td>
+                                <td style="padding: 10px 14px;">4</td>
+                                <td style="padding: 10px 14px; color: #059669; font-weight: 600;">Enrolled</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Area: footer -->
+        <footer class="dash-footer">
+            COMSATS University Islamabad &bull; Integrated Student Academic Management System &bull; Lab 4 Task 3
+        </footer>
+    </div>
+
+</body>
+</html>

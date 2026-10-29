@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - Task 2: Resilient Course Registration Interface</title>
+    <link rel="stylesheet" href="task2.css">
+    <script src="task2.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Quick Nav between Lab 7 Tasks -->
+        <nav class="lab7-nav" aria-label="Lab 7 Navigation">
+            <a href="task1.html">Task 1: Workshop Registration</a>
+            <a href="task2.html" class="active">Task 2: Resilient Course Registration</a>
+        </nav>
+
+        <header>
+            <h1>Resilient Course Registration Portal</h1>
+            <p class="subtitle">Concurrent asynchronous fetching with <code>Promise.all</code>, settings validation & fault-tolerant error recovery.</p>
+        </header>
+
+        <!-- Dynamic System Status Banner (Driven by settings.json) -->
+        <div id="statusBanner" class="status-banner open">
+            <span id="statusText">Checking university registration window status...</span>
+            <span id="statusBadge" class="badge badge-open">Checking...</span>
+        </div>
+
+        <!-- Resilient Error Banner (Distinct HTTP, JSON, & Network Feedback with Recovery) -->
+        <div id="errorBanner" class="error-banner" role="alert">
+            <div id="errorTitle" class="error-title">Error Loading Registration Data</div>
+            <div id="errorDesc" class="error-desc">An issue occurred while connecting to the university server.</div>
+            <button type="button" id="retryBtn" class="btn-retry">
+                <span>🔄</span> Retry Request
+            </button>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="spinner"></div>
+            <span>Loading courses and system parameters concurrently...</span>
+        </div>
+
+        <!-- Main Registration Card (Revealed after Promise.all resolves) -->
+        <main id="registrationContent" class="card" style="display: none;">
+            <h2>Undergraduate Course Enrollment</h2>
+
+            <form id="registrationForm">
+                <!-- Student Name -->
+                <div class="form-group">
+                    <label for="studentName">Student Full Name <span style="color:#ef4444;">*</span></label>
+                    <input type="text" id="studentName" placeholder="e.g. Hammad Sarwar" required>
+                </div>
+
+                <!-- Registration ID -->
+                <div class="form-group">
+                    <label for="studentId">Registration Number / Roll No <span style="color:#ef4444;">*</span></label>
+                    <input type="text" id="studentId" placeholder="e.g. FA24-BCS-042" required>
+                </div>
+
+                <!-- Dynamically Populated Course Dropdown -->
+                <div class="form-group">
+                    <label for="courseSelect">Select Course from Catalogue <span style="color:#ef4444;">*</span></label>
+                    <select id="courseSelect" required>
+                        <option value="">-- Choose a Course to Register --</option>
+                    </select>
+                </div>
+
+                <!-- Dynamic Course Details Preview Card -->
+                <div id="coursePreview" class="course-preview-box">
+                    <h3 id="prevTitle" style="font-size: 1.05rem; font-weight: 700; color: #1e3a8a; margin-bottom: 4px;">Course Title</h3>
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <strong>Instructor</strong>
+                            <span id="prevInstructor">-</span>
+                        </div>
+                        <div class="preview-item">
+                            <strong>Credits</strong>
+                            <span id="prevCredits">-</span>
+                        </div>
+                        <div class="preview-item">
+                            <strong>Availability</strong>
+                            <span id="prevSeats">-</span>
+                        </div>
+                        <div class="preview-item">
+                            <strong>Academic Unit</strong>
+                            <span id="prevDept">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button (Disabled when registrationOpen === false) -->
+                <div style="margin-top: 24px;">
+                    <button type="submit" id="submitBtn" class="btn-submit">Confirm Course Registration</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Simulation Testing Panel for Verification & Grading -->
+        <section class="card" style="background-color: #f8fafc;">
+            <h2 style="font-size: 1.05rem; color: #334155;">Test Resilient Error Scenarios (Evaluation Sandbox)</h2>
+            <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 10px;">
+                Click any of the scenarios below to trigger and observe distinct error handling, UI recovery buttons, and settings enforcement:
+            </p>
+            <div class="sim-controls">
+                <button type="button" id="simNormal" class="btn-sim active">1. Normal Load (Both 200 OK)</button>
+                <button type="button" id="sim404Btn" class="btn-sim">2. Simulate 404 HTTP Error</button>
+                <button type="button" id="simJsonErrorBtn" class="btn-sim">3. Simulate Malformed JSON Error</button>
+                <button type="button" id="simClosedBtn" class="btn-sim">4. Simulate Closed Registration</button>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

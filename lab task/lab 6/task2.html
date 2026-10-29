@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6 - Task 2: Non-Mutating Catalogue Report</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #1a365d;
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            color: #2563eb;
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 2;
+            min-width: 250px;
+        }
+
+        .discount-box {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        input[type="search"], select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        input:focus, select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .metric-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .metric-card .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .metric-card .value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 4px;
+        }
+
+        /* Table */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .badge-stock {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-out {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .price-orig {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            margin-right: 6px;
+        }
+
+        .price-disc {
+            color: #2563eb;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Lab 6 Quick Task Navigation -->
+        <nav class="nav-links">
+            <a href="task1.html">Task 1: Safe Marks Analyser</a>
+            <a href="task2.html" class="active">Task 2: Catalogue Report</a>
+            <a href="index.html">Task 3: Revision Tracker</a>
+        </nav>
+
+        <header>
+            <h1>Non-Mutating Catalogue Report</h1>
+            <p class="subtitle">Functional array operations using map, filter, reduce, find, some, every, and non-mutating sort.</p>
+        </header>
+
+        <!-- Controls -->
+        <div class="card">
+            <h2>Interactive Filter & Discount Controls</h2>
+            <div class="controls-row">
+                <div class="search-box">
+                    <label for="searchInput">Search Title or Category</label>
+                    <input type="search" id="searchInput" placeholder="Type to filter books (e.g. 'JavaScript', 'Design', 'Web')...">
+                </div>
+                <div class="discount-box">
+                    <label for="discountSelect">Promotional Discount</label>
+                    <select id="discountSelect">
+                        <option value="0.10" selected>10% Discount</option>
+                        <option value="0.15">15% Discount</option>
+                        <option value="0.20">20% Discount</option>
+                        <option value="0.00">0% (Full Price)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dynamic Aggregated Metrics (reduce, some, every, find) -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="label">Total Stock Value (reduce)</div>
+                    <div class="value" id="metricTotalValue">$0.00</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Total Units (reduce)</div>
+                    <div class="value" id="metricTotalUnits">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Out of Stock Alert (some)</div>
+                    <div class="value" id="metricHasOutOfStock">Checking...</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">All Under $100? (every)</div>
+                    <div class="value" id="metricAllUnder100">Checking...</div>
+                </div>
+            </div>
+
+            <!-- First Out of Stock Item (find) -->
+            <div id="firstOutOfStockBanner" style="padding: 10px 14px; background: #fff7ed; border-left: 4px solid #f97316; font-size: 0.88rem; border-radius: 4px; margin-bottom: 20px;">
+                Checking inventory status...
+            </div>
+
+            <!-- Report Table (map & filter & sort) -->
+            <h3 style="font-size: 1.05rem; color: #1e293b; margin-bottom: 10px;">Filtered Books (Ascending Price Ranking)</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Normalized Title</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Price (Orig &rarr; Disc)</th>
+                            <th>Line Stock Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="booksTableBody">
+                        <!-- Rendered dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Non-mutation verification -->
+            <div style="margin-top: 20px; padding: 12px 14px; background: #ecfdf5; border-radius: 6px; font-size: 0.85rem; color: #065f46;">
+                <strong>✓ Non-Mutating Array Proof:</strong> Original <code>defaultBooks</code> array length remains strictly at <span id="origLength">6</span> and its elements were NOT altered.
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { defaultBooks, buildReport } from "./task2.js";
+
+        const searchInput = document.getElementById("searchInput");
+        const discountSelect = document.getElementById("discountSelect");
+        const metricTotalValue = document.getElementById("metricTotalValue");
+        const metricTotalUnits = document.getElementById("metricTotalUnits");
+        const metricHasOutOfStock = document.getElementById("metricHasOutOfStock");
+        const metricAllUnder100 = document.getElementById("metricAllUnder100");
+        const firstOutOfStockBanner = document.getElementById("firstOutOfStockBanner");
+        const booksTableBody = document.getElementById("booksTableBody");
+        const origLength = document.getElementById("origLength");
+
+        function render() {
+            const query = searchInput.value;
+            const discount = parseFloat(discountSelect.value);
+
+            // Execute non-mutating buildReport
+            const report = buildReport(defaultBooks, query, discount);
+
+            // Update Metrics
+            metricTotalValue.textContent = `$${report.totalInventoryValue.toFixed(2)}`;
+            metricTotalUnits.textContent = report.totalUnitsInStock;
+            metricHasOutOfStock.textContent = report.hasOutOfStockItems ? "⚠️ Yes (Restock Required)" : "✅ All In Stock";
+            metricAllUnder100.textContent = report.allUnderOneHundred ? "Yes (Affordable)" : "No";
+
+            if (report.firstOutOfStockItem) {
+                firstOutOfStockBanner.innerHTML = `<strong>Restock Priority (find):</strong> <em>${report.firstOutOfStockItem.title}</em> is currently out of stock (Category: ${report.firstOutOfStockItem.category}).`;
+            } else {
+                firstOutOfStockBanner.innerHTML = `<strong>Stock Status (find):</strong> All titles currently have positive inventory.`;
+            }
+
+            origLength.textContent = defaultBooks.length;
+
+            // Render Table (matches sorted by price asc)
+            const displayList = report.searchMatches.sort((a, b) => a.discountedPrice - b.discountedPrice);
+            booksTableBody.innerHTML = "";
+
+            if (displayList.length === 0) {
+                booksTableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8; padding:20px;">No books found matching "${query}".</td></tr>`;
+                return;
+            }
+
+            displayList.forEach((book, index) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td style="font-weight: 600;">${book.title}</td>
+                    <td>${book.category}</td>
+                    <td>
+                        <span class="badge ${book.stock > 0 ? 'badge-stock' : 'badge-out'}">
+                            ${book.stock > 0 ? `${book.stock} in stock` : 'Out of stock'}
+                        </span>
+                    </td>
+                    <td>
+                        ${discount > 0 ? `<span class="price-orig">$${book.originalPrice.toFixed(2)}</span>` : ''}
+                        <span class="price-disc">$${book.discountedPrice.toFixed(2)}</span>
+                    </td>
+                    <td>$${book.stockValue.toFixed(2)}</td>
+                `;
+                booksTableBody.appendChild(tr);
+            });
+
+            console.log("Catalogue Report Generated:", report);
+        }
+
+        searchInput.addEventListener("input", render);
+        discountSelect.addEventListener("change", render);
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>

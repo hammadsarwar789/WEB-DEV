@@ -1,0 +1,103 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 750px;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    color: #1a365d;
+    margin-bottom: 6px;
+    font-size: 26px;
+}
+
+.student-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background-color: #f8fafc;
+    border-left: 4px solid #2b6cb0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+}
+
+.title-row {
+    background-color: #1a365d;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 14px;
+    text-transform: uppercase;
+}
+
+thead tr:nth-child(2) th {
+    background-color: #2b6cb0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tbody tr:hover {
+    background-color: #edf2f7;
+    transition: background-color 0.2s ease;
+}
+
+.grade-a {
+    font-weight: 600;
+    color: #22543d;
+}
+
+.grade-b {
+    font-weight: 600;
+    color: #2b6cb0;
+}
+
+tfoot tr {
+    background-color: #edf2f7;
+    font-weight: bold;
+}
+
+.footer-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #718096;
+    text-align: center;
+}

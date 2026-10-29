@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5 - Task 2: Mobile Filter Drawer E-Commerce Catalogue</title>
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Overrides & Drawer Transitions -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Central JavaScript Logic -->
+    <script src="script.js" defer></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Top Navigation & E-Commerce Header -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3">
+                <a href="catalogue.html" class="flex items-center gap-2 text-xl font-bold text-brand-700 tracking-tight">
+                    <span class="w-9 h-9 rounded-lg bg-brand-600 text-white flex items-center justify-center text-lg shadow-sm">⚡</span>
+                    TechHub Store
+                </a>
+                <span class="hidden sm:inline-block px-2.5 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600">Lab 5 Task 2</span>
+            </div>
+
+            <!-- Search Field -->
+            <div class="flex-1 max-w-md order-3 sm:order-2 w-full sm:w-auto">
+                <div class="relative">
+                    <input 
+                        type="search" 
+                        placeholder="Search gadgets, accessories, computing gear..." 
+                        class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm transition"
+                    >
+                    <span class="absolute left-3.5 top-2.5 text-slate-400 text-sm">🔍</span>
+                </div>
+            </div>
+
+            <!-- Header Quick Actions & Cart Counter -->
+            <div class="flex items-center gap-3 order-2 sm:order-3">
+                <nav class="hidden lg:flex items-center gap-4 text-sm font-medium text-slate-600 mr-2">
+                    <a href="layout-comparison.html" class="hover:text-brand-600">Comparison</a>
+                    <a href="catalogue.html" class="text-brand-700 font-semibold">Catalogue</a>
+                    <a href="navbar.html" class="hover:text-brand-600">Navbar</a>
+                </nav>
+
+                <!-- Cart Action Button -->
+                <button type="button" class="relative p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 flex items-center gap-2 transition" aria-label="Cart items">
+                    <span class="text-lg">🛒</span>
+                    <span class="hidden md:inline font-semibold text-sm">Cart</span>
+                    <span class="cart-count-badge inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-white bg-rose-600 rounded-full">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subheader with Title & Mobile Filter Trigger Button -->
+    <div class="bg-white border-b border-slate-200 py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div>
+                <h1 class="text-lg font-bold text-slate-900">Electronics & Computing Accessories</h1>
+                <p class="text-xs text-slate-500">Showing 6 featured items with real-time stock</p>
+            </div>
+
+            <!-- Mobile Filter Trigger Button (Visible only on small viewports < md) -->
+            <button 
+                id="openFilterBtn" 
+                type="button" 
+                class="md:hidden inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold shadow-sm hover:bg-brand-700 transition"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+            >
+                <span>⚙️</span>
+                <span>Filters</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container: Sidebar + Product Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+        <div class="flex gap-8">
+            
+            <!-- =========================================================================
+                 DESKTOP FILTER SIDEBAR (Visible on md and above, hidden on small screens)
+                 ========================================================================= -->
+            <aside class="hidden md:block w-64 flex-shrink-0">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm sticky top-24 space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h2 class="font-bold text-slate-900 flex items-center gap-2">
+                            <span>⚙️</span> Filter Catalog
+                        </h2>
+                        <button type="button" id="clearFiltersBtn" class="text-xs text-brand-600 hover:text-brand-800 font-medium">Reset All</button>
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Categories</h3>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="checkbox" checked class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                                <span>Audio & Acoustics</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="checkbox" checked class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                                <span>Input Peripherals</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                                <span>Display Hardware</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="checkbox" class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                                <span>Desk Ergonomics</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Price Range</h3>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="price" checked class="text-brand-600 focus:ring-brand-500">
+                                <span>All Prices</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span>Under $50</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span>$50 — $150</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span>$150 & Above</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Availability -->
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Availability</h3>
+                        <label class="flex items-center gap-2.5 cursor-pointer text-sm text-slate-600">
+                            <input type="checkbox" checked class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                            <span>In Stock Only</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- =========================================================================
+                 RESPONSIVE PRODUCT GRID (Tailwind: grid-cols-1 sm:grid-cols-2 lg:grid-cols-3)
+                 ========================================================================= -->
+            <main class="flex-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Product Card 1 -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <span class="absolute top-3 right-3 z-10 bg-rose-600 text-white text-xs font-bold px-2 py-0.5 rounded shadow-sm">
+                                -20% OFF
+                            </span>
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt="Wireless Studio Headphones" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wide">Audio</span>
+                            <h3 class="font-bold text-slate-900 mt-1 mb-2">Noise-Cancelling Studio Pro</h3>
+                            <div class="flex items-baseline gap-2 mb-4 mt-auto">
+                                <span class="text-xl font-extrabold text-slate-900">$149.99</span>
+                                <span class="text-sm text-slate-400 line-through">$189.99</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition shadow-sm" data-price="149.99" data-title="Studio Pro Headphones">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <span class="absolute top-3 right-3 z-10 bg-brand-600 text-white text-xs font-bold px-2 py-0.5 rounded shadow-sm">
+                                BESTSELLER
+                            </span>
+                            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=500&q=80" alt="Ergonomic Mouse" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wide">Peripherals</span>
+                            <h3 class="font-bold text-slate-900 mt-1 mb-2">Ergonomic Optical Precision Mouse</h3>
+                            <div class="flex items-baseline gap-2 mb-4 mt-auto">
+                                <span class="text-xl font-extrabold text-slate-900">$45.00</span>
+                                <span class="text-sm text-slate-400 line-through">$59.00</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition shadow-sm" data-price="45.00" data-title="Ergonomic Mouse">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <span class="absolute top-3 right-3 z-10 bg-amber-600 text-white text-xs font-bold px-2 py-0.5 rounded shadow-sm">
+                                POPULAR
+                            </span>
+                            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=500&q=80" alt="Mechanical Keyboard" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wide">Keyboards</span>
+                            <h3 class="font-bold text-slate-900 mt-1 mb-2">RGB Mechanical Compact Keyboard</h3>
+                            <div class="flex items-baseline gap-2 mb-4 mt-auto">
+                                <span class="text-xl font-extrabold text-slate-900">$89.95</span>
+                                <span class="text-sm text-slate-400 line-through">$109.95</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition shadow-sm" data-price="89.95" data-title="Mechanical Keyboard">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <span class="absolute top-3 right-3 z-10 bg-emerald-600 text-white text-xs font-bold px-2 py-0.5 rounded shadow-sm">
+                                NEW
+                            </span>
+                            <img src="https://images.unsplash.com/photo-1608248597359-0097ffb737bb?auto=format&fit=crop&w=500&q=80" alt="Aluminum Laptop Stand" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wide">Ergonomics</span>
+                            <h3 class="font-bold text-slate-900 mt-1 mb-2">Adjustable Aluminum Laptop Stand</h3>
+                            <div class="flex items-baseline gap-2 mb-4 mt-auto">
+                                <span class="text-xl font-extrabold text-slate-900">$34.50</span>
+                                <span class="text-sm text-slate-400 line-through">$42.00</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition shadow-sm" data-price="34.50" data-title="Laptop Stand">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <span class="absolute top-3 right-3 z-10 bg-rose-600 text-white text-xs font-bold px-2 py-0.5 rounded shadow-sm">
+                                -30% OFF
+                            </span>
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=500&q=80" alt="Graphic Tablet" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wide">Design</span>
+                            <h3 class="font-bold text-slate-900 mt-1 mb-2">Pen Display Graphic Tablet</h3>
+                            <div class="flex items-baseline gap-2 mb-4 mt-auto">
+                                <span class="text-xl font-extrabold text-slate-900">$199.00</span>
+                                <span class="text-sm text-slate-400 line-through">$279.00</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition shadow-sm" data-price="199.00" data-title="Graphic Tablet">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition">
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
+                            <span class="absolute top-3 right-3 z-10 bg-purple-600 text-white text-xs font-bold px-2 py-0.5 rounded shadow-sm">
+                                LIMITED
+                            </span>
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80" alt="Backpack" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <span class="text-xs font-semibold text-brand-600 uppercase tracking-wide">Gear</span>
+                            <h3 class="font-bold text-slate-900 mt-1 mb-2">Water-Resistant Tech Backpack</h3>
+                            <div class="flex items-baseline gap-2 mb-4 mt-auto">
+                                <span class="text-xl font-extrabold text-slate-900">$59.99</span>
+                                <span class="text-sm text-slate-400 line-through">$75.00</span>
+                            </div>
+                            <button type="button" class="add-to-cart-btn w-full py-2.5 px-4 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition shadow-sm" data-price="59.99" data-title="Tech Backpack">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         MOBILE FILTER DRAWER SLIDEOUT & OVERLAY
+         Triggered by #openFilterBtn, closed by #closeFilterBtn or overlay click
+         ========================================================================= -->
+    <div id="drawerOverlay" class="drawer-overlay" aria-hidden="true"></div>
+
+    <aside id="mobileFilterDrawer" class="mobile-filter-drawer" aria-label="Mobile Product Filters" role="dialog">
+        <!-- Drawer Header -->
+        <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+            <h2 class="font-bold text-slate-900 flex items-center gap-2">
+                <span>⚙️</span> Filter Catalog
+            </h2>
+            <button id="closeFilterBtn" type="button" class="p-2 rounded-lg text-slate-500 hover:bg-slate-200 transition" aria-label="Close filters drawer">
+                <span class="text-xl font-bold leading-none">&times;</span>
+            </button>
+        </div>
+
+        <!-- Drawer Body Options -->
+        <div class="p-5 space-y-6 flex-1 overflow-y-auto">
+            <!-- Categories -->
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Categories</h3>
+                <div class="space-y-3 text-sm text-slate-700">
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" checked class="w-4 h-4 rounded border-slate-300 text-brand-600">
+                        <span>Audio & Acoustics</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" checked class="w-4 h-4 rounded border-slate-300 text-brand-600">
+                        <span>Input Peripherals</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-brand-600">
+                        <span>Display Hardware</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-brand-600">
+                        <span>Desk Ergonomics</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Price -->
+            <div class="pt-4 border-t border-slate-100">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Price Range</h3>
+                <div class="space-y-3 text-sm text-slate-700">
+                    <label class="flex items-center gap-3">
+                        <input type="radio" name="mobile_price" checked class="text-brand-600">
+                        <span>All Prices</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                        <input type="radio" name="mobile_price" class="text-brand-600">
+                        <span>Under $50</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                        <input type="radio" name="mobile_price" class="text-brand-600">
+                        <span>$50 — $150</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                        <input type="radio" name="mobile_price" class="text-brand-600">
+                        <span>$150 & Above</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer Buttons -->
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex gap-3">
+            <button type="button" onclick="document.getElementById('closeFilterBtn').click()" class="flex-1 py-2.5 px-4 rounded-lg bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition">
+                Apply Filters
+            </button>
+        </div>
+    </aside>
+
+    <!-- =========================================================================
+         STICKY CART SUMMARY AT THE BOTTOM
+         ========================================================================= -->
+    <div class="sticky-cart-summary bg-white/95 border-t border-slate-200 py-3.5 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-lg">
+                    🛒
+                </span>
+                <div>
+                    <div class="text-xs text-slate-500 uppercase font-semibold">Live Order Summary</div>
+                    <div class="flex items-center gap-2">
+                        <span id="stickyCartCount" class="font-bold text-slate-900 text-sm">0 items</span>
+                        <span class="text-slate-300">&bull;</span>
+                        <span id="stickyCartTotal" class="font-black text-brand-700 text-base">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" onclick="alert('Proceeding to checkout with ' + document.getElementById('stickyCartTotal').textContent)" class="py-2.5 px-6 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition shadow-sm">
+                Proceed to Checkout &rarr;
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs">
+        <p>&copy; 2026 TechHub E-Commerce Store &bull; COMSATS Web Development Lab 5 (Task 2: Filter Drawer Catalogue)</p>
+    </footer>
+
+</body>
+</html>

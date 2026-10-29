@@ -1,0 +1,358 @@
+/* ==========================================================================
+   css/product-card.css - Product card (4:5 ratio, hover swap, quick-add button & size picker)
+   ========================================================================== */
+
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    width: 100%;
+}
+
+/* 4:5 Aspect Ratio Image Area */
+.product-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-bg-subtle);
+    overflow: hidden;
+}
+
+.product-image-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: opacity 0.4s ease;
+}
+
+/* Desktop: images 2+ stack on top of image 1, hidden until hover */
+.product-img + .product-img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .product-card:hover .product-img:nth-child(2) {
+        opacity: 1;
+    }
+}
+
+.product-image-dots {
+    display: none;
+}
+
+/* Touch: swipeable scroll-snap carousel of all images with dots */
+@media (hover: none) {
+    .product-image-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+
+    .product-image-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .product-img,
+    .product-img + .product-img {
+        position: static;
+        flex: 0 0 100%;
+        opacity: 1;
+        scroll-snap-align: start;
+    }
+
+    .product-image-dots {
+        position: absolute;
+        bottom: var(--space-3);
+        left: var(--space-3);
+        display: flex;
+        gap: 5px;
+        pointer-events: none;
+    }
+
+    .product-image-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.55);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .product-image-dot.active {
+        background-color: var(--color-white);
+    }
+}
+
+/* Quick Add "+" Button */
+.btn-quick-add {
+    position: absolute;
+    bottom: var(--space-3);
+    right: var(--space-3);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 400;
+    cursor: pointer;
+    z-index: 5;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-quick-add:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+/* Product Meta Below Image */
+.product-meta {
+    padding-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.product-title {
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-main);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-title a:hover {
+    color: var(--color-text-muted);
+}
+
+.product-price {
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    color: var(--color-text-main);
+}
+
+.product-color-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   QUICK-ADD PANEL OVERLAY (Desktop anchored / Mobile bottom sheet)
+   ========================================================================== */
+
+.quick-add-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.quick-add-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.quick-add-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: 16px 16px 0 0;
+    padding: var(--space-6);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+    z-index: calc(var(--z-modal) + 1);
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: transform var(--transition-smooth), visibility var(--transition-smooth);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.quick-add-panel.open {
+    transform: translateY(0);
+    visibility: visible;
+    /* show instantly on open so focus() works; the closed rule delays hiding until the slide ends */
+    transition: transform var(--transition-smooth), visibility 0s;
+}
+
+/* Desktop: panel anchored over the bottom of the card's image (top/left/width set by quick-add.js) */
+@media (min-width: 768px) {
+    .quick-add-backdrop {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .quick-add-panel {
+        bottom: auto;
+        width: 320px;
+        padding: var(--space-4);
+        border-radius: 0;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        transform: translateY(8px);
+        opacity: 0;
+        transition: transform var(--transition-fast), opacity var(--transition-fast), visibility var(--transition-fast);
+    }
+
+    .quick-add-panel.open {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform var(--transition-fast), opacity var(--transition-fast), visibility 0s;
+    }
+}
+
+.quick-add-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+}
+
+.quick-add-prod-name {
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-primary);
+}
+
+.quick-add-prod-price {
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-top: 2px;
+}
+
+.quick-add-close {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: var(--space-1);
+}
+
+.quick-add-close:hover {
+    color: var(--color-primary);
+}
+
+.quick-add-sizes-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+}
+
+.quick-add-sizes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.size-pill {
+    padding: 8px 14px;
+    border: 1px solid var(--color-border-dark);
+    background-color: var(--color-white);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.size-pill:hover {
+    border-color: var(--color-primary);
+}
+
+.size-pill.selected {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+.quick-add-error-msg {
+    color: var(--color-sale);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    margin-bottom: var(--space-2);
+}
+
+.btn-quick-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.btn-quick-submit:hover:not([aria-disabled="true"]) {
+    background-color: #333333;
+}
+
+.btn-quick-submit[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.quick-add-view-full {
+    display: block;
+    text-align: center;
+    margin-top: var(--space-3);
+    font-size: var(--font-size-xs);
+    text-decoration: underline;
+    color: var(--color-text-muted);
+}
+
+/* Toast Message */
+.lama-toast {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: var(--z-toast);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.lama-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}

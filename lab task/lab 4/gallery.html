@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Store Product Gallery | Lab 4 Task 2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="landing-page.html" class="nav-brand">
+                <span>🎓</span> COMSATS Islamabad
+            </a>
+            <button class="nav-toggle-btn" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                &#9776;
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="landing-page.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link active">Store Gallery</a></li>
+                <li><a href="dashboard.html" class="nav-link">Student Portal</a></li>
+                <li><a href="animated-card.html" class="nav-link">Highlights</a></li>
+                <li><a href="refactored.html" class="nav-link">Student Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gallery-container">
+        <div class="section-header">
+            <h1 class="section-title">Campus Tech & Gear Gallery</h1>
+            <p class="section-subtitle">Auto-fit CSS Grid layout displaying responsive computing equipment and student accessories.</p>
+        </div>
+
+        <!-- Task 2: CSS Grid Gallery with repeat(auto-fit, minmax(250px, 1fr)) -->
+        <div class="gallery-grid">
+            <!-- Product Card 1 -->
+            <article class="gallery-item">
+                <div class="gallery-img-box">
+                    <span class="gallery-badge badge-trending">Trending</span>
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=80" alt="Wireless Over-Ear Studio Headphones">
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-category">Audio & Acoustics</span>
+                    <h2 class="gallery-item-title">Pro Studio ANC Headphones</h2>
+                    <div class="gallery-price-row">
+                        <span class="gallery-price">$149.00</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button type="button" class="btn-gallery-buy" data-item="Studio Headphones">Add to Cart</button>
+                        <button type="button" class="btn-gallery-fav" aria-label="Save to Wishlist">&hearts;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 2 -->
+            <article class="gallery-item">
+                <div class="gallery-img-box">
+                    <span class="gallery-badge badge-new">New Release</span>
+                    <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=500&q=80" alt="Ergonomic Wireless Gaming Mouse">
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-category">Peripherals</span>
+                    <h2 class="gallery-item-title">ErgoPrecision Optical Mouse</h2>
+                    <div class="gallery-price-row">
+                        <span class="gallery-price">$49.50</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button type="button" class="btn-gallery-buy" data-item="ErgoPrecision Mouse">Add to Cart</button>
+                        <button type="button" class="btn-gallery-fav" aria-label="Save to Wishlist">&hearts;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 3 -->
+            <article class="gallery-item">
+                <div class="gallery-img-box">
+                    <span class="gallery-badge">Top Pick</span>
+                    <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=500&q=80" alt="Mechanical RGB Backlit Keyboard">
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-category">Keyboards</span>
+                    <h2 class="gallery-item-title">Tactile Mechanical Keyboard</h2>
+                    <div class="gallery-price-row">
+                        <span class="gallery-price">$89.00</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button type="button" class="btn-gallery-buy" data-item="Mechanical Keyboard">Add to Cart</button>
+                        <button type="button" class="btn-gallery-fav" aria-label="Save to Wishlist">&hearts;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 4 -->
+            <article class="gallery-item">
+                <div class="gallery-img-box">
+                    <span class="gallery-badge badge-trending">Trending</span>
+                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=500&q=80" alt="Digital Graphic Drawing Tablet">
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-category">Design Hardware</span>
+                    <h2 class="gallery-item-title">UltraSketch 4K Graphic Tablet</h2>
+                    <div class="gallery-price-row">
+                        <span class="gallery-price">$219.00</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button type="button" class="btn-gallery-buy" data-item="UltraSketch Tablet">Add to Cart</button>
+                        <button type="button" class="btn-gallery-fav" aria-label="Save to Wishlist">&hearts;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 5 -->
+            <article class="gallery-item">
+                <div class="gallery-img-box">
+                    <span class="gallery-badge">Essential</span>
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80" alt="Durable Laptop Commuter Backpack">
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-category">Accessories</span>
+                    <h2 class="gallery-item-title">Campus Tech Commuter Bag</h2>
+                    <div class="gallery-price-row">
+                        <span class="gallery-price">$65.00</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button type="button" class="btn-gallery-buy" data-item="Commuter Bag">Add to Cart</button>
+                        <button type="button" class="btn-gallery-fav" aria-label="Save to Wishlist">&hearts;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 6 -->
+            <article class="gallery-item">
+                <div class="gallery-img-box">
+                    <span class="gallery-badge badge-new">New Release</span>
+                    <img src="https://images.unsplash.com/photo-1608248597359-0097ffb737bb?auto=format&fit=crop&w=500&q=80" alt="Aluminum Laptop Stand">
+                </div>
+                <div class="gallery-content">
+                    <span class="gallery-category">Ergonomics</span>
+                    <h2 class="gallery-item-title">AeroStand Ergonomic Riser</h2>
+                    <div class="gallery-price-row">
+                        <span class="gallery-price">$38.00</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <button type="button" class="btn-gallery-buy" data-item="AeroStand Riser">Add to Cart</button>
+                        <button type="button" class="btn-gallery-fav" aria-label="Save to Wishlist">&hearts;</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 COMSATS University Islamabad - Campus Tech Store | Lab 4 Task 2</p>
+    </footer>
+
+</body>
+</html>

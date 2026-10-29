@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - Task 2: Article-Preview Component</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- Navigation bar between Lab 3 tasks -->
+        <nav class="task-nav" aria-label="Lab 3 Navigation">
+            <a href="profile-card.html">Task 1: Profile Card</a>
+            <a href="article-preview.html" class="active">Task 2: Article Preview</a>
+            <a href="product-card.html">Task 3: Product Card</a>
+        </nav>
+
+        <h1 class="page-title">Article-Preview Component</h1>
+        <p class="page-subtitle">Typographical Hierarchy, Spacing, Image Object-Fit & Interactive States</p>
+
+        <!-- Task 2: Article Preview Card -->
+        <article class="article-card">
+            <!-- Thumbnail with Category Badge -->
+            <div class="article-thumbnail-wrapper">
+                <img 
+                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" 
+                    alt="Laptop showing web development code" 
+                    class="article-thumbnail"
+                >
+                <span class="article-badge">Web Engineering</span>
+            </div>
+
+            <!-- Article Body Content -->
+            <div class="article-body">
+                <!-- Metadata: Author & Publication Date -->
+                <div class="article-meta">
+                    <span><strong>By:</strong> Hammad Sarwar</span>
+                    <span>&bull;</span>
+                    <span><time datetime="2026-10-24">October 24, 2026</time></span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+
+                <!-- Title with Typographical Hierarchy -->
+                <h2 class="article-title">
+                    <a href="#article-full">Architecting Scalable Front-End Systems with HTML5 & Modern CSS</a>
+                </h2>
+
+                <!-- Short Description -->
+                <p class="article-description">
+                    Exploring how modern CSS layout features like Flexbox, Grid, and the Box Model eliminate code bloat. Learn best practices for maintaining semantic purity, responsive component architectures, and performant asset loading across diverse devices.
+                </p>
+
+                <!-- Read More Interactive Button -->
+                <a href="#article-full" class="btn-read-more" aria-label="Read full article on modern CSS">
+                    Read More &rarr;
+                </a>
+            </div>
+        </article>
+    </div>
+
+</body>
+</html>

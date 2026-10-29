@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6 - Task 1: Safe Marks Analyser</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #1a365d;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            color: #2563eb;
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .stat-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #64748b;
+        }
+
+        .stat-box .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-top: 4px;
+        }
+
+        .error-message {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 14px;
+            display: none;
+        }
+
+        .test-case {
+            padding: 12px 14px;
+            background-color: #f8fafc;
+            border-left: 4px solid #cbd5e1;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 0.88rem;
+        }
+
+        .test-case.pass {
+            border-left-color: #10b981;
+        }
+
+        .test-case.fail {
+            border-left-color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Lab 6 Quick Task Navigation -->
+        <nav class="nav-links">
+            <a href="task1.html" class="active">Task 1: Safe Marks Analyser</a>
+            <a href="task2.html">Task 2: Catalogue Report</a>
+            <a href="index.html">Task 3: Revision Tracker</a>
+        </nav>
+
+        <header>
+            <h1>Safe Marks Analyser</h1>
+            <p class="subtitle">Validating raw inputs, avoiding mutations, and safe empty array handling.</p>
+        </header>
+
+        <!-- Interactive Testing Card -->
+        <div class="card">
+            <h2>Live Marks Input</h2>
+            <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 12px;">
+                Enter comma-separated marks (e.g. <code>85, 92, "78", 64, 49</code>). Range allowed: [0 - 100].
+            </p>
+            <div class="form-row">
+                <input type="text" id="rawInput" value='85, 92, "78", 64, 49, 100' placeholder="e.g. 85, 92, 78, 64">
+                <button type="button" id="analyseBtn">Analyse Marks</button>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="errorBox" class="error-message"></div>
+
+            <!-- Analysis Output -->
+            <div id="outputGrid" class="results-grid">
+                <div class="stat-box">
+                    <div class="label">Count</div>
+                    <div class="value" id="resCount">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Total Marks</div>
+                    <div class="value" id="resTotal">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Average</div>
+                    <div class="value" id="resAvg">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Passed (&ge;50)</div>
+                    <div class="value" id="resPassed">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Highest</div>
+                    <div class="value" id="resHighest">-</div>
+                </div>
+            </div>
+
+            <!-- Non-mutation Proof -->
+            <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0; font-size: 0.85rem; color: #64748b;">
+                <strong>Non-Mutating Verification:</strong>
+                <span id="mutationProof">Original array reference & items verified intact.</span>
+            </div>
+        </div>
+
+        <!-- Automated Test Suite Card -->
+        <div class="card">
+            <h2>Automated Edge-Case Test Suite</h2>
+            <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 14px;">
+                Verifies expected behaviors against empty arrays, non-numeric values, out-of-range bounds, and blank inputs.
+            </p>
+            <div id="testSuiteLog"></div>
+        </div>
+    </div>
+
+    <!-- ES Module Script linking task1.js -->
+    <script type="module">
+        import { analyseMarks } from "./task1.js";
+
+        // DOM elements
+        const rawInput = document.getElementById("rawInput");
+        const analyseBtn = document.getElementById("analyseBtn");
+        const errorBox = document.getElementById("errorBox");
+        const resCount = document.getElementById("resCount");
+        const resTotal = document.getElementById("resTotal");
+        const resAvg = document.getElementById("resAvg");
+        const resPassed = document.getElementById("resPassed");
+        const resHighest = document.getElementById("resHighest");
+        const mutationProof = document.getElementById("mutationProof");
+        const testSuiteLog = document.getElementById("testSuiteLog");
+
+        function runAnalysis() {
+            errorBox.style.display = "none";
+            
+            try {
+                // Parse comma-separated inputs
+                const rawString = rawInput.value.trim();
+                let parsedArray = [];
+
+                if (rawString.length > 0) {
+                    parsedArray = rawString.split(",").map(item => {
+                        const trimmed = item.trim();
+                        // Strip quotes if present
+                        if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+                            (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+                            return trimmed.slice(1, -1);
+                        }
+                        return trimmed;
+                    });
+                }
+
+                // Clone a snapshot to verify non-mutation
+                const snapshotBefore = JSON.stringify(parsedArray);
+                
+                // Call safe analysis
+                const result = analyseMarks(parsedArray);
+                const snapshotAfter = JSON.stringify(parsedArray);
+
+                // Update UI with results
+                resCount.textContent = result.count;
+                resTotal.textContent = result.total;
+                resAvg.textContent = result.average;
+                resPassed.textContent = result.passed;
+                resHighest.textContent = result.highest !== null ? result.highest : "N/A";
+
+                // Verify original input array was not mutated
+                if (snapshotBefore === snapshotAfter) {
+                    mutationProof.innerHTML = `<span style="color:#10b981;">✓ Original input array was NOT mutated. Snapshot matches exactly.</span>`;
+                } else {
+                    mutationProof.innerHTML = `<span style="color:#ef4444;">✗ Original input array was mutated!</span>`;
+                }
+
+                console.log("Safe Marks Result:", result);
+
+            } catch (err) {
+                errorBox.textContent = `❌ ${err.name}: ${err.message}`;
+                errorBox.style.display = "block";
+                resCount.textContent = "-";
+                resTotal.textContent = "-";
+                resAvg.textContent = "-";
+                resPassed.textContent = "-";
+                resHighest.textContent = "-";
+                console.error("analyseMarks caught error:", err);
+            }
+        }
+
+        analyseBtn.addEventListener("click", runAnalysis);
+        rawInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") runAnalysis();
+        });
+
+        // Run on initial load
+        runAnalysis();
+
+        // Run automated tests for documentation
+        function runAutomatedTests() {
+            const tests = [
+                {
+                    name: "Valid numeric & string array [80, '90', 60, 45, 95]",
+                    run: () => analyseMarks([80, "90", 60, 45, 95]),
+                    expectedSuccess: true
+                },
+                {
+                    name: "Safe Empty Array [] (No NaN or division by zero)",
+                    run: () => analyseMarks([]),
+                    expectedSuccess: true
+                },
+                {
+                    name: "Rejects negative marks [-10]",
+                    run: () => analyseMarks([80, -10, 70]),
+                    expectedSuccess: false
+                },
+                {
+                    name: "Rejects marks above 100 [105]",
+                    run: () => analyseMarks([95, 105]),
+                    expectedSuccess: false
+                },
+                {
+                    name: "Rejects blank/empty string [' ']",
+                    run: () => analyseMarks([85, "   ", 90]),
+                    expectedSuccess: false
+                },
+                {
+                    name: "Rejects non-numeric string ['abc']",
+                    run: () => analyseMarks([75, "abc", 80]),
+                    expectedSuccess: false
+                }
+            ];
+
+            tests.forEach((t, i) => {
+                const div = document.createElement("div");
+                try {
+                    const res = t.run();
+                    if (t.expectedSuccess) {
+                        div.className = "test-case pass";
+                        div.textContent = `✓ Test ${i + 1} PASSED: ${t.name} => Returned ${JSON.stringify(res)}`;
+                    } else {
+                        div.className = "test-case fail";
+                        div.textContent = `✗ Test ${i + 1} FAILED: Expected error but passed.`;
+                    }
+                } catch (err) {
+                    if (!t.expectedSuccess) {
+                        div.className = "test-case pass";
+                        div.textContent = `✓ Test ${i + 1} PASSED (Expected Error Caught): ${t.name} => "${err.message}"`;
+                    } else {
+                        div.className = "test-case fail";
+                        div.textContent = `✗ Test ${i + 1} FAILED: Unexpected error: ${err.message}`;
+                    }
+                }
+                testSuiteLog.appendChild(div);
+            });
+        }
+
+        runAutomatedTests();
+    </script>
+</body>
+</html>

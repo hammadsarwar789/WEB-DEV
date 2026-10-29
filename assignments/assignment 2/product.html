@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111111">
+    <title>TIPPED EDGE SWEATER – Lama Retail</title>
+    <meta name="description" content="Product details, sizes and price at LAMA, a high-street fashion brand from Lahore, Pakistan.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Product – LAMA RETAIL">
+    <meta property="og:description" content="High-street, multi-fashion brand combining functional design with modern fashion.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./assets/logo/og-image.jpg">
+    <meta property="og:site_name" content="Lama Retail">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/logo/logo.png">
+
+    <!-- Google Fonts Preconnect & Stylesheet (same families as the live site: Outfit body, Tenor Sans headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS (grid, navbar, buttons, forms). Loaded first so our files can override it. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Linked CSS Files in Defined Order -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/product-card.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Accessible Skip to Content -->
+    <a href="#MainContent" class="skip-to-content">Skip to content</a>
+
+    <!-- =========================================================================
+         SECTION 1: ANNOUNCEMENT BAR
+         ========================================================================= -->
+    <aside class="announcement-bar" aria-label="Store Announcements">
+        <div class="container">
+            <div class="announcement-slider">
+                <div class="announcement-slide active">
+                    <a href="#shipping-policy">FREE SHIPPING ON ORDERS ABOVE RS. 2500</a>
+                </div>
+                <div class="announcement-slide">
+                    <a href="#winter-collection">NEW IN: FALL WINTER '26 COLLECTION NOW LIVE</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- =========================================================================
+         SECTION 2: HEADER WITH DESKTOP MEGA MENU & SEARCH OVERLAY
+         ========================================================================= -->
+    <header class="site-header" role="banner">
+        <div class="container">
+            <!-- Bootstrap .navbar lays out the row: logo | menu | icons -->
+            <div class="navbar navbar-expand-lg flex-nowrap header-inner">
+
+                <!-- Left: Hamburger Button (Mobile) -->
+                <div class="header-left">
+                    <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open mobile navigation menu" aria-expanded="false">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+
+                <!-- Center: Brand Logo -->
+                <div class="header-logo">
+                    <a href="index.html" class="navbar-brand" aria-label="Lama Retail Homepage">
+                        <!-- WEBP logo, with the PNG kept as the alternate for browsers without WEBP -->
+                        <picture>
+                            <source srcset="./assets/logo/logo.webp" type="image/webp">
+                            <img
+                                src="./assets/logo/logo.png"
+                                alt="Lama Retail Logo"
+                                width="140"
+                                height="46"
+                            >
+                        </picture>
+                    </a>
+                </div>
+
+                <!-- Desktop Mega Navigation (Populated by js/menu.js) -->
+                <nav class="desktop-nav" aria-label="Desktop Primary Navigation">
+                    <ul class="navbar-nav nav-list" id="desktopNavList"></ul>
+                </nav>
+
+                <!-- Right: Action Icons (Search, Login, Cart) -->
+                <div class="header-right d-flex align-items-center gap-1">
+                    <!-- Search Icon Trigger -->
+                    <button type="button" id="searchTriggerBtn" class="header-icon-btn" aria-label="Open search dialog" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Account / Login Link -->
+                    <a href="#login" class="header-icon-btn header-auth-link" aria-label="Log in to customer account">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+
+                    <!-- Cart Trigger Button with Live Quantity Badge -->
+                    <button type="button" id="cartTriggerBtn" class="header-icon-btn" aria-label="View shopping bag" aria-haspopup="dialog">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span id="headerCartBadge" class="cart-count-badge badge rounded-pill text-bg-dark" data-count="0">0</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Full-Width Search Overlay -->
+        <div id="searchOverlay" class="search-overlay" role="region" aria-label="Site Search">
+            <div class="container">
+                <form id="searchForm" class="search-form">
+                    <input
+                        type="search"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="SEARCH PRODUCTS, CATEGORIES, OR STYLES..."
+                        aria-label="Search term"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-submit-btn">Search</button>
+                    <button type="button" id="searchCloseBtn" class="search-close-btn" aria-label="Close search overlay">
+                        &times;
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Left Slide-In Navigation Drawer -->
+    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+        <div class="mobile-drawer-header">
+            <span class="mobile-drawer-title">MENU</span>
+            <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="mobile-nav-content">
+            <div id="mobileDrawerNav"></div>
+        </div>
+    </aside>
+
+    <!-- =========================================================================
+         PRODUCT DETAIL (filled from js/data.js by js/product-page.js using ?id= in the URL;
+         the HTML below is the default product, Tipped Edge Sweater)
+         ========================================================================= -->
+    <main id="MainContent" role="main" class="product-page">
+        <div class="container">
+
+            <!-- Bootstrap breadcrumb -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb product-breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html#section-new" id="productCategoryLink">New In</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" id="productBreadcrumbName">TIPPED EDGE SWEATER</li>
+                </ol>
+            </nav>
+
+            <!-- Bootstrap grid: photos and details stack on phones, sit side by side from 768px -->
+            <div class="row g-4 g-xl-5">
+
+                <!-- Photos: big photo + thumbnail buttons (js/product-page.js swaps the big photo) -->
+                <div class="col-12 col-md-6">
+                    <div class="product-gallery">
+                        <div class="gallery-main">
+                            <img id="productMainImage" src="./assets/products/tipped-edge-sweater-beige-1.jpg" alt="TIPPED EDGE SWEATER in Beige, photo 1 of 3" width="540" height="810" fetchpriority="high">
+                        </div>
+                        <div id="productThumbs" class="gallery-thumbs" role="group" aria-label="Product photos"></div>
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div class="col-12 col-md-6">
+                    <div class="product-info">
+                        <h1 id="productName" class="product-info__title">TIPPED EDGE SWEATER</h1>
+                        <p id="productPrice" class="product-info__price">Rs.9,950.00</p>
+                        <p class="product-info__note">Tax included. Free shipping on orders above Rs. 2500.</p>
+
+                        <p class="product-info__baadmay">
+                            <img src="./assets/icons/baadmay-logo-icon.svg" alt="" width="18" height="18">
+                            <span>or 3 installments of <strong id="productInstallment">Rs.3,316.67</strong> with BaadMay</span>
+                        </p>
+
+                        <form id="productForm" class="product-form" novalidate>
+                            <p class="product-label">Colour: <span id="productColour" class="fw-normal">Beige</span></p>
+
+                            <!-- Size: Bootstrap "btn-check" radio buttons (one per size in the data) -->
+                            <fieldset class="mt-4">
+                                <legend class="product-label">Size</legend>
+                                <div id="productSizes" class="d-flex flex-wrap gap-2">
+                                    <input type="radio" class="btn-check" name="size" id="size-0" value="XS">
+                                    <label class="btn btn-outline-dark size-btn" for="size-0">XS</label>
+                                    <input type="radio" class="btn-check" name="size" id="size-1" value="S">
+                                    <label class="btn btn-outline-dark size-btn" for="size-1">S</label>
+                                    <input type="radio" class="btn-check" name="size" id="size-2" value="M">
+                                    <label class="btn btn-outline-dark size-btn" for="size-2">M</label>
+                                    <input type="radio" class="btn-check" name="size" id="size-3" value="L">
+                                    <label class="btn btn-outline-dark size-btn" for="size-3">L</label>
+                                    <input type="radio" class="btn-check" name="size" id="size-4" value="XL">
+                                    <label class="btn btn-outline-dark size-btn" for="size-4">XL</label>
+                                </div>
+                            </fieldset>
+                            <p id="productSizeError" class="product-error" role="alert" hidden>Please select a size</p>
+
+                            <!-- Quantity: Bootstrap input-group  [ - ] [ 1 ] [ + ]  (limited to 1-10) -->
+                            <div class="mt-4">
+                                <label for="productQty" class="product-label">Quantity</label>
+                                <div class="input-group qty-group">
+                                    <button type="button" id="qtyMinus" class="btn btn-outline-dark" aria-label="Decrease quantity">&minus;</button>
+                                    <input type="number" id="productQty" class="form-control text-center" value="1" min="1" max="10" inputmode="numeric">
+                                    <button type="button" id="qtyPlus" class="btn btn-outline-dark" aria-label="Increase quantity">+</button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark btn-lg w-100 mt-4">Add to Cart</button>
+                        </form>
+
+                        <!-- Native <details> accordions: open and close without any JavaScript -->
+                        <div class="product-details">
+                            <details open>
+                                <summary>Description</summary>
+                                <p id="productDescription">TIPPED EDGE SWEATER in Beige. Part of LAMA's New In edit for Fall Winter '26 &ndash; easy to style and made to be worn every day.</p>
+                            </details>
+                            <details>
+                                <summary>Size &amp; Fit</summary>
+                                <p id="productFit">Regular fit &ndash; choose your usual size.</p>
+                            </details>
+                            <details>
+                                <summary>Shipping &amp; Returns</summary>
+                                <p>Free shipping on orders above Rs. 2500. See <a href="#returns">Returns / Exchanges</a> for how to return or exchange an item.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- You may also like: Bootstrap grid of product cards (2 per row on phones, 4 from 768px) -->
+            <section class="related-products" aria-labelledby="relatedTitle">
+                <h2 id="relatedTitle" class="row-main-title">You may also like</h2>
+                <div id="relatedProducts" class="row row-cols-2 row-cols-md-4 g-3"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- =========================================================================
+         SECTION 4: QUICK-ADD SIZE PICKER MODAL / BOTTOM SHEET
+         ========================================================================= -->
+    <div id="quickAddBackdrop" class="quick-add-backdrop" aria-hidden="true"></div>
+    <div id="quickAddPanel" class="quick-add-panel" role="dialog" aria-modal="true" aria-labelledby="quickAddName">
+        <div class="quick-add-header">
+            <div>
+                <h3 id="quickAddName" class="quick-add-prod-name">Product Name</h3>
+                <div id="quickAddPrice" class="quick-add-prod-price">Rs.0.00</div>
+            </div>
+            <button type="button" id="quickAddClose" class="quick-add-close" aria-label="Close quick add panel">&times;</button>
+        </div>
+
+        <div id="quickAddSizesLabel" class="quick-add-sizes-label">Size</div>
+        <div id="quickAddSizes" class="quick-add-sizes-grid" role="group" aria-labelledby="quickAddSizesLabel"></div>
+
+        <div id="quickAddError" class="quick-add-error-msg" role="alert" hidden>Please select a size</div>
+
+        <!-- aria-disabled (not disabled) so a click can still show the "Please select a size" message -->
+        <button type="button" id="quickAddSubmit" class="btn-quick-submit" aria-disabled="true">Add to Cart</button>
+        <a href="#product-view" class="quick-add-view-full">View full product</a>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="lamaToast" class="lama-toast" role="status" aria-live="polite">Added to cart</div>
+
+    <!-- =========================================================================
+         SECTION 5: CART DRAWER WITH BAADMAY INSTALLMENT BLOCK
+         ========================================================================= -->
+    <div id="cartDrawerBackdrop" class="cart-drawer-backdrop" aria-hidden="true"></div>
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
+        <!-- Drawer Header -->
+        <div class="cart-drawer-header">
+            <h2 id="cartDrawerTitle" class="cart-drawer-title">Cart</h2>
+            <button type="button" id="cartDrawerClose" class="cart-drawer-close" aria-label="Close cart">&times;</button>
+        </div>
+
+        <!-- Drawer Body -->
+        <div class="cart-drawer-body">
+            <!-- Empty State -->
+            <div id="cartEmptyState" class="cart-empty-state">
+                <p class="cart-empty-text">Your cart is currently empty.</p>
+                <button type="button" id="cartContinueShopping" class="btn btn-dark">
+                    Continue shopping
+                </button>
+            </div>
+
+            <!-- Items List -->
+            <ul id="cartItemsList" class="cart-items-list"></ul>
+        </div>
+
+        <!-- Drawer Footer Area -->
+        <div class="cart-drawer-footer">
+            <div class="cart-subtotal-row">
+                <span>Subtotal</span>
+                <span id="cartSubtotalAmount">Rs.0.00</span>
+            </div>
+
+            <p class="cart-shipping-note">
+                Shipping, taxes, and discount codes calculated at checkout.
+            </p>
+
+            <!-- BaadMay Installment Block -->
+            <div id="baadmayBlock" class="baadmay-container">
+                <div class="baadmay-header">
+                    <img src="./assets/icons/baadmay-logo-icon.svg" alt="BaadMay" class="baadmay-logo-img" width="18" height="18">
+                    <span>Pay in 3 Installments of <strong id="baadmayInstallmentAmount">Rs.0.00</strong></span>
+                </div>
+                <button type="button" id="baadmayToggleBtn" class="baadmay-toggle-btn" aria-expanded="false" aria-controls="baadmayDetailsPanel">
+                    Pay for your purchase, thora abhi, baqi?
+                </button>
+
+                <div id="baadmayDetailsPanel" class="baadmay-details-panel">
+                    <div class="baadmay-step">
+                        <img src="./assets/icons/icon-checkout.svg" alt="" width="16" height="16">
+                        <span>1. Select BaadMay at Checkout</span>
+                    </div>
+                    <div class="baadmay-step">
+                        <img src="./assets/icons/icon-account-details.svg" alt="" width="16" height="16">
+                        <span>2. Verify your account details</span>
+                    </div>
+                    <div class="baadmay-step">
+                        <img src="./assets/icons/icon-pay-first-installment.svg" alt="" width="16" height="16">
+                        <span>3. Pay only your first installment now</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button type="button" id="cartCheckoutBtn" class="btn-checkout" disabled>
+                Check Out
+            </button>
+        </div>
+    </aside>
+
+    <!-- =========================================================================
+         SECTION 6: FOOTER (Content as defined in Section 2.4 of Build Plan)
+         ========================================================================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <!-- Top: Newsletter, Links, Currency - Bootstrap grid (stacks on phones, 3 columns on desktop) -->
+            <div class="row g-4 g-lg-5 footer-top-grid">
+                <div class="footer-newsletter col-12 col-md-6 col-lg-5">
+                    <h2 class="footer-heading">Sign up and save</h2>
+                    <form id="newsletterForm" class="newsletter-form input-group" novalidate>
+                        <label for="newsletterInput" class="visually-hidden">Email</label>
+                        <input
+                            type="email"
+                            id="newsletterInput"
+                            class="newsletter-input form-control"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            aria-describedby="newsletterFeedback"
+                            required
+                        >
+                        <button type="submit" class="newsletter-btn btn btn-dark">Subscribe</button>
+                    </form>
+                    <div id="newsletterFeedback" class="newsletter-feedback" role="status" aria-live="polite"></div>
+                </div>
+
+                <nav class="footer-links col-6 col-md-3 col-lg-3" aria-label="Footer">
+                    <ul class="footer-links-list">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#returns">Returns / Exchanges</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-currency col-6 col-md-3 col-lg-4">
+                    <label for="currencySelector" class="footer-currency-label">Currency</label>
+                    <select id="currencySelector" class="footer-currency-select form-select">
+                        <option value="PKR" selected>Pakistani Rupee (PKR Rs.)</option>
+                        <option value="USD">US Dollar (USD $)</option>
+                        <option value="EUR">Euro (EUR €)</option>
+                        <option value="GBP">British Pound Sterling (GBP £)</option>
+                        <option value="CAD">Canadian Dollar (CAD $)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="footer-social-icons">
+                <a href="https://instagram.com" class="footer-social-link" aria-label="Lama Retail on Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://facebook.com" class="footer-social-link" aria-label="Lama Retail on Facebook" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                </a>
+                <a href="https://youtube.com" class="footer-social-link" aria-label="Lama Retail on YouTube" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                </a>
+                <a href="https://tiktok.com" class="footer-social-link" aria-label="Lama Retail on TikTok" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.97v7.68c-.01 2.01-.67 4.02-1.99 5.56-1.48 1.75-3.67 2.77-5.96 2.78-3.05.08-6-1.48-7.51-4.09-1.57-2.68-1.47-6.15.25-8.73 1.67-2.52 4.63-3.95 7.66-3.62v4.08c-1.35-.25-2.79.08-3.85.95-.98.79-1.54 2.03-1.49 3.3.04 1.34.69 2.58 1.76 3.35 1.15.82 2.67.97 3.97.43 1.1-.47 1.87-1.54 1.94-2.73.04-1.59.02-3.18.02-4.77V.02h-.03z"/></svg>
+                </a>
+            </div>
+
+            <!-- Customer Service + Store Location (accordions on mobile, columns on desktop) -->
+            <div class="row g-0 gx-md-5 footer-info-grid">
+                <div class="footer-accordion col-12 col-md-4">
+                    <h2 class="footer-heading footer-accordion-heading">
+                        <button type="button" class="footer-accordion-header" aria-expanded="false" aria-controls="footerServiceContent">
+                            Customer Service
+                            <span class="footer-accordion-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h2>
+                    <div id="footerServiceContent" class="footer-accordion-content">
+                        <p class="footer-service-text">
+                            Email | WhatsApp<br>
+                            Contact us at <a href="tel:03111115262">0311-1115262</a><br>
+                            09:00 AM to 09:00 PM (PST), Monday - Saturday
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-accordion col-12 col-md-8">
+                    <h2 class="footer-heading footer-accordion-heading">
+                        <button type="button" class="footer-accordion-header" aria-expanded="false" aria-controls="footerStoreContent">
+                            Store Location
+                            <span class="footer-accordion-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h2>
+                    <div id="footerStoreContent" class="footer-accordion-content footer-store-columns row row-cols-1 row-cols-md-3 g-3">
+                        <div class="store-city-block col">
+                            <h3 class="store-city-name">Lahore</h3>
+                            <ul class="store-locations-list">
+                                <li>Flagship Store (22-A, Block K Gulberg-II)</li>
+                                <li>Emporium Mall (T01, Level 3)</li>
+                                <li>Packages Mall (Level 1)</li>
+                                <li>Dolmen Mall (Shop # s-25, 2nd Floor)</li>
+                            </ul>
+                        </div>
+
+                        <div class="store-city-block col">
+                            <h3 class="store-city-name">Islamabad</h3>
+                            <ul class="store-locations-list">
+                                <li>Sumbal Rd, F-10 Markaz F10/4</li>
+                                <li>Zeta Mall (UG/07)</li>
+                            </ul>
+                        </div>
+
+                        <div class="store-city-block col">
+                            <h3 class="store-city-name">Karachi</h3>
+                            <ul class="store-locations-list">
+                                <li>Dolmen Mall Clifton (Shop No - D1, Ground Floor)</li>
+                                <li>LuckyOne Mall (Shop # 14, Lower Ground Floor)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright Line -->
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 Lama Retail</p>
+                <p>Educational replica - brand assets belong to Lama Retail.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         ALL SCRIPT FILES IN DEFINED ORDER (Classic <script src>, No ES Modules)
+         ========================================================================= -->
+    <script src="js/data.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/quick-add.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/product-page.js"></script>
+
+</body>
+</html>

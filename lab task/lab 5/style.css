@@ -1,0 +1,125 @@
+/* ==========================================================================
+   LAB 5 - CUSTOM STYLESHEET (style.css)
+   Framework Overrides, Custom Drawers, Transitions & Component Tweaks
+   ========================================================================== */
+
+/* 1. Global Box Model & Base Tweaks */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 2. Mobile Filter Drawer & Backdrop Overlay (Task 2: catalogue.html) */
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 990;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-filter-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 85vw;
+    background-color: #ffffff;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.mobile-filter-drawer.open {
+    transform: translateX(0);
+}
+
+/* Prevent body scrolling when drawer is open */
+body.drawer-open {
+    overflow: hidden;
+}
+
+/* 3. Sticky Bottom Cart Summary (Task 2) */
+.sticky-cart-summary {
+    position: sticky;
+    bottom: 0;
+    z-index: 800;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* 4. Comparison Cards (Task 1: layout-comparison.html) */
+.comparison-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.comparison-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 5. Accessible Focus Ring */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid #2563eb !important;
+    outline-offset: 2px !important;
+}
+
+/* 6. Navigation collapse animation helper (Task 3: navbar.html) */
+.mobile-nav-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+}
+
+.mobile-nav-panel.open {
+    max-height: 400px;
+    transition: max-height 0.35s ease-in;
+}
+
+/* 7. Toast notification */
+#cart-toast {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1100;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+#cart-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}

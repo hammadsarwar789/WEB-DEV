@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMSATS University Islamabad | Academic Excellence</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Semantic Header with Flexbox Navbar -->
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main University Navigation">
+            <a href="landing-page.html" class="nav-brand">
+                <span>🎓</span> COMSATS Islamabad
+            </a>
+
+            <!-- Mobile Navigation Toggle Button -->
+            <button class="nav-toggle-btn" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                &#9776;
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="landing-page.html" class="nav-link active">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Store Gallery</a></li>
+                <li><a href="dashboard.html" class="nav-link">Student Portal</a></li>
+                <li><a href="animated-card.html" class="nav-link">Highlights</a></li>
+                <li><a href="refactored.html" class="nav-link">Student Profile</a></li>
+                <li><a href="#apply" class="btn-nav-cta">Apply Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="hero-badge">Admissions Open — Fall 2026</span>
+                <h1 class="hero-title">Shaping Tomorrow's Leaders in Computing & Engineering</h1>
+                <p class="hero-description">
+                    Empowering ambitious minds through cutting-edge research facilities, world-class faculty, and innovative undergraduate programs accredited by national and international councils.
+                </p>
+                <div class="hero-actions">
+                    <button type="button" class="btn btn-primary-filled" id="enrollBtn" data-item="Undergraduate Application">
+                        Explore Programs
+                    </button>
+                    <a href="dashboard.html" class="btn btn-secondary-outline">
+                        Access Portal &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Feature Cards in CSS Grid -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose COMSATS?</h2>
+                <p class="section-subtitle">A center of excellence built on rigorous academic standards and impactful innovation.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Top-Ranked Computing</h3>
+                    <p>
+                        Comprehensive curricula in Computer Science, Artificial Intelligence, and Software Engineering aligned with ACM/IEEE standards and high industry demand.
+                    </p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>High-Impact Research</h3>
+                    <p>
+                        Advanced research laboratories, state-of-the-art supercomputing facilities, and international publication partnerships leading global innovation.
+                    </p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Alumni Network</h3>
+                    <p>
+                        Over 80,000 alumni worldwide contributing across multinational tech enterprises, research institutions, and groundbreaking entrepreneurial ventures.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 COMSATS University Islamabad. All rights reserved. | Lab 4 Task 1</p>
+    </footer>
+
+</body>
+</html>

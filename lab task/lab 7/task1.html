@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - Task 1: Workshop Registration with Review List</title>
+    <link rel="stylesheet" href="task1.css">
+    <script src="task1.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Quick Nav between Lab 7 Tasks -->
+        <nav class="lab7-nav" aria-label="Lab 7 Navigation">
+            <a href="task1.html" class="active">Task 1: Workshop Registration</a>
+            <a href="task2.html">Task 2: Resilient Course Registration</a>
+        </nav>
+
+        <header>
+            <h1>Technical Workshop Registration Portal</h1>
+            <p class="subtitle">Validating regular expressions, safe non-innerHTML DOM manipulation & delegated event handling.</p>
+        </header>
+
+        <div class="layout-grid">
+            
+            <!-- Left Column: Registration Form -->
+            <section class="card">
+                <h2>Candidate Registration</h2>
+                <form id="registrationForm" novalidate>
+                    
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required-star">*</span></label>
+                        <input type="text" id="fullName" placeholder="e.g. Hammad Sarwar" autocomplete="name" required>
+                        <div id="nameError" class="error-message"></div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Institutional Email <span class="required-star">*</span></label>
+                        <input type="email" id="email" placeholder="student@comsats.edu.pk" autocomplete="email" required>
+                        <div id="emailError" class="error-message"></div>
+                    </div>
+
+                    <!-- Workshop Code (Regex: ^[1-4][A-Z]{2}\d{2}[A-Z]{2}\d{3}$) -->
+                    <div class="form-group">
+                        <label for="workshopCode">Workshop Code <span class="required-star">*</span></label>
+                        <input type="text" id="workshopCode" placeholder="e.g. 1CS24WD101" maxlength="10" required>
+                        <div class="field-hint">Format: 1-4, 2 letters, 2 digits, 2 letters, 3 digits (e.g. <code>1CS24WD101</code>)</div>
+                        <div id="codeError" class="error-message"></div>
+                    </div>
+
+                    <!-- Programme Selector -->
+                    <div class="form-group">
+                        <label for="programme">Enrolled Programme <span class="required-star">*</span></label>
+                        <select id="programme" required>
+                            <option value="">-- Choose Programme --</option>
+                            <option value="BSCS">BS Computer Science (BSCS)</option>
+                            <option value="BSSE">BS Software Engineering (BSSE)</option>
+                        </select>
+                        <div id="programmeError" class="error-message"></div>
+                    </div>
+
+                    <!-- Passwords Row -->
+                    <div class="passwords-row">
+                        <div class="form-group">
+                            <label for="password">Password <span class="required-star">*</span></label>
+                            <input type="password" id="password" placeholder="10+ chars" autocomplete="new-password" required>
+                            <div class="field-hint">10+ chars, uppercase, lowercase, digit, symbol.</div>
+                            <div id="passwordError" class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password <span class="required-star">*</span></label>
+                            <input type="password" id="confirmPassword" placeholder="Re-enter password" autocomplete="new-password" required>
+                            <div id="confirmPasswordError" class="error-message"></div>
+                        </div>
+                    </div>
+
+                    <!-- Topic Tags (Comma / Semicolon separated) -->
+                    <div class="form-group">
+                        <label for="topicTags">Preferred Topic Tags <span class="required-star">*</span></label>
+                        <input type="text" id="topicTags" placeholder="HTML5, CSS Grid; JavaScript; Async/Fetch" required>
+                        <div class="field-hint">Separate with commas or semicolons (whitespace is auto-cleaned).</div>
+                        <div id="tagsError" class="error-message"></div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-submit">Submit Registration</button>
+                </form>
+            </section>
+
+            <!-- Right Column: Dynamic Review List (Delegated Event Container) -->
+            <section class="card">
+                <div class="review-header">
+                    <h2>Submitted Registrations</h2>
+                    <span id="reviewCountBadge" class="count-badge">0 registered</span>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state">
+                    No approved registrations submitted yet. Fill the form on the left to see entries safely rendered here.
+                </div>
+
+                <!-- Safe DOM Review List (Parent Container for Delegated Events) -->
+                <ul id="reviewList" class="review-list"></ul>
+
+                <!-- Sanitized JSON Payload Preview (Passwords strictly excluded) -->
+                <h3 style="font-size: 0.95rem; color: #475569; margin-top: 20px;">
+                    Sanitized Payload Preview (Passwords Excluded)
+                </h3>
+                <pre id="jsonPreviewBox" class="payload-box">// No submissions yet.</pre>
+            </section>
+
+        </div>
+    </div>
+
+</body>
+</html>
