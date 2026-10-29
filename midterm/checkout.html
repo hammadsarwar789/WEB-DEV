@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111111">
+    <title>Checkout – Lama Retail</title>
+    <meta name="description" content="Checkout - enter your contact and delivery details.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="LAMA RETAIL – Official Online Store">
+    <meta property="og:description" content="High-street, multi-fashion brand combining functional design with modern fashion.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./assets/logo/og-image.jpg">
+    <meta property="og:site_name" content="Lama Retail">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/logo/logo.png">
+
+    <!-- Google Fonts Preconnect & Stylesheet (same families as the live site: Outfit body, Tenor Sans headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS (grid, navbar, buttons, forms). Loaded first so our files can override it. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Linked CSS Files in Defined Order -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/product-card.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/mega-menu.css">      <!-- Midterm Task 1 -->
+    <link rel="stylesheet" href="css/checkout.css">       <!-- Midterm Task 2 -->
+</head>
+<body>
+
+    <!-- Accessible Skip to Content -->
+    <a href="#MainContent" class="skip-to-content">Skip to content</a>
+
+    <!-- =========================================================================
+         SECTION 1: ANNOUNCEMENT BAR
+         ========================================================================= -->
+    <aside class="announcement-bar" aria-label="Store Announcements">
+        <div class="container">
+            <div class="announcement-slider">
+                <div class="announcement-slide active">
+                    <a href="#shipping-policy">FREE SHIPPING ON ORDERS ABOVE RS. 2500</a>
+                </div>
+                <div class="announcement-slide">
+                    <a href="#winter-collection">NEW IN: FALL WINTER '26 COLLECTION NOW LIVE</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- =========================================================================
+         SECTION 2: HEADER WITH DESKTOP MEGA MENU & SEARCH OVERLAY
+         ========================================================================= -->
+    <header class="site-header" role="banner">
+        <div class="container">
+            <!-- Bootstrap .navbar lays out the row: logo | menu | icons -->
+            <div class="navbar navbar-expand-lg flex-nowrap header-inner">
+
+                <!-- Left: Hamburger Button (Mobile) -->
+                <div class="header-left">
+                    <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open mobile navigation menu" data-bs-toggle="offcanvas" data-bs-target="#mobileDrawer" aria-controls="mobileDrawer">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+
+                <!-- Center: Brand Logo -->
+                <div class="header-logo">
+                    <a href="index.html" class="navbar-brand" aria-label="Lama Retail Homepage">
+                        <!-- WEBP logo, with the PNG kept as the alternate for browsers without WEBP -->
+                        <picture>
+                            <source srcset="./assets/logo/logo.webp" type="image/webp">
+                            <img
+                                src="./assets/logo/logo.png"
+                                alt="Lama Retail Logo"
+                                width="140"
+                                height="46"
+                            >
+                        </picture>
+                    </a>
+                </div>
+
+                <!-- Desktop Mega Navigation (Populated by js/menu.js) -->
+                <nav class="desktop-nav" aria-label="Desktop Primary Navigation">
+                    <ul class="navbar-nav nav-list" id="desktopNavList"></ul>
+
+                    <!-- MIDTERM TASK 1: "Shop by Category" mega menu - HTML + CSS only (css/mega-menu.css).
+                         Opens on :hover or :focus-within (Tab), from BP = 668px and wider. -->
+                    <ul class="navbar-nav shop-nav">
+                        <li class="nav-item shop-menu">
+                            <a class="nav-link shop-menu__link" href="#shop-panel" aria-haspopup="true">Shop by Category</a>
+                            <div class="shop-panel" id="shop-panel">
+                                <div class="container shop-panel__grid">
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-woman">Woman</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-woman">
+                                            <li><a href="index.html#section-new">New In</a></li>
+                                            <li><a href="#">Tops &amp; Blouses</a></li>
+                                            <li><a href="#">Dresses &amp; Skirts</a></li>
+                                            <li><a href="index.html#section-sweaters">Sweaters &amp; Cardigans</a></li>
+                                            <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-man">Man</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-man">
+                                            <li><a href="index.html#section-new">New In</a></li>
+                                            <li><a href="#">Shirts</a></li>
+                                            <li><a href="#">Polo</a></li>
+                                            <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                                            <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-shoes">Shoes</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-shoes">
+                                            <li><a href="index.html#section-shoes">Heels</a></li>
+                                            <li><a href="index.html#section-shoes">Sneakers</a></li>
+                                            <li><a href="index.html#section-shoes">Boots</a></li>
+                                            <li><a href="index.html#section-shoes">Loafers</a></li>
+                                            <li><a href="#">Slides</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-accessories">Accessories</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-accessories">
+                                            <li><a href="index.html#section-bags">Handbags</a></li>
+                                            <li><a href="#">Belts</a></li>
+                                            <li><a href="#">Eyewear</a></li>
+                                            <li><a href="#">Socks</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-collections">Collections</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-collections">
+                                            <li><a href="#">Fall Winter '26</a></li>
+                                            <li><a href="#">Banana Road</a></li>
+                                            <li><a href="#">Fragrance &amp; Living</a></li>
+                                            <li><a href="#">E-Gift Card</a></li>
+                                            <li><a href="#">Clearance</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Right: Action Icons (Search, Login, Cart) -->
+                <div class="header-right d-flex align-items-center gap-1">
+                    <!-- Search Icon Trigger -->
+                    <button type="button" id="searchTriggerBtn" class="header-icon-btn" aria-label="Open search dialog" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Account / Login Link -->
+                    <a href="#login" class="header-icon-btn header-auth-link" aria-label="Log in to customer account">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+
+                    <!-- Cart Trigger Button with Live Quantity Badge -->
+                    <!-- MIDTERM TASK 2: the cart icon is a real link to the checkout page -->
+                    <a href="checkout.html" id="cartTriggerBtn" class="header-icon-btn" aria-label="View cart and checkout">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span id="headerCartBadge" class="cart-count-badge badge rounded-pill text-bg-dark" data-count="0">0</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Full-Width Search Overlay -->
+        <div id="searchOverlay" class="search-overlay" role="region" aria-label="Site Search">
+            <div class="container">
+                <form id="searchForm" class="search-form">
+                    <input
+                        type="search"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="SEARCH PRODUCTS, CATEGORIES, OR STYLES..."
+                        aria-label="Search term"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-submit-btn">Search</button>
+                    <button type="button" id="searchCloseBtn" class="search-close-btn" aria-label="Close search overlay">
+                        &times;
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Left Slide-In Navigation Drawer (Bootstrap offcanvas: Bootstrap's script opens/closes it) -->
+    <aside id="mobileDrawer" class="offcanvas offcanvas-start mobile-drawer" tabindex="-1" aria-label="Navigation Menu">
+        <div class="mobile-drawer-header">
+            <span class="mobile-drawer-title">MENU</span>
+            <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" data-bs-dismiss="offcanvas" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="mobile-nav-content">
+            <!-- MIDTERM TASK 1: the same K = 5 groups as a <details> accordion (below BP = 668px only).
+                 Closed by default; each <details> opens on its own. No JavaScript. -->
+            <nav class="shop-accordion" aria-label="Shop by Category">
+                <p class="shop-accordion__title">Shop by Category</p>
+                <details class="shop-accordion__group">
+                    <summary>Woman</summary>
+                    <ul>
+                        <li><a href="index.html#section-new">New In</a></li>
+                        <li><a href="#">Tops &amp; Blouses</a></li>
+                        <li><a href="#">Dresses &amp; Skirts</a></li>
+                        <li><a href="index.html#section-sweaters">Sweaters &amp; Cardigans</a></li>
+                        <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Man</summary>
+                    <ul>
+                        <li><a href="index.html#section-new">New In</a></li>
+                        <li><a href="#">Shirts</a></li>
+                        <li><a href="#">Polo</a></li>
+                        <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                        <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Shoes</summary>
+                    <ul>
+                        <li><a href="index.html#section-shoes">Heels</a></li>
+                        <li><a href="index.html#section-shoes">Sneakers</a></li>
+                        <li><a href="index.html#section-shoes">Boots</a></li>
+                        <li><a href="index.html#section-shoes">Loafers</a></li>
+                        <li><a href="#">Slides</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Accessories</summary>
+                    <ul>
+                        <li><a href="index.html#section-bags">Handbags</a></li>
+                        <li><a href="#">Belts</a></li>
+                        <li><a href="#">Eyewear</a></li>
+                        <li><a href="#">Socks</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Collections</summary>
+                    <ul>
+                        <li><a href="#">Fall Winter '26</a></li>
+                        <li><a href="#">Banana Road</a></li>
+                        <li><a href="#">Fragrance &amp; Living</a></li>
+                        <li><a href="#">E-Gift Card</a></li>
+                        <li><a href="#">Clearance</a></li>
+                    </ul>
+                </details>
+            </nav>
+
+            <div id="mobileDrawerNav"></div>
+        </div>
+    </aside>
+
+    <!-- =========================================================================
+         MIDTERM TASK 2: CHECKOUT FORM - HTML5 validation + CSS only (css/checkout.css), no JavaScript
+         ========================================================================= -->
+    <main id="MainContent" role="main" class="checkout-page">
+        <div class="container">
+
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb checkout-breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                </ol>
+            </nav>
+
+            <h1 class="checkout-title">Checkout</h1>
+
+            <!-- Shown only after a valid submit: the form goes to #order-confirmed and CSS :target shows this box -->
+            <p id="order-confirmed" class="order-confirmed" role="status">
+                Thank you! Your order details were accepted. (Demo form &ndash; nothing is sent anywhere.)
+            </p>
+
+            <!-- The browser checks required / type / pattern / minlength / min / max before it lets the form submit.
+                 Inputs have no name attribute, so no personal data is added to the URL. -->
+            <form class="checkout-form" action="#order-confirmed">
+
+                <fieldset class="checkout-fieldset">
+                    <legend>Contact</legend>
+                        <label for="full-name">Full name</label>
+                        <input id="full-name" class="form-control" type="text" required minlength="3" autocomplete="name" placeholder="e.g. Muhammad Hammad Sarwar" aria-describedby="full-name-error">
+                        <span class="field-error" id="full-name-error">Please enter your full name (at least 3 letters).</span>
+                        <label for="email">Email</label>
+                        <input id="email" class="form-control" type="email" required autocomplete="email" placeholder="name@example.com" aria-describedby="email-error">
+                        <span class="field-error" id="email-error">Please enter a valid email, e.g. name@example.com.</span>
+                        <label for="phone">Phone</label>
+                        <input id="phone" class="form-control" type="tel" required pattern="03[0-9]{2}-[0-9]{7}" placeholder="03XX-XXXXXXX" title="Format: 03XX-XXXXXXX" autocomplete="tel" aria-describedby="phone-error">
+                        <span class="field-error" id="phone-error">Use the format 03XX-XXXXXXX, e.g. 0311-1115262.</span>
+                </fieldset>
+
+                <fieldset class="checkout-fieldset">
+                    <legend>Delivery</legend>
+                        <label for="address">Address</label>
+                        <input id="address" class="form-control" type="text" required minlength="5" autocomplete="street-address" placeholder="House, street, area" aria-describedby="address-error">
+                        <span class="field-error" id="address-error">Please enter your street address.</span>
+                        <label for="city">City</label>
+                        <select id="city" class="form-select" required aria-describedby="city-error">
+                            <option value="">Choose a city</option>
+                            <option>Lahore</option>
+                            <option>Karachi</option>
+                            <option>Islamabad</option>
+                            <option>Rawalpindi</option>
+                            <option>Faisalabad</option>
+                            <option>Multan</option>
+                            <option>Peshawar</option>
+                        </select>
+                        <span class="field-error" id="city-error">Please choose a city.</span>
+                        <label for="delivery-date">Delivery date</label>
+                        <input id="delivery-date" class="form-control" type="date" required min="2026-10-29" max="2027-01-05" aria-describedby="delivery-date-error">
+                        <span class="field-error" id="delivery-date-error">Choose a date from 29 Oct 2026 to 5 Jan 2027.</span>
+                </fieldset>
+
+                <button type="submit" class="btn btn-dark checkout-submit">Place order</button>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- =========================================================================
+         SECTION 6: FOOTER (Content as defined in Section 2.4 of Build Plan)
+         ========================================================================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <!-- Top: Newsletter, Links, Currency - Bootstrap grid (stacks on phones, 3 columns on desktop) -->
+            <div class="row g-4 g-lg-5 footer-top-grid">
+                <div class="footer-newsletter col-12 col-md-6 col-lg-5">
+                    <h2 class="footer-heading">Sign up and save</h2>
+                    <form id="newsletterForm" class="newsletter-form input-group" novalidate>
+                        <label for="newsletterInput" class="visually-hidden">Email</label>
+                        <input
+                            type="email"
+                            id="newsletterInput"
+                            class="newsletter-input form-control"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            aria-describedby="newsletterFeedback"
+                            required
+                        >
+                        <button type="submit" class="newsletter-btn btn btn-dark">Subscribe</button>
+                    </form>
+                    <div id="newsletterFeedback" class="newsletter-feedback" role="status" aria-live="polite"></div>
+                </div>
+
+                <nav class="footer-links col-6 col-md-3 col-lg-3" aria-label="Footer">
+                    <ul class="footer-links-list">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#returns">Returns / Exchanges</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-currency col-6 col-md-3 col-lg-4">
+                    <label for="currencySelector" class="footer-currency-label">Currency</label>
+                    <select id="currencySelector" class="footer-currency-select form-select">
+                        <option value="PKR" selected>Pakistani Rupee (PKR Rs.)</option>
+                        <option value="USD">US Dollar (USD $)</option>
+                        <option value="EUR">Euro (EUR €)</option>
+                        <option value="GBP">British Pound Sterling (GBP £)</option>
+                        <option value="CAD">Canadian Dollar (CAD $)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="footer-social-icons">
+                <a href="https://instagram.com" class="footer-social-link" aria-label="Lama Retail on Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://facebook.com" class="footer-social-link" aria-label="Lama Retail on Facebook" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                </a>
+                <a href="https://youtube.com" class="footer-social-link" aria-label="Lama Retail on YouTube" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                </a>
+                <a href="https://tiktok.com" class="footer-social-link" aria-label="Lama Retail on TikTok" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.97v7.68c-.01 2.01-.67 4.02-1.99 5.56-1.48 1.75-3.67 2.77-5.96 2.78-3.05.08-6-1.48-7.51-4.09-1.57-2.68-1.47-6.15.25-8.73 1.67-2.52 4.63-3.95 7.66-3.62v4.08c-1.35-.25-2.79.08-3.85.95-.98.79-1.54 2.03-1.49 3.3.04 1.34.69 2.58 1.76 3.35 1.15.82 2.67.97 3.97.43 1.1-.47 1.87-1.54 1.94-2.73.04-1.59.02-3.18.02-4.77V.02h-.03z"/></svg>
+                </a>
+            </div>
+
+            <!-- Customer Service + Store Location (accordions on mobile, columns on desktop) -->
+            <div class="row g-0 gx-md-5 footer-info-grid">
+                <div class="footer-accordion col-12 col-md-4">
+                    <h2 class="footer-heading footer-accordion-heading">
+                        <button type="button" class="footer-accordion-header" aria-expanded="false" aria-controls="footerServiceContent">
+                            Customer Service
+                            <span class="footer-accordion-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h2>
+                    <div id="footerServiceContent" class="footer-accordion-content">
+                        <p class="footer-service-text">
+                            Email | WhatsApp<br>
+                            Contact us at <a href="tel:03111115262">0311-1115262</a><br>
+                            09:00 AM to 09:00 PM (PST), Monday - Saturday
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-accordion col-12 col-md-8">
+                    <h2 class="footer-heading footer-accordion-heading">
+                        <button type="button" class="footer-accordion-header" aria-expanded="false" aria-controls="footerStoreContent">
+                            Store Location
+                            <span class="footer-accordion-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                    </h2>
+                    <div id="footerStoreContent" class="footer-accordion-content footer-store-columns row row-cols-1 row-cols-md-3 g-3">
+                        <div class="store-city-block col">
+                            <h3 class="store-city-name">Lahore</h3>
+                            <ul class="store-locations-list">
+                                <li>Flagship Store (22-A, Block K Gulberg-II)</li>
+                                <li>Emporium Mall (T01, Level 3)</li>
+                                <li>Packages Mall (Level 1)</li>
+                                <li>Dolmen Mall (Shop # s-25, 2nd Floor)</li>
+                            </ul>
+                        </div>
+
+                        <div class="store-city-block col">
+                            <h3 class="store-city-name">Islamabad</h3>
+                            <ul class="store-locations-list">
+                                <li>Sumbal Rd, F-10 Markaz F10/4</li>
+                                <li>Zeta Mall (UG/07)</li>
+                            </ul>
+                        </div>
+
+                        <div class="store-city-block col">
+                            <h3 class="store-city-name">Karachi</h3>
+                            <ul class="store-locations-list">
+                                <li>Dolmen Mall Clifton (Shop No - D1, Ground Floor)</li>
+                                <li>LuckyOne Mall (Shop # 14, Lower Ground Floor)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright Line -->
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 Lama Retail</p>
+                <p>Educational replica - brand assets belong to Lama Retail.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         ALL SCRIPT FILES IN DEFINED ORDER (Classic <script src>, No ES Modules)
+         ========================================================================= -->
+    <!-- Bootstrap's own JavaScript (only used for the hamburger offcanvas menu) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/data.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/footer.js"></script>
+
+</body>
+</html>

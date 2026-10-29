@@ -1,0 +1,148 @@
+/* ==========================================================================
+   css/checkout.css - MIDTERM TASK 2: checkout form (HTML5 validation + CSS only, no JavaScript)
+
+   BP = 668px (search "BP" to change it)
+     below BP : one column, labels above inputs
+     from BP  : the two fieldsets side by side; inside each, labels in a left column (CSS Grid)
+   ========================================================================== */
+
+.checkout-page {
+    padding: var(--space-6) 0 var(--space-12);
+}
+
+.checkout-breadcrumb {
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--space-4);
+}
+
+.checkout-title {
+    font-size: var(--font-size-2xl);
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+}
+
+/* 1. Page layout: the form is a grid - 1 column on phones, 2 columns (Contact | Delivery) from BP */
+.checkout-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+@media (min-width: 668px) {                     /* BP */
+    .checkout-form {
+        grid-template-columns: 1fr 1fr;         /* the two fieldsets sit side by side */
+    }
+}
+
+/* Submit button: full width at every size, under both fieldsets */
+.checkout-submit {
+    grid-column: 1 / -1;                        /* span all columns of the form grid */
+    width: 100%;
+}
+
+/* 2. Each fieldset is its own grid: label | input (+ error message under the input) */
+.checkout-fieldset {
+    display: grid;
+    grid-template-columns: 1fr;                 /* below BP: label above input */
+    row-gap: var(--space-2);
+    align-items: center;
+    align-content: start;
+    border: 1px solid var(--color-border);
+    padding: var(--space-5);
+    margin: 0;
+}
+
+@media (min-width: 668px) {                     /* BP */
+    .checkout-fieldset {
+        grid-template-columns: 6.5rem minmax(0, 1fr);   /* labels in a column on the left of their inputs */
+        column-gap: var(--space-4);
+        row-gap: var(--space-3);
+    }
+
+    .checkout-fieldset .field-error {
+        grid-column: 2;                         /* message sits under its input, not under the label */
+    }
+}
+
+.checkout-fieldset legend {
+    float: none;
+    width: auto;
+    padding: 0 var(--space-2);
+    margin-bottom: var(--space-2);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    text-transform: uppercase;
+}
+
+.checkout-fieldset label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.checkout-fieldset .form-control,
+.checkout-fieldset .form-select {
+    font-size: var(--font-size-base);
+    border-color: var(--color-border-dark);
+}
+
+.checkout-fieldset .form-control:focus,
+.checkout-fieldset .form-select:focus {
+    border-color: var(--accent);                /* accent colour hsl(116, 70%, 45%) from css/mega-menu.css */
+    box-shadow: 0 0 0 0.2rem hsl(116 70% 45% / 0.25);
+}
+
+/* 3. Validation messages: hidden until the user has interacted with the field */
+.field-error {
+    display: none;
+    color: var(--color-sale);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    margin-top: calc(var(--space-2) * -1);
+}
+
+/* :user-invalid = invalid AND the user has already typed in / left the field (not on page load) */
+.checkout-form .form-control:user-invalid,
+.checkout-form .form-select:user-invalid {
+    border-color: var(--color-sale);            /* red border */
+    box-shadow: 0 0 0 0.2rem rgba(217, 4, 41, 0.15);
+}
+
+.checkout-form .form-control:user-invalid + .field-error,
+.checkout-form .form-select:user-invalid + .field-error {
+    display: block;                             /* "+" = the message right after the invalid field */
+}
+
+/* Valid fields the user filled in get a green (accent) border */
+.checkout-form .form-control:user-valid,
+.checkout-form .form-select:user-valid {
+    border-color: var(--accent);
+}
+
+/* Fallback for older browsers without :user-invalid:
+   :placeholder-shown is true while the field is empty, so this only fires after typing */
+@supports not selector(:user-invalid) {
+    .checkout-form .form-control:not(:placeholder-shown):invalid {
+        border-color: var(--color-sale);
+    }
+
+    .checkout-form .form-control:not(:placeholder-shown):invalid + .field-error {
+        display: block;
+    }
+}
+
+/* 4. Confirmation box: shown only when the URL ends with #order-confirmed (after a valid submit) */
+.order-confirmed {
+    display: none;
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--accent);
+    border-left-width: 4px;
+    background-color: hsl(116 70% 45% / 0.08);
+    font-weight: 500;
+}
+
+.order-confirmed:target {
+    display: block;
+}
