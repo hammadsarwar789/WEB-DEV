@@ -1,6 +1,6 @@
 # Lab Midterm – Upgrade Your E-commerce Navigation, Checkout and Cart
 
-| | |
+| Field | Value |
 |---|---|
 | **Name** | Muhammad Hammad Sarwar |
 | **Roll number** | FA24-BCS-068 |
@@ -13,7 +13,37 @@
 
 Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in the baseline commit `midterm: baseline copy`, then changed below. Bootstrap 5.3.3 is still used everywhere. Tested at **375px, 668px and 1280px**.
 
-**PDF:** `FA24-BCS-068-midterm.pdf`. **Screenshots:** `screenshots/midterm/`.
+**PDF:** `FA24-BCS-068-midterm.pdf`. **Screenshots:** below and in `screenshots/midterm/`.
+
+---
+
+## Screenshots (375px · BP = 668px · 1280px)
+
+Click any picture to see it full size. All files are in `screenshots/midterm/`.
+
+### Task 1 – Mega menu
+
+| 375px – accordion in the hamburger menu | 668px (BP) – panel open | 1280px – panel open |
+|:---:|:---:|:---:|
+| <a href="screenshots/midterm/task1-375-accordion.jpg"><img src="screenshots/midterm/task1-375-accordion.jpg" alt="Task 1 at 375px: Shop by Category accordion inside the Bootstrap offcanvas menu" width="200"></a> | <a href="screenshots/midterm/task1-668-panel-open.jpg"><img src="screenshots/midterm/task1-668-panel-open.jpg" alt="Task 1 at 668px: full-width Shop by Category panel with 5 columns" width="260"></a> | <a href="screenshots/midterm/task1-1280-panel-open.jpg"><img src="screenshots/midterm/task1-1280-panel-open.jpg" alt="Task 1 at 1280px: full-width Shop by Category panel with 5 columns" width="320"></a> |
+
+### Task 2 – Checkout form validation
+
+| 375px – one column, labels above | 668px (BP) – fieldsets side by side | 1280px – fieldsets side by side |
+|:---:|:---:|:---:|
+| <a href="screenshots/midterm/task2-375-validation.jpg"><img src="screenshots/midterm/task2-375-validation.jpg" alt="Task 2 at 375px: one column, invalid email and phone show red borders and messages" width="200"></a> | <a href="screenshots/midterm/task2-668-validation.jpg"><img src="screenshots/midterm/task2-668-validation.jpg" alt="Task 2 at 668px: two fieldsets side by side with labels on the left" width="260"></a> | <a href="screenshots/midterm/task2-1280-validation.jpg"><img src="screenshots/midterm/task2-1280-validation.jpg" alt="Task 2 at 1280px: two fieldsets side by side with validation messages" width="320"></a> |
+
+### Task 3 – Cart badge and mini cart (after using the cart)
+
+| 375px – mini cart open | 668px (BP) – mini cart open | 1280px – mini cart open, "Limit reached" |
+|:---:|:---:|:---:|
+| <a href="screenshots/midterm/task3-375-mini-cart.jpg"><img src="screenshots/midterm/task3-375-mini-cart.jpg" alt="Task 3 at 375px: mini cart with 4 items and the total" width="200"></a> | <a href="screenshots/midterm/task3-668-mini-cart.jpg"><img src="screenshots/midterm/task3-668-mini-cart.jpg" alt="Task 3 at 668px: mini cart with 4 items and the total" width="260"></a> | <a href="screenshots/midterm/task3-1280-mini-cart.jpg"><img src="screenshots/midterm/task3-1280-mini-cart.jpg" alt="Task 3 at 1280px: mini cart, badge 4, Limit reached on the first card" width="320"></a> |
+
+### Extra – Save for later
+
+| 375px – saved panel | 1280px – saved panel |
+|:---:|:---:|
+| <a href="screenshots/midterm/extra-375-saved-for-later.jpg"><img src="screenshots/midterm/extra-375-saved-for-later.jpg" alt="Saved for later panel at 375px" width="200"></a> | <a href="screenshots/midterm/extra-1280-saved-for-later.jpg"><img src="screenshots/midterm/extra-1280-saved-for-later.jpg" alt="Saved for later panel at 1280px with the red header heart" width="380"></a> |
 
 ---
 
