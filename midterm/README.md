@@ -31,6 +31,9 @@ Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in
 | `js/menu.js` | 1 | Removed our own hamburger open/close code (Bootstrap's offcanvas script does it now) |
 | `js/products.js` | 3 | Every product card gets an **Add to Cart** button instead of the "+" quick-add button |
 | `README.md` | – | This file |
+| `FA24-BCS-068-midterm.pdf` | – | **New** – submission PDF (screenshots + code for each task) |
+| `screenshots/midterm/` (9 files) | – | **New** – each task at 375px, 668px and 1280px, used in the PDF |
+| `FA24-BCS-068_Assignment2_Completion.pdf` | – | **Removed** from `midterm/` (copied from Assignment 2) so this folder has only one PDF; the original is still in `assignments/assignment 2/` |
 
 ---
 
