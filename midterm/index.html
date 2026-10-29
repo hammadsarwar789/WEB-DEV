@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/mega-menu.css">      <!-- Midterm Task 1 -->
 </head>
 <body>
 
@@ -67,7 +68,7 @@
 
                 <!-- Left: Hamburger Button (Mobile) -->
                 <div class="header-left">
-                    <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open mobile navigation menu" aria-expanded="false">
+                    <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open mobile navigation menu" data-bs-toggle="offcanvas" data-bs-target="#mobileDrawer" aria-controls="mobileDrawer">
                         <span class="hamburger-line"></span>
                         <span class="hamburger-line"></span>
                         <span class="hamburger-line"></span>
@@ -93,6 +94,67 @@
                 <!-- Desktop Mega Navigation (Populated by js/menu.js) -->
                 <nav class="desktop-nav" aria-label="Desktop Primary Navigation">
                     <ul class="navbar-nav nav-list" id="desktopNavList"></ul>
+
+                    <!-- MIDTERM TASK 1: "Shop by Category" mega menu - HTML + CSS only (css/mega-menu.css).
+                         Opens on :hover or :focus-within (Tab), from BP = 668px and wider. -->
+                    <ul class="navbar-nav shop-nav">
+                        <li class="nav-item shop-menu">
+                            <a class="nav-link shop-menu__link" href="#shop-panel" aria-haspopup="true">Shop by Category</a>
+                            <div class="shop-panel" id="shop-panel">
+                                <div class="container shop-panel__grid">
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-woman">Woman</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-woman">
+                                            <li><a href="index.html#section-new">New In</a></li>
+                                            <li><a href="#">Tops &amp; Blouses</a></li>
+                                            <li><a href="#">Dresses &amp; Skirts</a></li>
+                                            <li><a href="index.html#section-sweaters">Sweaters &amp; Cardigans</a></li>
+                                            <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-man">Man</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-man">
+                                            <li><a href="index.html#section-new">New In</a></li>
+                                            <li><a href="#">Shirts</a></li>
+                                            <li><a href="#">Polo</a></li>
+                                            <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                                            <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-shoes">Shoes</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-shoes">
+                                            <li><a href="index.html#section-shoes">Heels</a></li>
+                                            <li><a href="index.html#section-shoes">Sneakers</a></li>
+                                            <li><a href="index.html#section-shoes">Boots</a></li>
+                                            <li><a href="index.html#section-shoes">Loafers</a></li>
+                                            <li><a href="#">Slides</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-accessories">Accessories</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-accessories">
+                                            <li><a href="index.html#section-bags">Handbags</a></li>
+                                            <li><a href="#">Belts</a></li>
+                                            <li><a href="#">Eyewear</a></li>
+                                            <li><a href="#">Socks</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-panel__col">
+                                        <h2 class="shop-panel__heading" id="shop-heading-collections">Collections</h2>
+                                        <ul class="shop-panel__list" aria-labelledby="shop-heading-collections">
+                                            <li><a href="#">Fall Winter '26</a></li>
+                                            <li><a href="#">Banana Road</a></li>
+                                            <li><a href="#">Fragrance &amp; Living</a></li>
+                                            <li><a href="#">E-Gift Card</a></li>
+                                            <li><a href="#">Clearance</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </nav>
 
                 <!-- Right: Action Icons (Search, Login, Cart) -->
@@ -148,14 +210,68 @@
         </div>
     </header>
 
-    <!-- Mobile Left Slide-In Navigation Drawer -->
-    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
-    <aside id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+    <!-- Mobile Left Slide-In Navigation Drawer (Bootstrap offcanvas: Bootstrap's script opens/closes it) -->
+    <aside id="mobileDrawer" class="offcanvas offcanvas-start mobile-drawer" tabindex="-1" aria-label="Navigation Menu">
         <div class="mobile-drawer-header">
             <span class="mobile-drawer-title">MENU</span>
-            <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+            <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" data-bs-dismiss="offcanvas" aria-label="Close menu">&times;</button>
         </div>
         <div class="mobile-nav-content">
+            <!-- MIDTERM TASK 1: the same K = 5 groups as a <details> accordion (below BP = 668px only).
+                 Closed by default; each <details> opens on its own. No JavaScript. -->
+            <nav class="shop-accordion" aria-label="Shop by Category">
+                <p class="shop-accordion__title">Shop by Category</p>
+                <details class="shop-accordion__group">
+                    <summary>Woman</summary>
+                    <ul>
+                        <li><a href="index.html#section-new">New In</a></li>
+                        <li><a href="#">Tops &amp; Blouses</a></li>
+                        <li><a href="#">Dresses &amp; Skirts</a></li>
+                        <li><a href="index.html#section-sweaters">Sweaters &amp; Cardigans</a></li>
+                        <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Man</summary>
+                    <ul>
+                        <li><a href="index.html#section-new">New In</a></li>
+                        <li><a href="#">Shirts</a></li>
+                        <li><a href="#">Polo</a></li>
+                        <li><a href="index.html#section-jackets">Jackets &amp; Coats</a></li>
+                        <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Shoes</summary>
+                    <ul>
+                        <li><a href="index.html#section-shoes">Heels</a></li>
+                        <li><a href="index.html#section-shoes">Sneakers</a></li>
+                        <li><a href="index.html#section-shoes">Boots</a></li>
+                        <li><a href="index.html#section-shoes">Loafers</a></li>
+                        <li><a href="#">Slides</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Accessories</summary>
+                    <ul>
+                        <li><a href="index.html#section-bags">Handbags</a></li>
+                        <li><a href="#">Belts</a></li>
+                        <li><a href="#">Eyewear</a></li>
+                        <li><a href="#">Socks</a></li>
+                    </ul>
+                </details>
+                <details class="shop-accordion__group">
+                    <summary>Collections</summary>
+                    <ul>
+                        <li><a href="#">Fall Winter '26</a></li>
+                        <li><a href="#">Banana Road</a></li>
+                        <li><a href="#">Fragrance &amp; Living</a></li>
+                        <li><a href="#">E-Gift Card</a></li>
+                        <li><a href="#">Clearance</a></li>
+                    </ul>
+                </details>
+            </nav>
+
             <div id="mobileDrawerNav"></div>
         </div>
     </aside>
@@ -411,6 +527,9 @@
     <!-- =========================================================================
          ALL SCRIPT FILES IN DEFINED ORDER (Classic <script src>, No ES Modules)
          ========================================================================= -->
+    <!-- Bootstrap's own JavaScript (only used for the hamburger offcanvas menu) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/data.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/slider.js"></script>

@@ -1,0 +1,184 @@
+/* ==========================================================================
+   css/mega-menu.css - MIDTERM TASK 1: "Shop by Category" mega menu (HTML + CSS only)
+
+   My numbers (roll no. FA24-BCS-068):  N = 68
+     BP = 600 + N = 668px      -> the panel works from 668px; below it the <details> accordion is used
+     K  = (N mod 3) + 3 = 5    -> 5 columns in the panel / 5 accordion groups
+     H  = (N x 7) mod 360 = 116 -> accent colour hsl(116, 70%, 45%)
+
+   To change BP: search this file for "BP" (CSS variables can't be used inside @media).
+   To change K:  edit grid-template-columns in .shop-panel__grid.
+   ========================================================================== */
+
+:root {
+    --accent: hsl(116, 70%, 45%);   /* H = 116 */
+}
+
+/* 1. The desktop <nav> now shows from BP (it used to show only from 1024px).
+      Between BP and 1023px only "Shop by Category" is visible; the other 8 links stay in the hamburger. */
+@media (min-width: 668px) {                     /* BP */
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: var(--space-6);
+        margin: 0 var(--space-4) 0 var(--space-6);
+    }
+}
+
+@media (max-width: 1023.98px) {
+    .desktop-nav .nav-list {
+        display: none;                          /* the JS-built links still appear only from 1024px */
+    }
+}
+
+/* 2. Position: the panel is placed relative to the sticky header (full page width),
+      so the navbar and the menu item must NOT be the positioned parent. */
+.header-inner.navbar {
+    position: static;                           /* Bootstrap's .navbar is position: relative */
+}
+
+.shop-menu.nav-item {
+    position: static;                           /* our .nav-item is position: relative */
+}
+
+/* 3. The panel: hidden by default, full width under the navbar, above everything */
+.shop-panel {
+    position: absolute;                         /* out of the page flow -> does not push content down */
+    top: 100%;                                  /* starts at the bottom edge of the header */
+    left: 0;
+    right: 0;                                   /* left 0 + right 0 = full width of the header */
+    z-index: 10;                                /* inside the header, which is z-index 500 above the page */
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+    padding: var(--space-8) 0;
+
+    visibility: hidden;                         /* hidden = not clickable and not reachable with Tab */
+    opacity: 0;
+    /* When CLOSING, wait 0.25s before hiding: the pointer has time to travel from
+       "Shop by Category" across the gap into the panel without it closing. */
+    transition: opacity 0.15s ease, visibility 0s linear 0.25s;
+}
+
+/* OPEN: mouse over the item or the panel (:hover), or keyboard focus anywhere inside it (:focus-within).
+   The panel is inside the <li>, so hovering the panel still counts as hovering the <li>. */
+.shop-menu:hover > .shop-panel,
+.shop-menu:focus-within > .shop-panel {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;                       /* open immediately */
+}
+
+/* Below BP the panel never shows (the accordion in the hamburger menu is used instead) */
+@media (max-width: 667.98px) {                  /* BP - 0.02 */
+    .shop-nav {
+        display: none;
+    }
+}
+
+/* 4. K columns, each a list with a heading */
+.shop-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);      /* K = 5 */
+    gap: var(--space-6);
+}
+
+.shop-panel__heading {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-3);
+    border-bottom: 2px solid var(--accent);     /* accent colour from H */
+}
+
+.shop-panel__list li + li {
+    margin-top: var(--space-2);
+}
+
+.shop-panel__list a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.shop-panel__list a:hover,
+.shop-panel__list a:focus-visible {
+    color: var(--color-text-main);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+}
+
+.shop-menu:hover > .shop-menu__link,
+.shop-menu:focus-within > .shop-menu__link {
+    box-shadow: inset 0 -2px 0 var(--accent);   /* accent underline while the panel is open */
+}
+
+/* 5. Below BP: the same K groups as a <details> accordion inside the hamburger menu */
+.shop-accordion {
+    margin-bottom: var(--space-4);
+}
+
+@media (min-width: 668px) {                     /* BP */
+    .shop-accordion {
+        display: none;                          /* from BP the desktop panel is used instead */
+    }
+}
+
+.shop-accordion__title {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--color-text-muted);
+    padding-bottom: var(--space-2);
+    border-bottom: 2px solid var(--accent);
+}
+
+.shop-accordion__group {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.shop-accordion__group summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    cursor: pointer;
+    list-style: none;                           /* hide the default triangle (Firefox) */
+}
+
+.shop-accordion__group summary::-webkit-details-marker {
+    display: none;                              /* hide the default triangle (Chrome / Safari) */
+}
+
+.shop-accordion__group summary::after {
+    content: '+';
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.shop-accordion__group[open] summary::after {
+    content: '\2212';                           /* minus sign when open */
+}
+
+.shop-accordion__group ul {
+    padding: 0 0 var(--space-3) var(--space-3);
+}
+
+.shop-accordion__group li a {
+    display: block;
+    padding: var(--space-1) 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+/* 6. Phone menu = Bootstrap offcanvas now: let Bootstrap's z-index and slide animation apply
+      (our old .mobile-drawer rule set a lower z-index meant for the removed custom backdrop) */
+.mobile-drawer.offcanvas {
+    z-index: var(--bs-offcanvas-zindex);
+    transition: transform 0.3s ease-in-out;
+}

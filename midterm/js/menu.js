@@ -14,10 +14,6 @@
         // DOM Targets
         const desktopNavContainer = document.getElementById("desktopNavList");
         const mobileDrawerNav = document.getElementById("mobileDrawerNav");
-        const hamburgerBtn = document.getElementById("mobileMenuBtn");
-        const drawerCloseBtn = document.getElementById("mobileDrawerClose");
-        const drawerBackdrop = document.getElementById("mobileDrawerBackdrop");
-        const mobileDrawer = document.getElementById("mobileDrawer");
 
         const searchTriggerBtn = document.getElementById("searchTriggerBtn");
         const searchOverlay = document.getElementById("searchOverlay");
@@ -239,46 +235,8 @@
             });
         }
 
-        // 3. Mobile Drawer Open / Close Controls & Focus Trap
-        function isDrawerOpen() {
-            return Boolean(mobileDrawer && mobileDrawer.classList.contains("open"));
-        }
-
-        function openMobileDrawer() {
-            if (!mobileDrawer || !drawerBackdrop || isDrawerOpen()) return;
-            mobileDrawer.classList.add("open");
-            drawerBackdrop.classList.add("active");
-            ui.lockScroll();
-            if (hamburgerBtn) hamburgerBtn.setAttribute("aria-expanded", "true");
-            if (drawerCloseBtn) drawerCloseBtn.focus();
-        }
-
-        function closeMobileDrawer() {
-            if (!isDrawerOpen()) return;
-            mobileDrawer.classList.remove("open");
-            drawerBackdrop.classList.remove("active");
-            ui.unlockScroll();
-            if (hamburgerBtn) {
-                hamburgerBtn.setAttribute("aria-expanded", "false");
-                hamburgerBtn.focus();
-            }
-        }
-
-        if (hamburgerBtn) hamburgerBtn.addEventListener("click", openMobileDrawer);
-        if (drawerCloseBtn) drawerCloseBtn.addEventListener("click", closeMobileDrawer);
-        if (drawerBackdrop) drawerBackdrop.addEventListener("click", closeMobileDrawer);
-
-        if (mobileDrawer) {
-            mobileDrawer.addEventListener("keydown", function (e) {
-                ui.trapFocus(e, mobileDrawer);
-            });
-        }
-
-        // Drawer is mobile-only: close it if the window grows to desktop width while open
-        const desktopQuery = window.matchMedia("(min-width: 1024px)");
-        desktopQuery.addEventListener("change", function (e) {
-            if (e.matches) closeMobileDrawer();
-        });
+        // 3. Mobile Drawer: opened and closed by Bootstrap's own offcanvas script (data-bs-toggle="offcanvas"
+        //    on the hamburger button in the HTML), which also handles Esc, the backdrop and focus. (Midterm Task 1)
 
         // 4. Search Overlay
         function openSearch() {
@@ -325,9 +283,6 @@
         window.addEventListener("keydown", function (e) {
             if (e.key !== "Escape") return;
 
-            if (isDrawerOpen()) {
-                closeMobileDrawer();
-            }
             if (searchOverlay && searchOverlay.classList.contains("open")) {
                 closeSearch();
             }
