@@ -66,6 +66,15 @@
         }
 
 
+        // Heart = "Save for later" (extra feature): script.js handles clicks on .btn-wishlist
+        const heartBtn = document.createElement("button");
+        heartBtn.type = "button";
+        heartBtn.className = "btn-wishlist";
+        heartBtn.setAttribute("aria-pressed", "false");
+        heartBtn.setAttribute("aria-label", `Save ${product.name} for later`);
+        heartBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>';
+        imageBox.appendChild(heartBtn);
+
         card.appendChild(imageBox);
 
         // 2. Product Meta Info

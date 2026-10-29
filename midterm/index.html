@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/mega-menu.css">      <!-- Midterm Task 1 -->
     <link rel="stylesheet" href="css/mini-cart.css">      <!-- Midterm Task 3 -->
+    <link rel="stylesheet" href="css/wishlist.css">       <!-- Extra: save for later -->
 </head>
 <body>
 
@@ -168,6 +169,12 @@
                         </svg>
                     </button>
 
+                    <!-- EXTRA: Save for later (wishlist) - heart with a count; opens the saved panel (script.js) -->
+                    <button type="button" id="savedBtn" class="header-icon-btn saved-btn" aria-label="Saved for later, 0 items" aria-controls="savedPanel" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+                        <span id="savedBadge" class="cart-count-badge badge rounded-pill text-bg-dark" data-count="0">0</span>
+                    </button>
+
                     <!-- Account / Login Link -->
                     <a href="#login" class="header-icon-btn header-auth-link" aria-label="Log in to customer account">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -194,6 +201,13 @@
                         <ul id="miniCartList" class="mini-cart__list"></ul>
                         <p class="mini-cart__total"><span>Total</span> <strong id="miniCartTotal">Rs.0.00</strong></p>
                         <a href="checkout.html" class="btn btn-dark w-100 mini-cart__checkout">Checkout</a>
+                    </div>
+
+                    <!-- EXTRA: "Saved for later" panel (filled and opened by script.js; saved in localStorage) -->
+                    <div id="savedPanel" class="mini-cart saved-panel" role="region" aria-label="Saved for later" hidden>
+                        <p class="mini-cart__title">Saved for later</p>
+                        <p id="savedEmpty" class="mini-cart__empty">Nothing saved yet. Tap the heart on a product to save it.</p>
+                        <ul id="savedList" class="mini-cart__list"></ul>
                     </div>
                 </div>
 

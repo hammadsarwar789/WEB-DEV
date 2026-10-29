@@ -21,18 +21,19 @@ Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in
 
 | File | Task | Change |
 |---|---|---|
-| `index.html` | 1, 2, 3 | Shop by Category menu + panel; phone-menu accordion; hamburger uses Bootstrap offcanvas; cart icon is a link to `checkout.html`; mini-cart panel; loads `css/mega-menu.css`, `css/mini-cart.css`, Bootstrap JS bundle and `script.js`; old size picker and cart drawer removed |
+| `index.html` | 1, 2, 3, Extra | Shop by Category menu + panel; phone-menu accordion; hamburger uses Bootstrap offcanvas; cart icon is a link to `checkout.html`; mini-cart panel; header heart + "Saved for later" panel; loads `css/mega-menu.css`, `css/mini-cart.css`, `css/wishlist.css`, Bootstrap JS bundle and `script.js`; old size picker and cart drawer removed |
 | `product.html` | 1, 2, 3 | The same header changes as `index.html` (the header is shared) |
 | `checkout.html` | 2 | **New** – the checkout form (same header / footer as the other pages) |
 | `css/mega-menu.css` | 1 | **New** – mega-menu panel, `<details>` accordion, BP / K / H rules |
 | `css/checkout.css` | 2 | **New** – form layout (CSS Grid) and `:user-invalid` validation styles |
 | `css/mini-cart.css` | 3 | **New** – Add to Cart button and mini-cart panel styles |
-| `script.js` | 3 | **New** – cart array, badge, mini cart, `reduce()` total, limit of 2 |
+| `script.js` | 3, Extra | **New** – cart array, badge, mini cart, `reduce()` total, limit of 2; plus the save-for-later list |
 | `js/menu.js` | 1 | Removed our own hamburger open/close code (Bootstrap's offcanvas script does it now) |
-| `js/products.js` | 3 | Every product card gets an **Add to Cart** button instead of the "+" quick-add button |
+| `js/products.js` | 3, Extra | Every product card gets an **Add to Cart** button instead of the "+" quick-add button, and a heart (save for later) |
+| `css/wishlist.css` | Extra | **New** – hearts on cards, header heart and "Saved for later" panel styles |
 | `README.md` | – | This file |
 | `FA24-BCS-068-midterm.pdf` | – | **New** – submission PDF (screenshots + code for each task) |
-| `screenshots/midterm/` (9 files) | – | **New** – each task at 375px, 668px and 1280px, used in the PDF |
+| `screenshots/midterm/` (11 files) | – | **New** – each task at 375px, 668px and 1280px + the saved-for-later panel, used in the PDF |
 | `FA24-BCS-068_Assignment2_Completion.pdf` | – | **Removed** from `midterm/` (copied from Assignment 2) so this folder has only one PDF; the original is still in `assignments/assignment 2/` |
 
 ---
@@ -77,6 +78,19 @@ Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in
 - **Limit:** `MAX_PER_PRODUCT = (68 % 4) + 2 = 2`. When a product (same name and colour) is in the cart twice, its button shows **"Limit reached"** and is `disabled`, until one is removed.
 - **Why the old cart was removed:** the earlier drawer (`cart.js`) and "+" size picker (`quick-add.js`) would have been a second cart writing to the same badge. These pages now load `script.js` instead. The product page's own Add to Cart form also feeds `script.js`, through its `cart:add` event.
 
+## Extra (not required by the brief) – Save for later
+
+- **What:**
+  - A **heart** on every product card saves the product for later. A filled red heart means it's saved.
+  - A **heart icon with a count** in the header opens a "Saved for later" panel with **Move to cart** and **Remove**.
+  - Every mini-cart row also has **Save for later**, which takes the item out of the cart and keeps it in the saved list.
+- **How:**
+  - Same `script.js`, with a second array `saved` (each product at most once).
+  - It's kept in `localStorage` under `lama_saved`, so it survives a refresh, read inside `try/catch` in case of bad data.
+  - "Move to cart" uses the same `addItem()`, so the limit of 2 still applies. At the limit the button shows "Limit reached".
+  - Only one panel (cart or saved) is open at a time.
+  - The heart's look comes from `aria-pressed="true"` in CSS (`css/wishlist.css`).
+
 ---
 
 ## Live check – where things are
@@ -91,6 +105,7 @@ Project: Lama Retail replica (Assignment 2), copied unchanged into `midterm/` in
 | Phone format / date range | `checkout.html` → `pattern="03[0-9]{2}-[0-9]{7}"`, `min="2026-10-29" max="2027-01-05"` |
 | Cart limit | `script.js` → `const MAX_PER_PRODUCT = (68 % 4) + 2;` |
 | Total | `script.js` → `cart.reduce((sum, item) => sum + item.price, 0)` |
+| Save for later | `script.js` → `toggleSaved()`, `saveForLater()`, `moveToCart()`; filled heart = `.btn-wishlist[aria-pressed="true"]` in `css/wishlist.css` |
 
 ## AI tools used
 

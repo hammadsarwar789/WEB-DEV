@@ -1,0 +1,77 @@
+/* ==========================================================================
+   css/wishlist.css - EXTRA: "Save for later" (hearts on cards, header heart, saved panel)
+   The saved panel reuses the .mini-cart styles from css/mini-cart.css.
+   ========================================================================== */
+
+/* Heart on each product card (top-right corner of the photo) */
+.btn-wishlist {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    z-index: 5;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast);
+}
+
+.btn-wishlist:hover {
+    transform: scale(1.08);
+}
+
+.btn-wishlist svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 1.8;
+}
+
+/* Saved = filled red heart (the state comes from aria-pressed, set by script.js) */
+.btn-wishlist[aria-pressed="true"] svg {
+    fill: var(--color-sale);
+    stroke: var(--color-sale);
+}
+
+/* Header heart: same size as the other header icons, filled when something is saved */
+.saved-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.saved-btn:has(.cart-count-badge:not([data-count="0"])) svg {
+    fill: var(--color-sale);
+    stroke: var(--color-sale);
+}
+
+/* Row buttons in both panels: "Save for later" / "Move to cart" next to "Remove" */
+.mini-cart__actions {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.mini-cart__actions .mini-cart__remove {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+.mini-cart__save {
+    font-size: var(--font-size-xs);
+    text-decoration: underline;
+    color: var(--color-text-main);
+    white-space: nowrap;
+}
+
+.mini-cart__save:disabled {
+    color: var(--color-text-light);
+    text-decoration: none;
+}
