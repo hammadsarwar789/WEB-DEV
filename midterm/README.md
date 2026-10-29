@@ -62,8 +62,9 @@ Click any picture to see it full size. All files are in `screenshots/midterm/`.
 | `js/products.js` | 3, Extra | Every product card gets an **Add to Cart** button instead of the "+" quick-add button, and a heart (save for later) |
 | `css/wishlist.css` | Extra | **New** – hearts on cards, header heart and "Saved for later" panel styles |
 | `README.md` | – | This file |
-| `FA24-BCS-068-midterm.pdf` | – | **New** – submission PDF (screenshots + code for each task) |
+| `FA24-BCS-068-midterm.pdf` | – | **New** – submission PDF (live site link, screenshots, files changed, code for each task, deployment workflow) |
 | `screenshots/midterm/` (11 files) | – | **New** – each task at 375px, 668px and 1280px + the saved-for-later panel, used in the PDF |
+| `.github/workflows/deploy-midterm.yml` (repo root) | – | **New** – GitHub Actions workflow that publishes only this `midterm/` folder to GitHub Pages |
 | `FA24-BCS-068_Assignment2_Completion.pdf` | – | **Removed** from `midterm/` (copied from Assignment 2) so this folder has only one PDF; the original is still in `assignments/assignment 2/` |
 
 ---
@@ -137,6 +138,16 @@ Click any picture to see it full size. All files are in `screenshots/midterm/`.
 | Total | `script.js` → `cart.reduce((sum, item) => sum + item.price, 0)` |
 | Save for later | `script.js` → `toggleSaved()`, `saveForLater()`, `moveToCart()`; filled heart = `.btn-wishlist[aria-pressed="true"]` in `css/wishlist.css` |
 
+## Live site (GitHub Pages)
+
+- **URL:** https://hammadsarwar789.github.io/WEB-DEV/ (free hosting on GitHub Pages).
+- **What is published:** only the `midterm/` folder. The rest of the repository (assignments, lab tasks) is not on the site.
+- **How:**
+  - `.github/workflows/deploy-midterm.yml` uploads `midterm/` with `actions/upload-pages-artifact` and publishes it with `actions/deploy-pages`.
+  - In the repo settings, the Pages source is set to **GitHub Actions**.
+  - Every push that changes a file in `midterm/` redeploys the site within about a minute.
+- **Why it works without changes:** every link, stylesheet, script and image path in the site is relative (no leading `/`), so it runs from the `/WEB-DEV/` sub-path.
+
 ## AI tools used
 
-- **Claude (Anthropic) – Claude Code**: used to plan, write and test the changes, take the screenshots and build the PDF. I reviewed every change and can explain all of it.
+- **Claude (Anthropic) – Claude Code**: used to plan, write and test the changes, take the screenshots, build the PDF and set up the GitHub Pages deployment. I reviewed every change and can explain all of it.
