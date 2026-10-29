@@ -1,0 +1,8 @@
+# Ignore Viva notes / guides
+*viva*
+*VIVA*
+VIVA_GUIDE.md
+
+# OS / Editor files
+.DS_Store
+Thumbs.db

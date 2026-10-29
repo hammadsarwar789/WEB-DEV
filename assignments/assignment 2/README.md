@@ -37,7 +37,6 @@ What was copied from the reference site:
 | README with reference site | `README.md` (this file) + `screenshots/reference-site-lamaretail.png` |
 | Screenshots at 3 widths | `screenshots/` - phone 375px, tablet 768px, desktop 1440px, for both pages |
 | Completion PDF | `FA24-BCS-068_Assignment2_Completion.pdf` |
-| Viva notes | `VIVA_GUIDE.md` |
 
 ---
 
@@ -118,7 +117,6 @@ assignment 2/
 ├── index.html                 # Homepage
 ├── product.html               # Product detail page
 ├── README.md
-├── VIVA_GUIDE.md              # Explanation of all HTML / CSS / JS for the viva
 ├── FA24-BCS-068_Assignment2_Completion.pdf
 ├── ANTIGRAVITY_BUILD_PLAN.md
 ├── css/
